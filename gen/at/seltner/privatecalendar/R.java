@@ -29,6 +29,7 @@ public final class R {
         public static final int ic_new_event=0x7f020009;
         public static final int ic_save=0x7f02000a;
         public static final int ic_trash=0x7f02000b;
+        public static final int seek_thumb=0x7f02000c;
     }
     public static final class id {
         public static final int ambilwarna_cursor=0x7f070003;
@@ -39,23 +40,32 @@ public final class R {
         public static final int ambilwarna_viewSatBri=0x7f070001;
         public static final int ambilwarna_warnaBaru=0x7f070007;
         public static final int ambilwarna_warnaLama=0x7f070006;
-        public static final int edit_activity_button_color=0x7f070009;
-        public static final int edit_activity_text_cal_name=0x7f070008;
-        public static final int edit_activity_view_color=0x7f07000a;
-        public static final int linearLayout1=0x7f07000b;
-        public static final int list_item_text_cal_name=0x7f07000d;
-        public static final int list_item_view_color=0x7f07000c;
-        public static final int menu_edit_delete=0x7f070010;
-        public static final int menu_edit_save=0x7f07000f;
-        public static final int menu_main_about=0x7f070012;
-        public static final int menu_main_add_calendar=0x7f070011;
-        public static final int privatecalendar_listview=0x7f07000e;
+        public static final int edit_activity_button_color=0x7f070012;
+        public static final int edit_activity_text_cal_name=0x7f070011;
+        public static final int edit_activity_view_color=0x7f070013;
+        public static final int hueGradient=0x7f070009;
+        public static final int lightnessGradient=0x7f07000d;
+        public static final int linearLayout1=0x7f070008;
+        public static final int list_item_text_cal_name=0x7f070015;
+        public static final int list_item_view_color=0x7f070014;
+        public static final int menu_edit_delete=0x7f070018;
+        public static final int menu_edit_save=0x7f070017;
+        public static final int menu_main_about=0x7f07001a;
+        public static final int menu_main_add_calendar=0x7f070019;
+        public static final int newColor=0x7f070010;
+        public static final int oldColor=0x7f07000f;
+        public static final int privatecalendar_listview=0x7f070016;
+        public static final int saturationGradient=0x7f07000b;
+        public static final int seekBarHue=0x7f07000a;
+        public static final int seekBarLightness=0x7f07000e;
+        public static final int seekBarSaturation=0x7f07000c;
     }
     public static final class layout {
         public static final int ambilwarna_dialog=0x7f030000;
-        public static final int edit=0x7f030001;
-        public static final int list_item=0x7f030002;
-        public static final int main=0x7f030003;
+        public static final int colorpicker=0x7f030001;
+        public static final int edit=0x7f030002;
+        public static final int list_item=0x7f030003;
+        public static final int main=0x7f030004;
     }
     public static final class menu {
         public static final int menu_edit=0x7f060000;

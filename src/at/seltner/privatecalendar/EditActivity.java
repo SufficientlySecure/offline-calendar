@@ -32,6 +32,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import at.seltner.colorpicker.ColorPickerDialog;
+import at.seltner.colorpicker.ColorPickerDialog.ColorSelectListener;
 
 public class EditActivity extends Activity {
 
@@ -166,7 +168,16 @@ public class EditActivity extends Activity {
 	}
 
 	public void handleClickPickColor(View view) {
-//		ColorPickerDialog cpd = new ColorPickerDialog(this,
+
+		ColorPickerDialog cpd = new ColorPickerDialog(this, new ColorSelectListener() {
+					@Override
+					public void colorSelected(int color) {
+						setSelectedColor(color);
+					}
+				}, selectedColor);
+		cpd.show();
+		
+//		AndroidExampleColorPickerDialog cpd = new AndroidExampleColorPickerDialog(this,
 //				new OnColorChangedListener() {
 //
 //					@Override
@@ -175,19 +186,20 @@ public class EditActivity extends Activity {
 //					}
 //				}, selectedColor);
 //		cpd.show();
-		AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, selectedColor,
-				new OnAmbilWarnaListener() {
-					@Override
-					public void onOk(AmbilWarnaDialog dialog, int color) {
-						setSelectedColor(color);
-					}
-
-					@Override
-					public void onCancel(AmbilWarnaDialog dialog) {
-						// cancel was selected by the user
-					}
-				});
-
-		dialog.show();
+		
+//		AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, selectedColor,
+//				new OnAmbilWarnaListener() {
+//					@Override
+//					public void onOk(AmbilWarnaDialog dialog, int color) {
+//						setSelectedColor(color);
+//					}
+//
+//					@Override
+//					public void onCancel(AmbilWarnaDialog dialog) {
+//						// cancel was selected by the user
+//					}
+//				});
+//
+//		dialog.show();
 	}
 }

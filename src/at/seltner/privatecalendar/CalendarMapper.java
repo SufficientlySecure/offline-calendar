@@ -32,8 +32,8 @@ import android.provider.CalendarContract.Calendars;
 
 public class CalendarMapper {
 
-	private static final String ACCOUNT_NAME = "Private Calendar";
-	private static final String INT_NAME_PREFIX = "PRIV_";
+	private static final String ACCOUNT_NAME = "private";
+	private static final String INT_NAME_PREFIX = "priv";
 
 	// Projection array. Creating indices for this array instead of doing
 	// dynamic lookups improves performance.
@@ -67,8 +67,8 @@ public class CalendarMapper {
 		cv.put(Calendars.CALENDAR_DISPLAY_NAME, dispName);
 		cv.put(Calendars.CALENDAR_COLOR, calendar.getColor());
 		cv.put(Calendars.CALENDAR_ACCESS_LEVEL, Calendars.CAL_ACCESS_OWNER);
-		cv.put(Calendars.OWNER_ACCOUNT, true);
-		cv.put(Calendars.VISIBLE, 1);
+		cv.put(Calendars.OWNER_ACCOUNT, ACCOUNT_NAME);
+//		cv.put(Calendars.VISIBLE, 1);
 		cv.put(Calendars.SYNC_EVENTS, 1);
 		return cv;
 	}
