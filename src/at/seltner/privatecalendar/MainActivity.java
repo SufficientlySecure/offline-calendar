@@ -24,7 +24,6 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -145,23 +144,10 @@ public class MainActivity extends Activity {
 		SpannableString s = new SpannableString(getText(R.string.about));
 		Linkify.addLinks(s, Linkify.ALL);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(s).setPositiveButton(
-				getText(R.string.show_apache_license).toString(),
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						showApacheLicense();
-					}
-				});
+		builder.setMessage(s);
 		AlertDialog alert = builder.create();
 		alert.show();
 		((TextView) alert.findViewById(android.R.id.message))
 				.setMovementMethod(LinkMovementMethod.getInstance());
-	}
-
-	private void showApacheLicense() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getText(R.string.apache_license).toString());
-		AlertDialog alert = builder.create();
-		alert.show();
 	}
 }

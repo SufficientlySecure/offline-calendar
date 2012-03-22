@@ -4,13 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <at.seltner.colorpicker.GradientView
-        android:id="@+id/hueGradient"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:background="#faa" />
-
     <SeekBar
         android:id="@+id/seekBarHue"
         android:layout_margin="10dp"
@@ -19,14 +12,9 @@
         android:layout_weight="1"
         android:thumb="@drawable/seek_thumb"
         android:progressDrawable="@android:color/transparent"
+        android:padding="0dp"
+        android:thumbOffset="6dp"
         android:max="355" />
-
-    <at.seltner.colorpicker.GradientView
-        android:id="@+id/saturationGradient"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:background="#faa" />
 
     <SeekBar
         android:id="@+id/seekBarSaturation"
@@ -36,14 +24,9 @@
         android:layout_weight="1"
         android:thumb="@drawable/seek_thumb"
         android:progressDrawable="@android:color/transparent"
+        android:padding="0dp"
+        android:thumbOffset="6dp"
         android:max="100" />
-
-    <at.seltner.colorpicker.GradientView
-        android:id="@+id/lightnessGradient"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:background="#faa" />
 
     <SeekBar
         android:id="@+id/seekBarLightness"
@@ -53,6 +36,8 @@
         android:layout_weight="1"
         android:thumb="@drawable/seek_thumb"
         android:progressDrawable="@android:color/transparent"
+        android:padding="0dp"
+        android:thumbOffset="6dp"
         android:max="100" />
 
     <LinearLayout
@@ -60,7 +45,7 @@
         android:layout_height="wrap_content"
         android:weightSum="1.0" >
 
-        <Button
+        <View
             android:id="@+id/oldColor"
             android:layout_width="fill_parent"
             android:layout_height="40dp"

@@ -19,8 +19,6 @@
 
 package at.seltner.privatecalendar;
 
-import yuku.ambilwarna.AmbilWarnaDialog;
-import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -33,7 +31,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import at.seltner.colorpicker.ColorPickerDialog;
-import at.seltner.colorpicker.ColorPickerDialog.ColorSelectListener;
+import at.seltner.colorpicker.OnColorCancelListener;
+import at.seltner.colorpicker.OnColorChoosenListener;
 
 public class EditActivity extends Activity {
 
@@ -168,13 +167,23 @@ public class EditActivity extends Activity {
 	}
 
 	public void handleClickPickColor(View view) {
+		
+		OnColorCancelListener cancel = new OnColorCancelListener() {
+			@Override
+			public void colorCancel(int initialColor) {
+				// nothing to do
+			}
+		};
+		
+		OnColorChoosenListener choosen = new OnColorChoosenListener() {
+			@Override
+			public void colorChoosen(int color) {
+				setSelectedColor(color);
+			}
+		};
 
-		ColorPickerDialog cpd = new ColorPickerDialog(this, new ColorSelectListener() {
-					@Override
-					public void colorSelected(int color) {
-						setSelectedColor(color);
-					}
-				}, selectedColor);
+		String title = getText(R.string.pick_color).toString();
+		ColorPickerDialog cpd = new ColorPickerDialog(this, selectedColor, title, choosen, cancel);
 		cpd.show();
 		
 //		AndroidExampleColorPickerDialog cpd = new AndroidExampleColorPickerDialog(this,
