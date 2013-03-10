@@ -16,7 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package at.seltner.privatecalendar;
+package org.sufficientlysecure.privatecalendar;
+
+import org.sufficientlysecure.colorpicker.ColorPickerDialog;
+import org.sufficientlysecure.colorpicker.OnColorCancelListener;
+import org.sufficientlysecure.colorpicker.OnColorChoosenListener;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,9 +33,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import at.seltner.colorpicker.ColorPickerDialog;
-import at.seltner.colorpicker.OnColorCancelListener;
-import at.seltner.colorpicker.OnColorChoosenListener;
 
 public class EditActivity extends Activity {
 

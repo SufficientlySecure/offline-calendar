@@ -16,7 +16,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package at.seltner.colorpicker;
+package org.sufficientlysecure.colorpicker;
+
+import org.sufficientlysecure.privatecalendar.R;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -26,7 +28,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import at.seltner.privatecalendar.R;
 
 public class ColorPickerView extends LinearLayout {
 
