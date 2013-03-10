@@ -17,9 +17,17 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.sufficientlysecure.privatecalendar;
+package org.sufficientlysecure.privatecalendar.ui;
 
 import java.util.List;
+
+import org.sufficientlysecure.privatecalendar.Calendar;
+import org.sufficientlysecure.privatecalendar.CalendarMapper;
+import org.sufficientlysecure.privatecalendar.R;
+import org.sufficientlysecure.privatecalendar.R.id;
+import org.sufficientlysecure.privatecalendar.R.layout;
+import org.sufficientlysecure.privatecalendar.R.menu;
+import org.sufficientlysecure.privatecalendar.R.string;
 
 import android.app.Activity;
 import android.app.AlertDialog;

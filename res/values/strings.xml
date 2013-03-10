@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Private Calendar</string>
     <string name="edit_activity_cal_name">Name of Calendar</string>
     <string name="edit_activity_cal_color">Calendar Color</string>
     <string name="edit_activity_pick_color">Pick Color</string>
-    
     <string name="edit_activity_save">Save</string>
     <string name="edit_activity_add">Add</string>
     <string name="edit_activity_delete">Delete</string>
-    
     <string name="edit_activity_message_saved">Calendar updated</string>
     <string name="edit_activity_message_deleted">Calendar deleted</string>
     <string name="edit_activity_message_added">Calendar added</string>
     <string name="edit_activity_really_delete">Really delete? All events of this calendar will be lost.</string>
-    
     <string name="edit_activity_error_delete">Error deleting</string>
     <string name="edit_activity_error_add">Error adding</string>
-    
     <string name="menu_new">NEW</string>
     <string name="menu_about">ABOUT</string>
     <string name="menu_save">SAVE</string>
     <string name="menu_delete">DELETE</string>
-    
     <string name="edit_activity_processing">processing</string>
     <string name="edit_activity_argument_error">Error: check calendar names</string>
-    
     <string name="pick_color">Pick a Color</string>
+
+    <!-- Adapter Screen -->
+    <string name="pref_account_header">Settings</string>
+    <string name="pref_account_settings">Configure Private Calendar</string>
     
-    <string name="about">
-Private Calendar allows you to add private calendars to Android\'s Calendar 
+    <!-- About -->
+    <string name="about">Private Calendar allows you to add private calendars to Android\'s Calendar 
 Storage. Visit http://code.google.com/p/private-calendar for more information.
 \n\n
 This program is free software: you can redistribute it and/or modify
@@ -43,6 +42,6 @@ GNU General Public License for more details.
 \n\n
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses.
-\n\n\n
-	</string>
+\n\n\n</string>
+
 </resources>

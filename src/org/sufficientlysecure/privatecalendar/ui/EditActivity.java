@@ -16,14 +16,22 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.sufficientlysecure.privatecalendar;
+package org.sufficientlysecure.privatecalendar.ui;
 
-import org.sufficientlysecure.colorpicker.ColorPickerDialog;
-import org.sufficientlysecure.colorpicker.OnColorCancelListener;
-import org.sufficientlysecure.colorpicker.OnColorChoosenListener;
+import org.sufficientlysecure.privatecalendar.Calendar;
+import org.sufficientlysecure.privatecalendar.CalendarMapper;
+import org.sufficientlysecure.privatecalendar.R;
+import org.sufficientlysecure.privatecalendar.R.id;
+import org.sufficientlysecure.privatecalendar.R.layout;
+import org.sufficientlysecure.privatecalendar.R.menu;
+import org.sufficientlysecure.privatecalendar.R.string;
+import org.sufficientlysecure.privatecalendar.colorpicker.ColorPickerDialog;
+import org.sufficientlysecure.privatecalendar.colorpicker.OnColorCancelListener;
+import org.sufficientlysecure.privatecalendar.colorpicker.OnColorChoosenListener;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -89,7 +97,7 @@ public class EditActivity extends Activity {
             if (edit)
                 updateCalendar();
             else
-                addCalendar();
+                addCalendar(this);
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -99,7 +107,7 @@ public class EditActivity extends Activity {
     private void showMessageAndFinish(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message).setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         EditActivity.this.finish();
                     }
@@ -113,10 +121,11 @@ public class EditActivity extends Activity {
         colorView.setBackgroundColor(color);
     }
 
-    private void addCalendar() {
+    private void addCalendar(Context context) {
         Calendar calendar = new Calendar(displayText.getText().toString(), selectedColor);
+        
         try {
-            CalendarMapper.addCalendar(calendar, getContentResolver());
+            CalendarMapper.addCalendar(context, calendar, getContentResolver());
             showMessageAndFinish(getText(R.string.edit_activity_message_added).toString());
         } catch (IllegalArgumentException e) {
             showMessageAndFinish(getText(R.string.edit_activity_error_add) + e.getMessage());

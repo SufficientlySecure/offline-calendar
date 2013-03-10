@@ -16,8 +16,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.sufficientlysecure.colorpicker;
+package org.sufficientlysecure.privatecalendar.colorpicker;
 
-public interface OnColorCancelListener {
-    public void colorCancel(int initialColor);
+public interface OnColorChoosenListener {
+    public void colorChoosen(int color);
 }

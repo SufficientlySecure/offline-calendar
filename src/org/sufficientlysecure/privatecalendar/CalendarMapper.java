@@ -1,6 +1,5 @@
 /**
- *  Private Calendar allows you to add private calendars to Android's
- *  Calendar Storage.
+ *  Copyright (C) 2012  Dominik Schürmann <dominik@dominikschuermann.de>
  *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,19 +21,36 @@ package org.sufficientlysecure.privatecalendar;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sufficientlysecure.privatecalendar.util.AccountHelper;
+import org.sufficientlysecure.privatecalendar.util.Constants;
+
+import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Calendars;
+import android.util.Log;
 
 @SuppressLint("NewApi")
 public class CalendarMapper {
+    private static final boolean BEFORE_JELLYBEAN = android.os.Build.VERSION.SDK_INT < 16;
 
     private static final String ACCOUNT_NAME = "private";
+
+    /*
+     * Use ACCOUNT_TYPE_LOCAL only on Android >= 4.1
+     * 
+     * see http://code.google.com/p/android/issues/detail?id=27474
+     */
+    private static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? Constants.ACCOUNT_TYPE
+            : CalendarContract.ACCOUNT_TYPE_LOCAL;
+
     private static final String INT_NAME_PREFIX = "priv";
 
     // Projection array. Creating indices for this array instead of doing
@@ -53,8 +69,7 @@ public class CalendarMapper {
         return CalendarContract.Calendars.CONTENT_URI.buildUpon()
                 .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
                 .appendQueryParameter(Calendars.ACCOUNT_NAME, ACCOUNT_NAME)
-                .appendQueryParameter(Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL)
-                .build();
+                .appendQueryParameter(Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE).build();
     }
 
     private static ContentValues buildContentValues(Calendar calendar) {
@@ -62,13 +77,13 @@ public class CalendarMapper {
         String intName = INT_NAME_PREFIX + dispName;
         final ContentValues cv = new ContentValues();
         cv.put(Calendars.ACCOUNT_NAME, ACCOUNT_NAME);
-        cv.put(Calendars.ACCOUNT_TYPE, CalendarContract.ACCOUNT_TYPE_LOCAL);
+        cv.put(Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE);
         cv.put(Calendars.NAME, intName);
         cv.put(Calendars.CALENDAR_DISPLAY_NAME, dispName);
         cv.put(Calendars.CALENDAR_COLOR, calendar.getColor());
         cv.put(Calendars.CALENDAR_ACCESS_LEVEL, Calendars.CAL_ACCESS_OWNER);
         cv.put(Calendars.OWNER_ACCOUNT, ACCOUNT_NAME);
-        // cv.put(Calendars.VISIBLE, 1);
+        cv.put(Calendars.VISIBLE, 1);
         cv.put(Calendars.SYNC_EVENTS, 1);
         return cv;
     }
@@ -81,7 +96,7 @@ public class CalendarMapper {
         Uri uri = Calendars.CONTENT_URI;
         String selection = "((" + Calendars.ACCOUNT_NAME + " = ?) AND (" + Calendars.ACCOUNT_TYPE
                 + " = ?))";
-        String[] selectionArgs = new String[] { ACCOUNT_NAME, CalendarContract.ACCOUNT_TYPE_LOCAL };
+        String[] selectionArgs = new String[] { ACCOUNT_NAME, ACCOUNT_TYPE };
         // Submit the query and get a Cursor object back.
         cur = cr.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
 
@@ -102,15 +117,50 @@ public class CalendarMapper {
         return calendars;
     }
 
-    public static void addCalendar(Calendar calendar, ContentResolver cr) {
+    public static void addCalendar(Context context, Calendar calendar, ContentResolver cr) {
         if (calendar == null)
             throw new IllegalArgumentException();
 
-        final ContentValues cv = buildContentValues(calendar);
+        /*
+         * On Android < 4.1 create an Account for our calendars. Using onyl local calendars cause
+         * these bugs:
+         * 
+         * Note: On Android < 4.1: Selecting "Calendars to sync" in the calendar app it crashes with
+         * NullPointerException. see http://code.google.com/p/android/issues/detail?id=27474
+         * 
+         * Note: On Android <= 2.3: Opening the calendar app will ask to create an account first
+         * even when local calendars are present
+         */
+        if (BEFORE_JELLYBEAN) {
+            AccountHelper accHelper = new AccountHelper(context);
+            Bundle result = accHelper.addAccount();
 
+            if (result != null) {
+                if (result.containsKey(AccountManager.KEY_ACCOUNT_NAME)) {
+                    Log.d(Constants.TAG, "Account was added!");
+                } else {
+                    Log.e(Constants.TAG,
+                            "Account was not added! result did not contain KEY_ACCOUNT_NAME!");
+                }
+            } else {
+                Log.e(Constants.TAG, "Account was not added! result was null!");
+            }
+
+            // wait until account is added asynchronously
+            while (!accHelper.isAccountActivated()) {
+                try {
+                    Thread.sleep(1000);
+                    Log.d(Constants.TAG, "wait...");
+                } catch (InterruptedException e) {
+                    Log.e(Constants.TAG, "InterruptedException", e);
+                }
+            }
+        }
+
+        // Add calendar
+        final ContentValues cv = buildContentValues(calendar);
         Uri calUri = buildCalUri();
         cr.insert(calUri, cv);
-        // return result.toString();
     }
 
     /**

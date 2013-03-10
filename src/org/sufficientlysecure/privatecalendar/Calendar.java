@@ -1,6 +1,5 @@
 /**
- *  Private Calendar allows you to add private calendars to Android's
- *  Calendar Storage.
+ *  Copyright (C) 2012  Dominik Schürmann <dominik@dominikschuermann.de>
  *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
