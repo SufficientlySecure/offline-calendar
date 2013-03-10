@@ -25,23 +25,11 @@
     <!-- Adapter Screen -->
     <string name="pref_account_header">Settings</string>
     <string name="pref_account_settings">Configure Local Calendar</string>
-    
+
     <!-- About -->
-    <string name="about">Local Calendar allows you to add local calendars to Android\'s Calendar 
-Storage. Visit http://code.google.com/p/private-calendar for more information.
-\n\n
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-\n\n
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-\n\n
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses.
-\n\n\n</string>
+    <string name="about">Local Calendar lets you add local calendars. These calendars are not synchronized into the cloud and only locally available!
+\n\nBased on Private Calendar by Harald Seltner found on Googlecode and improved to work on Android below 4.1 by Dominik Schürmann
+\n\nReport bugs on https://github.com/dschuermann/local-calendar/issues
+\n\nLicensed under GPLv3</string>
 
 </resources>
