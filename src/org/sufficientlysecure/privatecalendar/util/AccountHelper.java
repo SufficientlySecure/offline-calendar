@@ -18,7 +18,8 @@
 
 package org.sufficientlysecure.privatecalendar.util;
 
-import android.accounts.Account;
+import org.sufficientlysecure.privatecalendar.CalendarMapper;
+
 import android.accounts.AccountManager;
 import android.content.Context;
 import android.os.Bundle;
@@ -42,32 +43,14 @@ public class AccountHelper {
         Log.d(Constants.TAG, "Adding account...");
 
         AccountManager am = AccountManager.get(mContext);
-        if (am.addAccountExplicitly(Constants.ACCOUNT, null, null)) {
+        if (am.addAccountExplicitly(CalendarMapper.ACCOUNT, null, null)) {
             Bundle result = new Bundle();
-            result.putString(AccountManager.KEY_ACCOUNT_NAME, Constants.ACCOUNT.name);
-            result.putString(AccountManager.KEY_ACCOUNT_TYPE, Constants.ACCOUNT.type);
+            result.putString(AccountManager.KEY_ACCOUNT_NAME, CalendarMapper.ACCOUNT.name);
+            result.putString(AccountManager.KEY_ACCOUNT_TYPE, CalendarMapper.ACCOUNT.type);
             return result;
         } else {
             return null;
         }
     }
 
-    /**
-     * Checks whether the account is enabled or not
-     * 
-     * @param context
-     * @return
-     */
-    public boolean isAccountActivated() {
-        AccountManager am = AccountManager.get(mContext);
-
-        Account[] availableAccounts = am.getAccountsByType(Constants.ACCOUNT_TYPE);
-        for (Account currentAccount : availableAccounts) {
-            if (currentAccount.name.equals(Constants.ACCOUNT_NAME)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

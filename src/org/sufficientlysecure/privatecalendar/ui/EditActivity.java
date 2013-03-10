@@ -21,10 +21,6 @@ package org.sufficientlysecure.privatecalendar.ui;
 import org.sufficientlysecure.privatecalendar.Calendar;
 import org.sufficientlysecure.privatecalendar.CalendarMapper;
 import org.sufficientlysecure.privatecalendar.R;
-import org.sufficientlysecure.privatecalendar.R.id;
-import org.sufficientlysecure.privatecalendar.R.layout;
-import org.sufficientlysecure.privatecalendar.R.menu;
-import org.sufficientlysecure.privatecalendar.R.string;
 import org.sufficientlysecure.privatecalendar.colorpicker.ColorPickerDialog;
 import org.sufficientlysecure.privatecalendar.colorpicker.OnColorCancelListener;
 import org.sufficientlysecure.privatecalendar.colorpicker.OnColorChoosenListener;
@@ -123,10 +119,10 @@ public class EditActivity extends Activity {
 
     private void addCalendar(Context context) {
         Calendar calendar = new Calendar(displayText.getText().toString(), selectedColor);
-        
+
         try {
             CalendarMapper.addCalendar(context, calendar, getContentResolver());
-            showMessageAndFinish(getText(R.string.edit_activity_message_added).toString());
+            EditActivity.this.finish();
         } catch (IllegalArgumentException e) {
             showMessageAndFinish(getText(R.string.edit_activity_error_add) + e.getMessage());
         }
@@ -157,7 +153,7 @@ public class EditActivity extends Activity {
 
     private void deleteCalendar() {
         if (CalendarMapper.deleteCalendar(originalCalendar, getContentResolver()))
-            showMessageAndFinish(getText(R.string.edit_activity_message_deleted).toString());
+            EditActivity.this.finish();
         else
             showMessageAndFinish(getText(R.string.edit_activity_error_delete).toString());
     }
@@ -181,30 +177,5 @@ public class EditActivity extends Activity {
         String title = getText(R.string.pick_color).toString();
         ColorPickerDialog cpd = new ColorPickerDialog(this, selectedColor, title, choosen, cancel);
         cpd.show();
-
-        // AndroidExampleColorPickerDialog cpd = new AndroidExampleColorPickerDialog(this,
-        // new OnColorChangedListener() {
-        //
-        // @Override
-        // public void colorChanged(int color) {
-        // setSelectedColor(color);
-        // }
-        // }, selectedColor);
-        // cpd.show();
-
-        // AmbilWarnaDialog dialog = new AmbilWarnaDialog(this, selectedColor,
-        // new OnAmbilWarnaListener() {
-        // @Override
-        // public void onOk(AmbilWarnaDialog dialog, int color) {
-        // setSelectedColor(color);
-        // }
-        //
-        // @Override
-        // public void onCancel(AmbilWarnaDialog dialog) {
-        // // cancel was selected by the user
-        // }
-        // });
-        //
-        // dialog.show();
     }
 }

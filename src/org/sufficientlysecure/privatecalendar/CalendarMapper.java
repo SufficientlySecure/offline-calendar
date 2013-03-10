@@ -24,6 +24,7 @@ import java.util.List;
 import org.sufficientlysecure.privatecalendar.util.AccountHelper;
 import org.sufficientlysecure.privatecalendar.util.Constants;
 
+import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -41,15 +42,16 @@ import android.util.Log;
 public class CalendarMapper {
     private static final boolean BEFORE_JELLYBEAN = android.os.Build.VERSION.SDK_INT < 16;
 
-    private static final String ACCOUNT_NAME = "private";
-
+    public static final String ACCOUNT_NAME = "Private Calendar";
     /*
      * Use ACCOUNT_TYPE_LOCAL only on Android >= 4.1
      * 
      * see http://code.google.com/p/android/issues/detail?id=27474
      */
-    private static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? Constants.ACCOUNT_TYPE
+    private static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? "org.sufficientlysecure.privatecalendar.account"
             : CalendarContract.ACCOUNT_TYPE_LOCAL;
+    public static final String CONTENT_AUTHORITY = "com.android.calendar";
+    public static final Account ACCOUNT = new Account(ACCOUNT_NAME, ACCOUNT_TYPE);
 
     private static final String INT_NAME_PREFIX = "priv";
 
@@ -117,7 +119,8 @@ public class CalendarMapper {
         return calendars;
     }
 
-    public static void addCalendar(Context context, Calendar calendar, ContentResolver cr) {
+    public static void addCalendar(Context context, final Calendar calendar,
+            final ContentResolver cr) {
         if (calendar == null)
             throw new IllegalArgumentException();
 
@@ -138,6 +141,14 @@ public class CalendarMapper {
             if (result != null) {
                 if (result.containsKey(AccountManager.KEY_ACCOUNT_NAME)) {
                     Log.d(Constants.TAG, "Account was added!");
+
+                    // wait until account is added asynchronously
+                    try {
+                        Thread.sleep(2000);
+                        Log.d(Constants.TAG, "after wait...");
+                    } catch (InterruptedException e) {
+                        Log.e(Constants.TAG, "InterruptedException", e);
+                    }
                 } else {
                     Log.e(Constants.TAG,
                             "Account was not added! result did not contain KEY_ACCOUNT_NAME!");
@@ -146,15 +157,6 @@ public class CalendarMapper {
                 Log.e(Constants.TAG, "Account was not added! result was null!");
             }
 
-            // wait until account is added asynchronously
-            while (!accHelper.isAccountActivated()) {
-                try {
-                    Thread.sleep(1000);
-                    Log.d(Constants.TAG, "wait...");
-                } catch (InterruptedException e) {
-                    Log.e(Constants.TAG, "InterruptedException", e);
-                }
-            }
         }
 
         // Add calendar

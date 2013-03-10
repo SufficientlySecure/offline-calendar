@@ -18,16 +18,6 @@
 
 package org.sufficientlysecure.privatecalendar.util;
 
-import android.accounts.Account;
-
 public class Constants {
-    public static final boolean DEBUG = false;
-
     public static final String TAG = "Private Calendar";
-
-    public static final String ACCOUNT_NAME = "Private Calendar";
-    public static final String ACCOUNT_TYPE = "org.sufficientlysecure.privatecalendar.account";
-    public static final String CONTENT_AUTHORITY = "com.android.calendar";
-
-    public static final Account ACCOUNT = new Account(ACCOUNT_NAME, ACCOUNT_TYPE);
 }
