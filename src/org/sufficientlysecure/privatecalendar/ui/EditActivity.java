@@ -131,7 +131,7 @@ public class EditActivity extends Activity {
     private void updateCalendar() {
         CalendarMapper.updateCalendar(originalCalendar, new Calendar(displayText.getText()
                 .toString(), selectedColor), getContentResolver());
-        showMessageAndFinish(getText(R.string.edit_activity_message_saved).toString());
+        EditActivity.this.finish();
     }
 
     private void confirmAndDeleteCalendar() {

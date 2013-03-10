@@ -14,10 +14,10 @@
     <string name="edit_activity_really_delete">Really delete? All events of this calendar will be lost.</string>
     <string name="edit_activity_error_delete">Error deleting</string>
     <string name="edit_activity_error_add">Error adding</string>
-    <string name="menu_new">NEW</string>
-    <string name="menu_about">ABOUT</string>
-    <string name="menu_save">SAVE</string>
-    <string name="menu_delete">DELETE</string>
+    <string name="menu_new">New Calendar</string>
+    <string name="menu_about">About</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_delete">Delete</string>
     <string name="edit_activity_processing">processing</string>
     <string name="edit_activity_argument_error">Error: check calendar names</string>
     <string name="pick_color">Pick a Color</string>
