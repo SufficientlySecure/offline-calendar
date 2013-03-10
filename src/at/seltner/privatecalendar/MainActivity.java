@@ -43,111 +43,106 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	private class CalendarListViewAdapter extends ArrayAdapter<Calendar> {
+    private class CalendarListViewAdapter extends ArrayAdapter<Calendar> {
 
-		public CalendarListViewAdapter(Context context, int textViewResourceId,
-				List<Calendar> objects) {
-			super(context, textViewResourceId, objects);
-		}
+        public CalendarListViewAdapter(Context context, int textViewResourceId,
+                List<Calendar> objects) {
+            super(context, textViewResourceId, objects);
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View v = convertView;
-			if (v == null) {
-				LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				v = vi.inflate(R.layout.list_item, null);
-			}
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v = convertView;
+            if (v == null) {
+                LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = vi.inflate(R.layout.list_item, null);
+            }
 
-			Calendar cal = this.getItem(position);
-			if (cal != null) {
-				View colorView = (View) v
-						.findViewById(R.id.list_item_view_color);
-				TextView calName = (TextView) v
-						.findViewById(R.id.list_item_text_cal_name);
+            Calendar cal = this.getItem(position);
+            if (cal != null) {
+                View colorView = (View) v.findViewById(R.id.list_item_view_color);
+                TextView calName = (TextView) v.findViewById(R.id.list_item_text_cal_name);
 
-				colorView.setBackgroundColor(cal.getColor());
-				calName.setText(cal.getName());
-			}
+                colorView.setBackgroundColor(cal.getColor());
+                calName.setText(cal.getName());
+            }
 
-			return v;
-		}
+            return v;
+        }
 
-	}
+    }
 
-	private ListView listView;
-	private CalendarListViewAdapter adapter;
+    private ListView listView;
+    private CalendarListViewAdapter adapter;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		listView = (ListView) findViewById(R.id.privatecalendar_listview);
-	}
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        listView = (ListView) findViewById(R.id.privatecalendar_listview);
+    }
 
-	@Override
-	protected void onResume() {
-		loadCalendars();
-		super.onResume();
-	}
+    @Override
+    protected void onResume() {
+        loadCalendars();
+        super.onResume();
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_main, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle item selection
-		switch (item.getItemId()) {
-		case R.id.menu_main_add_calendar:
-			showAddCalendarActivity();
-			return true;
-		case R.id.menu_main_about:
-			showAbout();
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.menu_main_add_calendar:
+            showAddCalendarActivity();
+            return true;
+        case R.id.menu_main_about:
+            showAbout();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
 
-	private void showEditCalendar(int position) {
-		Calendar cal = adapter.getItem(position);
-		Intent intent = new Intent(this, EditActivity.class);
-		intent.putExtra(EditActivity.INTENT_CAL_DATA, cal);
-		startActivity(intent);
-	}
+    private void showEditCalendar(int position) {
+        Calendar cal = adapter.getItem(position);
+        Intent intent = new Intent(this, EditActivity.class);
+        intent.putExtra(EditActivity.INTENT_CAL_DATA, cal);
+        startActivity(intent);
+    }
 
-	private void loadCalendars() {
-		List<Calendar> calendars = CalendarMapper
-				.fetchCalendars(getContentResolver());
-		adapter = new CalendarListViewAdapter(this, R.layout.list_item,
-				calendars);
-		listView.setAdapter(adapter);
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				showEditCalendar(position);
-			}
-		});
+    private void loadCalendars() {
+        List<Calendar> calendars = CalendarMapper.fetchCalendars(getContentResolver());
+        adapter = new CalendarListViewAdapter(this, R.layout.list_item, calendars);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showEditCalendar(position);
+            }
+        });
 
-	}
+    }
 
-	private void showAddCalendarActivity() {
-		// show edit activity with empty text field and add button
-		Intent intent = new Intent(this, EditActivity.class);
-		startActivity(intent);
-	}
+    private void showAddCalendarActivity() {
+        // show edit activity with empty text field and add button
+        Intent intent = new Intent(this, EditActivity.class);
+        startActivity(intent);
+    }
 
-	private void showAbout() {
-		SpannableString s = new SpannableString(getText(R.string.about));
-		Linkify.addLinks(s, Linkify.ALL);
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(s);
-		AlertDialog alert = builder.create();
-		alert.show();
-		((TextView) alert.findViewById(android.R.id.message))
-				.setMovementMethod(LinkMovementMethod.getInstance());
-	}
+    private void showAbout() {
+        SpannableString s = new SpannableString(getText(R.string.about));
+        Linkify.addLinks(s, Linkify.ALL);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(s);
+        AlertDialog alert = builder.create();
+        alert.show();
+        ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod
+                .getInstance());
+    }
 }

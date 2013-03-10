@@ -23,41 +23,41 @@ import java.io.Serializable;
 
 public class Calendar implements Serializable {
 
-	private static final long serialVersionUID = -3194513862601188765L;
+    private static final long serialVersionUID = -3194513862601188765L;
 
-	private long id;
-	private String name;
-	private int color;
+    private long id;
+    private String name;
+    private int color;
 
-	public Calendar(String name, int color) {
-		this.name = name;
-		this.color = color;
-	}
+    public Calendar(String name, int color) {
+        this.name = name;
+        this.color = color;
+    }
 
-	public Calendar(long id, String name, int color) {
-		this.id = id;
-		this.name = name;
-		this.color = color;
-	}
+    public Calendar(long id, String name, int color) {
+        this.id = id;
+        this.name = name;
+        this.color = color;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public int getColor() {
-		return color;
-	}
+    public int getColor() {
+        return color;
+    }
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setColor(int color) {
-		this.color = color;
-	}
+    public void setColor(int color) {
+        this.color = color;
+    }
 
 }

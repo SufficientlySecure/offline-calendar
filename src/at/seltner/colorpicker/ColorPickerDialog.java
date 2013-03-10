@@ -24,43 +24,41 @@ import android.os.Bundle;
 
 public class ColorPickerDialog extends Dialog {
 
-	private int initialColor;
-	private OnColorChoosenListener onColorChoosenListener;
-	private OnColorCancelListener onColorCancelListener;
-	private String title;
-	
+    private int initialColor;
+    private OnColorChoosenListener onColorChoosenListener;
+    private OnColorCancelListener onColorCancelListener;
+    private String title;
 
-	public ColorPickerDialog(Context context, int initialColor, String title,
-			OnColorChoosenListener choosen, OnColorCancelListener cancel) {
-		super(context);
-		this.initialColor = initialColor;
-		onColorChoosenListener = choosen;
-		onColorCancelListener = cancel;
-		this.title = title;
-	}
-	
-	@Override
+    public ColorPickerDialog(Context context, int initialColor, String title,
+            OnColorChoosenListener choosen, OnColorCancelListener cancel) {
+        super(context);
+        this.initialColor = initialColor;
+        onColorChoosenListener = choosen;
+        onColorCancelListener = cancel;
+        this.title = title;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		
-		OnColorChoosenListener choosen = new OnColorChoosenListener() {
-			@Override
-			public void colorChoosen(int color) {
-				onColorChoosenListener.colorChoosen(color);
-				ColorPickerDialog.this.dismiss();
-			}
-		};
 
-		OnColorCancelListener cancel = new OnColorCancelListener() {
-			@Override
-			public void colorCancel(int initialColor) {
-				onColorCancelListener.colorCancel(initialColor);
-				ColorPickerDialog.this.dismiss();
-			}
-		};
+        OnColorChoosenListener choosen = new OnColorChoosenListener() {
+            @Override
+            public void colorChoosen(int color) {
+                onColorChoosenListener.colorChoosen(color);
+                ColorPickerDialog.this.dismiss();
+            }
+        };
 
-        setContentView(new ColorPickerView(getContext(), initialColor,
-        		choosen, cancel));
+        OnColorCancelListener cancel = new OnColorCancelListener() {
+            @Override
+            public void colorCancel(int initialColor) {
+                onColorCancelListener.colorCancel(initialColor);
+                ColorPickerDialog.this.dismiss();
+            }
+        };
+
+        setContentView(new ColorPickerView(getContext(), initialColor, choosen, cancel));
         setTitle(title);
     }
 

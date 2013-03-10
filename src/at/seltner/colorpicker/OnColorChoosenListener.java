@@ -19,5 +19,5 @@
 package at.seltner.colorpicker;
 
 public interface OnColorChoosenListener {
-	public void colorChoosen(int color);
+    public void colorChoosen(int color);
 }

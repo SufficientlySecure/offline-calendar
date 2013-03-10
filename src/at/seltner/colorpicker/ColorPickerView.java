@@ -29,153 +29,167 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import at.seltner.privatecalendar.R;
 
 public class ColorPickerView extends LinearLayout {
-	
-	private OnColorChoosenListener onColorChoosenListener;
-	private OnColorCancelListener onColorCancelListener;
-	
-	private int initialColor;
-	
-	private SeekBar seekBarHue;
-	private SeekBar seekBarSaturation;
-	private SeekBar seekBarLightness;
-	
-	private View newColorView;
-	private View oldColorView;
 
-	private float hue;
-	private float saturation;
-	private float lightness;
+    private OnColorChoosenListener onColorChoosenListener;
+    private OnColorCancelListener onColorCancelListener;
 
-	public ColorPickerView(Context context, int initialColor, 
-			OnColorChoosenListener choosen, OnColorCancelListener cancel) {
-		super(context);
-		this.initialColor = initialColor;
-		onColorChoosenListener = choosen;
-		onColorCancelListener = cancel;
+    private int initialColor;
 
-		LayoutInflater inflater = 
-	        (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	    View view = inflater.inflate(R.layout.colorpicker, null);
+    private SeekBar seekBarHue;
+    private SeekBar seekBarSaturation;
+    private SeekBar seekBarLightness;
 
-	    seekBarHue = (SeekBar) view.findViewById(R.id.seekBarHue);
-	    seekBarSaturation = (SeekBar) view.findViewById(R.id.seekBarSaturation);
-	    seekBarLightness = (SeekBar) view.findViewById(R.id.seekBarLightness);
-	    
-	    oldColorView = view.findViewById(R.id.oldColor);
-	    newColorView = view.findViewById(R.id.newColor);
+    private View newColorView;
+    private View oldColorView;
 
-	    // and so on for the rest of the buttons
+    private float hue;
+    private float saturation;
+    private float lightness;
 
-	    addView(view);
+    public ColorPickerView(Context context, int initialColor, OnColorChoosenListener choosen,
+            OnColorCancelListener cancel) {
+        super(context);
+        this.initialColor = initialColor;
+        onColorChoosenListener = choosen;
+        onColorCancelListener = cancel;
 
-	    int[] hueColors = new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00, 0xFF00FFFF, 0xFF0000FF, 0xFFFF00FF, 0xFFFF0000 };	    
-	    GradientDrawable d = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, hueColors);
-	    seekBarHue.setBackgroundDrawable(d);
-	    
-	    oldColorView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				onColorCancelListener.colorCancel(ColorPickerView.this.initialColor);
-			}
-		});
-	    
-	    newColorView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				onColorChoosenListener.colorChoosen(getSelectedColor());
-			}
-		});
-		
-		seekBarHue.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {				
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {}
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {}
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				setHue(progress);
-				updateColorView();
-			}
-		});
-		seekBarSaturation.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {				
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {}
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {}
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				setSaturation(progress);
-				updateColorView();
-			}
-		});
-		seekBarLightness.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {				
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {}
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {}
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-				setLightness(progress);
-				updateColorView();
-			}
-		});
-		
-		setInitialColor(initialColor);
-	}
-	
-	private void updateColorView() {
-		int color = Color.HSVToColor(new float[] {hue, saturation, lightness});
-		newColorView.setBackgroundColor(color);
-	}
-	
-	private void setInitialColor(int color) {
-		oldColorView.setBackgroundColor(color);
-		float[] hsv = new float[3];
-		Color.colorToHSV(color, hsv);
-		hue = hsv[0];
-		seekBarHue.setProgress((int) hue);
-		saturation = hsv[1];
-		seekBarSaturation.setProgress((int) (saturation * 100));
-		lightness = hsv[2];
-		seekBarLightness.setProgress((int) (lightness * 100));
-		updateColorView();
-		drawSaturationGradient();
-		drawLightnessGradient();
-	}
-	
-	private void setHue(float hue) {
-		this.hue = (float) hue;
-		drawSaturationGradient();
-		drawLightnessGradient();
-	}
-	
-	private void setSaturation(int saturation) {
-		this.saturation = ((float)saturation) / 100;
-		drawLightnessGradient();
-	}
-	
-	private void drawSaturationGradient() {
-		int[] colors = new int[2];
-		colors[0] = Color.HSVToColor(new float[] {hue, 0, lightness});
-		colors[1] = Color.HSVToColor(new float[] {hue, 1, lightness});
-		GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
-		seekBarSaturation.setBackgroundDrawable(gd);
-	}
-	
-	private void setLightness(int lightness) {
-		this.lightness = ((float)lightness) / 100;
-		drawSaturationGradient();
-	}
-	
-	private void drawLightnessGradient() {
-		int[] colors = new int[2];
-		colors[0] = Color.HSVToColor(new float[] {hue, saturation, 0});
-		colors[1] = Color.HSVToColor(new float[] {hue, saturation, 1});
-		GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
-		seekBarLightness.setBackgroundDrawable(gd);
-	}
-	
-	private int getSelectedColor() {
-		return Color.HSVToColor(new float[] { hue, saturation, lightness });
-	}
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.colorpicker, null);
+
+        seekBarHue = (SeekBar) view.findViewById(R.id.seekBarHue);
+        seekBarSaturation = (SeekBar) view.findViewById(R.id.seekBarSaturation);
+        seekBarLightness = (SeekBar) view.findViewById(R.id.seekBarLightness);
+
+        oldColorView = view.findViewById(R.id.oldColor);
+        newColorView = view.findViewById(R.id.newColor);
+
+        // and so on for the rest of the buttons
+
+        addView(view);
+
+        int[] hueColors = new int[] { 0xFFFF0000, 0xFFFFFF00, 0xFF00FF00, 0xFF00FFFF, 0xFF0000FF,
+                0xFFFF00FF, 0xFFFF0000 };
+        GradientDrawable d = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+                hueColors);
+        seekBarHue.setBackgroundDrawable(d);
+
+        oldColorView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onColorCancelListener.colorCancel(ColorPickerView.this.initialColor);
+            }
+        });
+
+        newColorView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onColorChoosenListener.colorChoosen(getSelectedColor());
+            }
+        });
+
+        seekBarHue.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setHue(progress);
+                updateColorView();
+            }
+        });
+        seekBarSaturation.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setSaturation(progress);
+                updateColorView();
+            }
+        });
+        seekBarLightness.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setLightness(progress);
+                updateColorView();
+            }
+        });
+
+        setInitialColor(initialColor);
+    }
+
+    private void updateColorView() {
+        int color = Color.HSVToColor(new float[] { hue, saturation, lightness });
+        newColorView.setBackgroundColor(color);
+    }
+
+    private void setInitialColor(int color) {
+        oldColorView.setBackgroundColor(color);
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hue = hsv[0];
+        seekBarHue.setProgress((int) hue);
+        saturation = hsv[1];
+        seekBarSaturation.setProgress((int) (saturation * 100));
+        lightness = hsv[2];
+        seekBarLightness.setProgress((int) (lightness * 100));
+        updateColorView();
+        drawSaturationGradient();
+        drawLightnessGradient();
+    }
+
+    private void setHue(float hue) {
+        this.hue = (float) hue;
+        drawSaturationGradient();
+        drawLightnessGradient();
+    }
+
+    private void setSaturation(int saturation) {
+        this.saturation = ((float) saturation) / 100;
+        drawLightnessGradient();
+    }
+
+    private void drawSaturationGradient() {
+        int[] colors = new int[2];
+        colors[0] = Color.HSVToColor(new float[] { hue, 0, lightness });
+        colors[1] = Color.HSVToColor(new float[] { hue, 1, lightness });
+        GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
+        seekBarSaturation.setBackgroundDrawable(gd);
+    }
+
+    private void setLightness(int lightness) {
+        this.lightness = ((float) lightness) / 100;
+        drawSaturationGradient();
+    }
+
+    private void drawLightnessGradient() {
+        int[] colors = new int[2];
+        colors[0] = Color.HSVToColor(new float[] { hue, saturation, 0 });
+        colors[1] = Color.HSVToColor(new float[] { hue, saturation, 1 });
+        GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors);
+        seekBarLightness.setBackgroundDrawable(gd);
+    }
+
+    private int getSelectedColor() {
+        return Color.HSVToColor(new float[] { hue, saturation, lightness });
+    }
 }

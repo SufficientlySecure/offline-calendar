@@ -19,5 +19,5 @@
 package at.seltner.colorpicker;
 
 public interface OnColorCancelListener {
-	public void colorCancel(int initialColor);
+    public void colorCancel(int initialColor);
 }
