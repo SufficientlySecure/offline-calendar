@@ -3,7 +3,7 @@
 Local Calendar lets you add local calendars.
 These calendars are not synchronized into the cloud and only locally available!
 
-Based on Private Calendar by Harald Seltner found on Googlecode (http://code.google.com/p/private-calendar/). Improved to work on Android below 4.1.
+Based on Private Calendar by Harald Seltner found on Googlecode (http://code.google.com/p/private-calendar/). Improved to work on Android >= 2.2.
 
 
 # Build Local Calendar
