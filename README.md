@@ -59,13 +59,13 @@ along with Local Calendar.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Libraries
 
-* Ical4J
-  http://wiki.modularity.net.au/ical4j/
+* iCal4j  
+  http://wiki.modularity.net.au/ical4j/  
   New BSD License
 
 ## Images
 
-* icon.svg
-  Based on Tango Icon Library
-  http://tango.freedesktop.org/
+* icon.svg  
+  Based on Tango Icon Library  
+  http://tango.freedesktop.org/  
   Public Domain (Tango Icon Library)
