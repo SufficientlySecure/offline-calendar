@@ -13,6 +13,10 @@ Based on Private Calendar by Harald Seltner found on Googlecode (http://code.goo
 3. Execute ``android update project -p .``
 4. Execute ``ant debug`` or ``ant release``
 
+# Translations
+
+Help translating on https://www.transifex.com/projects/p/local-calendar/
+
 # Contribute
 
 Fork Local Calendar and do a Pull Request. I will merge your changes back into the main project.
