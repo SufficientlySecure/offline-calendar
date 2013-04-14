@@ -63,9 +63,9 @@ along with Local Calendar.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Libraries
 
-* iCal4j  
-  http://wiki.modularity.net.au/ical4j/  
-  New BSD License
+* Holo ColorPicker  
+  https://github.com/LarsWerkman/HoloColorPicker  
+  Apache License v2
 
 ## Images
 
