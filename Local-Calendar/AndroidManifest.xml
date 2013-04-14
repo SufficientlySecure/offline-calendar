@@ -68,7 +68,7 @@
             </intent-filter>
         </activity>
 
-        <!-- services for accounts on Android < 4.1 -->
+        <!-- service for accounts on Android < 4.1 -->
         <service
             android:name=".AccountAuthenticatorService"
             android:exported="true"

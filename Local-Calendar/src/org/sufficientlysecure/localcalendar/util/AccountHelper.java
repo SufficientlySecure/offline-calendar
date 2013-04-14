@@ -1,6 +1,5 @@
 /**
  *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
- *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,7 +34,7 @@ public class AccountHelper {
     }
 
     /**
-     * Add account for Birthday Adapter to Android system
+     * Add account to Android system
      * 
      * @param context
      * @return
