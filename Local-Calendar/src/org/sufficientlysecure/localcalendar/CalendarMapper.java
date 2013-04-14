@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2012  Dominik Schürmann <dominik@dominikschuermann.de>
+ *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
  *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -125,14 +125,14 @@ public class CalendarMapper {
             throw new IllegalArgumentException();
 
         /*
-         * On Android < 4.1 create an Account for our calendars. Using onyl local calendars cause
+         * On Android < 4.1 create an Account for our calendars. Using only local calendars cause
          * these bugs:
          * 
-         * Note: On Android < 4.1: Selecting "Calendars to sync" in the calendar app it crashes with
+         * - On Android < 4.1: Selecting "Calendars to sync" in the calendar app it crashes with
          * NullPointerException. see http://code.google.com/p/android/issues/detail?id=27474
          * 
-         * Note: On Android <= 2.3: Opening the calendar app will ask to create an account first
-         * even when local calendars are present
+         * - On Android <= 2.3: Opening the calendar app will ask to create an account first even
+         * when local calendars are present
          */
         if (BEFORE_JELLYBEAN) {
             AccountHelper accHelper = new AccountHelper(context);

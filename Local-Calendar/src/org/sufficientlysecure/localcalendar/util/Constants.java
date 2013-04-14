@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2012  Dominik Schürmann <dominik@dominikschuermann.de>
+ *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
  *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -19,5 +19,5 @@
 package org.sufficientlysecure.localcalendar.util;
 
 public class Constants {
-    public static final String TAG = "Private Calendar";
+    public static final String TAG = "Local Calendar";
 }

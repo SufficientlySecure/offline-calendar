@@ -1,5 +1,5 @@
 /**
- *  Copyright (C) 2012  Dominik Schürmann <dominik@dominikschuermann.de>
+ *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
  *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@ package org.sufficientlysecure.localcalendar.util;
 import org.sufficientlysecure.localcalendar.CalendarMapper;
 
 import android.accounts.AccountManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,13 @@ public class AccountHelper {
 
         AccountManager am = AccountManager.get(mContext);
         if (am.addAccountExplicitly(CalendarMapper.ACCOUNT, null, null)) {
+
+            // explicitly disable sync
+            ContentResolver.setSyncAutomatically(CalendarMapper.ACCOUNT,
+                    CalendarMapper.CONTENT_AUTHORITY, false);
+            ContentResolver.setIsSyncable(CalendarMapper.ACCOUNT, AccountManager.KEY_ACCOUNT_TYPE,
+                    0);
+
             Bundle result = new Bundle();
             result.putString(AccountManager.KEY_ACCOUNT_NAME, CalendarMapper.ACCOUNT.name);
             result.putString(AccountManager.KEY_ACCOUNT_TYPE, CalendarMapper.ACCOUNT.type);
