@@ -1,6 +1,5 @@
 /**
  *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
- *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -75,7 +74,6 @@ public class AccountAuthenticatorService extends Service {
                 throws NetworkErrorException {
             Bundle result = new Bundle();
             Intent i = new Intent(mContext, MainActivity.class);
-            // i.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
             result.putParcelable(AccountManager.KEY_INTENT, i);
             return result;
         }
@@ -90,7 +88,7 @@ public class AccountAuthenticatorService extends Service {
         @Override
         public Bundle confirmCredentials(AccountAuthenticatorResponse response, Account account,
                 Bundle options) {
-            Log.e(Constants.TAG, "confirmCredentials not implemented for Birthday Adapter!");
+            Log.e(Constants.TAG, "confirmCredentials not implemented!");
             return null;
         }
 
@@ -102,7 +100,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public Bundle editProperties(AccountAuthenticatorResponse response, String accountType) {
-            Log.e(Constants.TAG, "editProperties not implemented for Birthday Adapter!");
+            Log.e(Constants.TAG, "editProperties not implemented!");
             return null;
         }
 
@@ -116,7 +114,7 @@ public class AccountAuthenticatorService extends Service {
         @Override
         public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account,
                 String authTokenType, Bundle options) throws NetworkErrorException {
-            Log.e(Constants.TAG, "getAuthToken not implemented for Birthday Adapter!");
+            Log.e(Constants.TAG, "getAuthToken not implemented!");
             return null;
         }
 
@@ -127,7 +125,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public String getAuthTokenLabel(String authTokenType) {
-            Log.e(Constants.TAG, "getAuthTokenLabel not implemented for Birthday Adapter!");
+            Log.e(Constants.TAG, "getAuthTokenLabel not implemented!");
             return null;
         }
 
@@ -154,7 +152,7 @@ public class AccountAuthenticatorService extends Service {
         @Override
         public Bundle updateCredentials(AccountAuthenticatorResponse response, Account account,
                 String authTokenType, Bundle options) {
-            Log.e(Constants.TAG, "updateCredentials not implemented for Birthday Adapter!");
+            Log.e(Constants.TAG, "updateCredentials not implemented!");
             return null;
         }
     }

@@ -21,10 +21,11 @@ package org.sufficientlysecure.localcalendar.ui;
 import org.sufficientlysecure.localcalendar.Calendar;
 import org.sufficientlysecure.localcalendar.CalendarMapper;
 import org.sufficientlysecure.localcalendar.R;
-import org.sufficientlysecure.localcalendar.colorpicker.ColorPickerDialog;
-import org.sufficientlysecure.localcalendar.colorpicker.OnColorCancelListener;
-import org.sufficientlysecure.localcalendar.colorpicker.OnColorChoosenListener;
 
+import com.larswerkman.colorpicker.ColorPicker;
+
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -36,6 +37,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class EditActivity extends Activity {
@@ -44,20 +47,34 @@ public class EditActivity extends Activity {
 
     private final static int DEFAULT_COLOR = Color.rgb(100, 100, 200);
 
-    private int selectedColor;
+    // private int selectedColor;
     private boolean edit;
     private Calendar originalCalendar;
 
     private EditText displayText;
-    private View colorView;
+    ColorPicker colorPicker;
 
+    Button cancelButton;
+    Button deleteButton;
+    Button saveButton;
+
+    @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit);
 
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            ActionBar actionBar = this.getActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         displayText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
-        colorView = (View) findViewById(R.id.edit_activity_view_color);
+        colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
+
+        Button cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
+        Button deleteButton = (Button) findViewById(R.id.edit_activity_delete);
+        Button saveButton = (Button) findViewById(R.id.edit_activity_save);
 
         // check if add new or edit existing
         Intent intent = getIntent();
@@ -65,35 +82,61 @@ public class EditActivity extends Activity {
         if (edit) {
             // fetch the existing calendar data and display for editing
             originalCalendar = (Calendar) intent.getSerializableExtra(INTENT_CAL_DATA);
-            setSelectedColor(originalCalendar.getColor());
+            setColorPicker(originalCalendar.getColor());
             displayText.setText(originalCalendar.getName());
         } else {
-            setSelectedColor(DEFAULT_COLOR);
+            setColorPicker(DEFAULT_COLOR);
         }
+
+        cancelButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        if (edit) {
+            deleteButton.setVisibility(View.VISIBLE);
+        }
+        deleteButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (edit)
+                    confirmAndDeleteCalendar();
+                else
+                    finish();
+
+            }
+        });
+
+        saveButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (edit)
+                    updateCalendar();
+                else
+                    addCalendar(EditActivity.this);
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_edit, menu);
-        return true;
+    private void setColorPicker(int color) {
+        colorPicker.setColor(color);
+        colorPicker.setNewCenterColor(color);
+        colorPicker.setOldCenterColor(color);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
-        case R.id.menu_edit_delete:
-            if (edit)
-                confirmAndDeleteCalendar();
-            else
-                finish();
-            return true;
-        case R.id.menu_edit_save:
-            if (edit)
-                updateCalendar();
-            else
-                addCalendar(this);
+        case android.R.id.home:
+            // app icon in Action Bar clicked; go home
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
             return true;
         default:
             return super.onOptionsItemSelected(item);
@@ -112,13 +155,8 @@ public class EditActivity extends Activity {
         alert.show();
     }
 
-    private void setSelectedColor(int color) {
-        selectedColor = color;
-        colorView.setBackgroundColor(color);
-    }
-
     private void addCalendar(Context context) {
-        Calendar calendar = new Calendar(displayText.getText().toString(), selectedColor);
+        Calendar calendar = new Calendar(displayText.getText().toString(), colorPicker.getColor());
 
         try {
             CalendarMapper.addCalendar(context, calendar, getContentResolver());
@@ -130,7 +168,7 @@ public class EditActivity extends Activity {
 
     private void updateCalendar() {
         CalendarMapper.updateCalendar(originalCalendar, new Calendar(displayText.getText()
-                .toString(), selectedColor), getContentResolver());
+                .toString(), colorPicker.getColor()), getContentResolver());
         EditActivity.this.finish();
     }
 
@@ -158,24 +196,4 @@ public class EditActivity extends Activity {
             showMessageAndFinish(getText(R.string.edit_activity_error_delete).toString());
     }
 
-    public void handleClickPickColor(View view) {
-
-        OnColorCancelListener cancel = new OnColorCancelListener() {
-            @Override
-            public void colorCancel(int initialColor) {
-                // nothing to do
-            }
-        };
-
-        OnColorChoosenListener choosen = new OnColorChoosenListener() {
-            @Override
-            public void colorChoosen(int color) {
-                setSelectedColor(color);
-            }
-        };
-
-        String title = getText(R.string.pick_color).toString();
-        ColorPickerDialog cpd = new ColorPickerDialog(this, selectedColor, title, choosen, cancel);
-        cpd.show();
-    }
 }
