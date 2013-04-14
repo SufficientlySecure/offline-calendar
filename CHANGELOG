@@ -1,2 +1,7 @@
+1.1
+* Fix endless sync on Android 2.3 (Local Calendar has no sync!)
+* Redesigned edit of calendars
+* New color picker
+
 1.0
 * First release
