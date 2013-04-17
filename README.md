@@ -5,6 +5,10 @@ Create the calendar in this app and it will then be available in the Calendar ap
 
 Based on Private Calendar by Harald Seltner, found on Googlecode (http://code.google.com/p/private-calendar/). Improved to work on Android >= 2.2.
 
+# Installation
+
+Google Play: https://play.google.com/store/apps/details?id=org.sufficientlysecure.localcalendar  
+F-Droid: http://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.localcalendar
 
 # Build Local Calendar
 
