@@ -32,7 +32,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Calendars;
 import android.util.Log;
@@ -124,8 +123,8 @@ public class CalendarMapper {
             throw new IllegalArgumentException();
 
         /*
-         * On Android < 4.1 create an Account for our calendars. Using only local calendars cause
-         * these bugs:
+         * On Android < 4.1 create an account for our calendars. Using ACCOUNT_TYPE_LOCAL would
+         * cause these bugs:
          * 
          * - On Android < 4.1: Selecting "Calendars to sync" in the calendar app it crashes with
          * NullPointerException. see http://code.google.com/p/android/issues/detail?id=27474
@@ -134,27 +133,19 @@ public class CalendarMapper {
          * when local calendars are present
          */
         if (BEFORE_JELLYBEAN) {
-            Bundle result = addAccount(context);
+            if (addAccount(context)) {
+                Log.d(Constants.TAG, "Account was added!");
 
-            if (result != null) {
-                if (result.containsKey(AccountManager.KEY_ACCOUNT_NAME)) {
-                    Log.d(Constants.TAG, "Account was added!");
-
-                    // wait until account is added asynchronously
-                    try {
-                        Thread.sleep(2000);
-                        Log.d(Constants.TAG, "after wait...");
-                    } catch (InterruptedException e) {
-                        Log.e(Constants.TAG, "InterruptedException", e);
-                    }
-                } else {
-                    Log.e(Constants.TAG,
-                            "Account was not added! result did not contain KEY_ACCOUNT_NAME!");
+                // wait until account is added asynchronously
+                try {
+                    Thread.sleep(2000);
+                    Log.d(Constants.TAG, "after wait...");
+                } catch (InterruptedException e) {
+                    Log.e(Constants.TAG, "InterruptedException", e);
                 }
             } else {
-                Log.e(Constants.TAG, "Account was not added! result was null!");
+                Log.e(Constants.TAG, "There was a problem when trying to add the account!");
             }
-
         }
 
         // Add calendar
@@ -169,24 +160,20 @@ public class CalendarMapper {
      * @param context
      * @return
      */
-    private static Bundle addAccount(Context context) {
+    private static boolean addAccount(Context context) {
         Log.d(Constants.TAG, "Adding account...");
 
         AccountManager am = AccountManager.get(context);
         if (am.addAccountExplicitly(CalendarMapper.ACCOUNT, null, null)) {
-
             // explicitly disable sync
             ContentResolver.setSyncAutomatically(CalendarMapper.ACCOUNT,
                     CalendarMapper.CONTENT_AUTHORITY, false);
             ContentResolver.setIsSyncable(CalendarMapper.ACCOUNT, AccountManager.KEY_ACCOUNT_TYPE,
                     0);
 
-            Bundle result = new Bundle();
-            result.putString(AccountManager.KEY_ACCOUNT_NAME, CalendarMapper.ACCOUNT.name);
-            result.putString(AccountManager.KEY_ACCOUNT_TYPE, CalendarMapper.ACCOUNT.type);
-            return result;
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
