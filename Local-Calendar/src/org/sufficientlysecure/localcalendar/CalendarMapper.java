@@ -21,7 +21,6 @@ package org.sufficientlysecure.localcalendar;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sufficientlysecure.localcalendar.util.AccountHelper;
 import org.sufficientlysecure.localcalendar.util.Constants;
 
 import android.accounts.Account;
@@ -135,8 +134,7 @@ public class CalendarMapper {
          * when local calendars are present
          */
         if (BEFORE_JELLYBEAN) {
-            AccountHelper accHelper = new AccountHelper(context);
-            Bundle result = accHelper.addAccount();
+            Bundle result = addAccount(context);
 
             if (result != null) {
                 if (result.containsKey(AccountManager.KEY_ACCOUNT_NAME)) {
@@ -163,6 +161,33 @@ public class CalendarMapper {
         final ContentValues cv = buildContentValues(calendar);
         Uri calUri = buildCalUri();
         cr.insert(calUri, cv);
+    }
+
+    /**
+     * Add account to Android system
+     * 
+     * @param context
+     * @return
+     */
+    private static Bundle addAccount(Context context) {
+        Log.d(Constants.TAG, "Adding account...");
+
+        AccountManager am = AccountManager.get(context);
+        if (am.addAccountExplicitly(CalendarMapper.ACCOUNT, null, null)) {
+
+            // explicitly disable sync
+            ContentResolver.setSyncAutomatically(CalendarMapper.ACCOUNT,
+                    CalendarMapper.CONTENT_AUTHORITY, false);
+            ContentResolver.setIsSyncable(CalendarMapper.ACCOUNT, AccountManager.KEY_ACCOUNT_TYPE,
+                    0);
+
+            Bundle result = new Bundle();
+            result.putString(AccountManager.KEY_ACCOUNT_NAME, CalendarMapper.ACCOUNT.name);
+            result.putString(AccountManager.KEY_ACCOUNT_TYPE, CalendarMapper.ACCOUNT.type);
+            return result;
+        } else {
+            return null;
+        }
     }
 
     /**
