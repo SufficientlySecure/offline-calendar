@@ -168,7 +168,7 @@ public class CalendarMapper {
             // explicitly disable sync
             ContentResolver.setSyncAutomatically(CalendarMapper.ACCOUNT,
                     CalendarMapper.CONTENT_AUTHORITY, false);
-            ContentResolver.setIsSyncable(CalendarMapper.ACCOUNT, AccountManager.KEY_ACCOUNT_TYPE,
+            ContentResolver.setIsSyncable(CalendarMapper.ACCOUNT, CalendarMapper.CONTENT_AUTHORITY,
                     0);
 
             return true;
