@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Local Calendar</string>
+    <string name="app_name">Offline Calendar</string>
     <string name="edit_activity_cal_name">Name of Calendar</string>
     <string name="edit_activity_cal_color">Calendar Color</string>
     <string name="edit_activity_pick_color">Pick Color</string>
@@ -24,10 +24,10 @@
 
     <!-- Adapter Screen -->
     <string name="pref_account_header">Settings</string>
-    <string name="pref_account_settings">Configure Local Calendar</string>
+    <string name="pref_account_settings">Configure Offline Calendar</string>
 
     <!-- About -->
-    <string name="about">Local Calendar lets you add local calendars. These calendars are not synchronized into the cloud and only locally available!
+    <string name="about">Offline Calendar lets you add calendars. These calendars are not synchronized into the cloud and only locally available!
 \n\nBased on Private Calendar by Harald Seltner found on Googlecode and improved to work on Android below 4.1 by Dominik Schürmann
 \n\nReport bugs on https://github.com/dschuermann/local-calendar/issues
 \n\nLicensed under GPLv3</string>
