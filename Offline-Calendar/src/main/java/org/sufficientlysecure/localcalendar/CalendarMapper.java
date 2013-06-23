@@ -101,7 +101,7 @@ public class CalendarMapper {
         cur = cr.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
 
         // Use the cursor to step through the returned records
-        while (cur.moveToNext()) {
+        while (cur != null && cur.moveToNext()) {
             long id = 0;
             String name = null;
             int color;
