@@ -10,12 +10,13 @@ Based on Private Calendar by Harald Seltner, found on Googlecode (http://code.go
 Google Play: https://play.google.com/store/apps/details?id=org.sufficientlysecure.localcalendar  
 F-Droid: http://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.localcalendar
 
-# Build Offline Calendar
+# Build with Gradle
 
-1. Have Android SDK "tools" directory in your PATH (http://developer.android.com/sdk/index.html)
-2. Change to "Offline-Calendar" directory with ``cd Offline-Calendar``
-3. Execute ``android update project -p .``
-4. Execute ``ant debug`` or ``ant release``
+1. Have Android SDK "tools", "platform-tools", and "build-tools" directories in your PATH (http://developer.android.com/sdk/index.html)
+2. Export ANDROID_HOME pointing to your Android SDK
+3. Install gradle
+4. Execute ``gradle wrapper`` (http://www.gradle.org/docs/current/userguide/gradle_wrapper.html)
+5. Execute ``./gradlew assemble``
 
 # Translations
 
