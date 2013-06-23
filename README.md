@@ -1,6 +1,6 @@
 # Offline Calendar
 
-Lets you add local calendars to the Calendar app, which are not synchronized and are accessible only on the device itself.
+Lets you add calendars to the Calendar app, which are not synchronized and are accessible only on the device itself.
 Create the calendar in this app and it will then be available in the Calendar app.
 
 Based on Private Calendar by Harald Seltner, found on Googlecode (http://code.google.com/p/private-calendar/). Improved to work on Android >= 2.2.
@@ -19,7 +19,7 @@ F-Droid: http://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.local
 
 # Translations
 
-Help translating on https://www.transifex.com/projects/p/local-calendar/
+Help translating on https://www.transifex.com/projects/p/offline-calendar/
 
 # Contribute
 
@@ -27,7 +27,7 @@ Fork Offline Calendar and do a Pull Request. I will merge your changes back into
 
 # Libraries
 
-All JAR-Libraries are provided in this repository under "libs", all Android Library projects are under "android-libs".
+All Android Library projects are under "libraries".
 
 # Coding Style
 
