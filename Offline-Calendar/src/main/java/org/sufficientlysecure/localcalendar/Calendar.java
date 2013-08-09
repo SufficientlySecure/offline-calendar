@@ -18,6 +18,8 @@
 
 package org.sufficientlysecure.localcalendar;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 public class Calendar implements Serializable {
@@ -48,6 +50,7 @@ public class Calendar implements Serializable {
     }
 
     public int getColor() {
+        Log.d("test", "col" + color);
         return color;
     }
 

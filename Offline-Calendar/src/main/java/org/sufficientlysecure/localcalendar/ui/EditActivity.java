@@ -18,6 +18,8 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
+import com.larswerkman.colorpicker.OpacityBar;
+import com.larswerkman.colorpicker.SVBar;
 import org.sufficientlysecure.localcalendar.Calendar;
 import org.sufficientlysecure.localcalendar.CalendarMapper;
 import org.sufficientlysecure.localcalendar.R;
@@ -43,14 +45,14 @@ public class EditActivity extends Activity {
 
     public static final String INTENT_CAL_DATA = "cal_data";
 
-    private final static int DEFAULT_COLOR = Color.rgb(100, 100, 200);
+    private final static int DEFAULT_COLOR = Color.RED;
 
-    // private int selectedColor;
     private boolean edit;
     private Calendar originalCalendar;
 
     private EditText displayText;
     ColorPicker colorPicker;
+    private SVBar svBar;
 
     Button cancelButton;
     Button deleteButton;
@@ -69,10 +71,13 @@ public class EditActivity extends Activity {
 
         displayText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
         colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
+        svBar = (SVBar) findViewById(R.id.edit_activity_svbar);
 
-        Button cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
-        Button deleteButton = (Button) findViewById(R.id.edit_activity_delete);
-        Button saveButton = (Button) findViewById(R.id.edit_activity_save);
+        cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
+        deleteButton = (Button) findViewById(R.id.edit_activity_delete);
+        saveButton = (Button) findViewById(R.id.edit_activity_save);
+
+        colorPicker.addSVBar(svBar);
 
         // check if add new or edit existing
         Intent intent = getIntent();
@@ -80,10 +85,21 @@ public class EditActivity extends Activity {
         if (edit) {
             // fetch the existing calendar data and display for editing
             originalCalendar = (Calendar) intent.getSerializableExtra(INTENT_CAL_DATA);
-            setColorPicker(originalCalendar.getColor());
+            colorPicker.setColor(originalCalendar.getColor());
+            colorPicker.setNewCenterColor(originalCalendar.getColor());
+            colorPicker.setOldCenterColor(originalCalendar.getColor());
             displayText.setText(originalCalendar.getName());
         } else {
-            setColorPicker(DEFAULT_COLOR);
+            colorPicker.setColor(DEFAULT_COLOR);
+            colorPicker.setNewCenterColor(DEFAULT_COLOR);
+            colorPicker.setOldCenterColor(DEFAULT_COLOR);
+            // on calendar creation, set both center colors to new color
+            colorPicker.setOnColorChangedListener(new ColorPicker.OnColorChangedListener() {
+                @Override
+                public void onColorChanged(int color) {
+                    colorPicker.setOldCenterColor(color);
+                }
+            });
         }
 
         cancelButton.setOnClickListener(new OnClickListener() {
@@ -119,12 +135,6 @@ public class EditActivity extends Activity {
                     addCalendar(EditActivity.this);
             }
         });
-    }
-
-    private void setColorPicker(int color) {
-        colorPicker.setColor(color);
-        colorPicker.setNewCenterColor(color);
-        colorPicker.setOldCenterColor(color);
     }
 
     @Override
