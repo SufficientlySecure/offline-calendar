@@ -1,4 +1,3 @@
-<b>Description</b>
 Lets you add calendars to the Calendar app, which are not synchronized and are accessible only on the device itself.
 Create the calendar in this app and it will then be available in the Calendar app.
 
@@ -6,7 +5,7 @@ Create the calendar in this app and it will then be available in the Calendar ap
 • Choose name for calendar
 • Color picker for the calendar
 
-<b>Source code and information</b>
+<b>Source code/Bug reports/Translations</b>
 https://github.com/dschuermann/offline-calendar/
 
 <b>License</b>

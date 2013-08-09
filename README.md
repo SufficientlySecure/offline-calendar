@@ -13,9 +13,10 @@ F-Droid: http://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.local
 
 1. Have Android SDK "tools", "platform-tools", and "build-tools" directories in your PATH (http://developer.android.com/sdk/index.html)
 2. Export ANDROID_HOME pointing to your Android SDK
-3. Install gradle
-4. Execute ``gradle wrapper`` (http://www.gradle.org/docs/current/userguide/gradle_wrapper.html)
-5. Execute ``./gradlew assemble``
+3. Download Android Support Repository, and Google Repository using Android SDK Manager
+4. Install gradle
+5. Execute ``gradle wrapper`` (http://www.gradle.org/docs/current/userguide/gradle_wrapper.html)
+6. Execute ``./gradlew build``
 
 # Translations
 
