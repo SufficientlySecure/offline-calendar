@@ -18,7 +18,8 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import com.larswerkman.colorpicker.OpacityBar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import com.larswerkman.colorpicker.SVBar;
 import org.sufficientlysecure.localcalendar.Calendar;
 import org.sufficientlysecure.localcalendar.CalendarMapper;
@@ -50,7 +51,7 @@ public class EditActivity extends Activity {
     private boolean edit;
     private Calendar originalCalendar;
 
-    private EditText displayText;
+    private EditText displayNameEditText;
     ColorPicker colorPicker;
     private SVBar svBar;
 
@@ -69,7 +70,7 @@ public class EditActivity extends Activity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        displayText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
+        displayNameEditText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
         colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
         svBar = (SVBar) findViewById(R.id.edit_activity_svbar);
 
@@ -88,7 +89,7 @@ public class EditActivity extends Activity {
             colorPicker.setColor(originalCalendar.getColor());
             colorPicker.setNewCenterColor(originalCalendar.getColor());
             colorPicker.setOldCenterColor(originalCalendar.getColor());
-            displayText.setText(originalCalendar.getName());
+            displayNameEditText.setText(originalCalendar.getName());
         } else {
             colorPicker.setColor(DEFAULT_COLOR);
             colorPicker.setNewCenterColor(DEFAULT_COLOR);
@@ -129,25 +130,40 @@ public class EditActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                if (edit)
-                    updateCalendar();
-                else
-                    addCalendar(EditActivity.this);
+                if (displayNameEditText.getText().length() == 0) {
+                    displayNameEditText.requestFocus();
+                    displayNameEditText.setError(getString(R.string.edit_activity_error_empty_name));
+                } else {
+                    displayNameEditText.setError(null);
+                    if (edit)
+                        updateCalendar();
+                    else
+                        addCalendar(EditActivity.this);
+                }
             }
+        });
+
+        // remove error when characters are entered
+        displayNameEditText.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+                displayNameEditText.setError(null);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
         });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case android.R.id.home:
-            // app icon in Action Bar clicked; go home
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                // app icon in Action Bar clicked; go home
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -164,7 +180,7 @@ public class EditActivity extends Activity {
     }
 
     private void addCalendar(Context context) {
-        Calendar calendar = new Calendar(displayText.getText().toString(), colorPicker.getColor());
+        Calendar calendar = new Calendar(displayNameEditText.getText().toString(), colorPicker.getColor());
 
         try {
             CalendarMapper.addCalendar(context, calendar, getContentResolver());
@@ -175,7 +191,7 @@ public class EditActivity extends Activity {
     }
 
     private void updateCalendar() {
-        CalendarMapper.updateCalendar(originalCalendar, new Calendar(displayText.getText()
+        CalendarMapper.updateCalendar(originalCalendar, new Calendar(displayNameEditText.getText()
                 .toString(), colorPicker.getColor()), getContentResolver());
         EditActivity.this.finish();
     }
@@ -189,10 +205,10 @@ public class EditActivity extends Activity {
                         deleteCalendar();
                     }
                 }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
         AlertDialog alert = builder.create();
         alert.show();
     }
