@@ -9,12 +9,16 @@
     <string name="edit_activity_cal_color">Color</string>
     <string name="edit_activity_save">Save</string>
     <string name="edit_activity_delete">Delete</string>
-    <string name="edit_activity_really_delete">Are you sure?\nAfter deletion, this calendar and all its events will be lost.</string>
+    <string name="edit_activity_really_delete">Are you sure?\nAfter deletion, this calendar and all its events will be
+        lost.
+    </string>
     <string name="edit_activity_error_delete">Error on deletion!</string>
     <string name="edit_activity_error_add">Error on adding:</string>
     <string name="edit_activity_error_empty_name">Enter a calendar name!</string>
 
-    <string name="main_activity_empty_list">No offline calendars available.\n\nYou can create new calendars using the Menu.</string>
+    <string name="main_activity_empty_list">No offline calendars available.\n\nYou can create new calendars using the
+        Menu.
+    </string>
 
 
     <string name="menu_new">New Calendar</string>
@@ -25,9 +29,13 @@
     <string name="pref_account_settings">Configure Offline Calendar</string>
 
     <!-- About -->
-    <string name="about">Offline Calendar lets you add calendars. These calendars are not synchronized into the cloud and only locally available!
-\n\nBased on Private Calendar by Harald Seltner found on Googlecode and improved to work on Android below 4.1 by Dominik Schürmann
-\n\nReport bugs on https://github.com/dschuermann/offline-calendar/issues
-\n\nLicensed under GPLv3</string>
+    <string name="about">Offline Calendar lets you add calendars. These calendars are not synchronized into the cloud
+        and only locally available!
+        \n\nHelp translating, developing, or report bugs on http://sufficientlysecure.org/android-apps
+        \n\nLicense: GPLv3+
+        \n\nLibraries:
+        \n- Based on \'Private Calendar\' by Harald Seltner (GPLv3+)
+        \n- Holo ColorPicker (Apache License v2)
+    </string>
 
 </resources>

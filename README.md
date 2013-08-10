@@ -5,10 +5,9 @@ Create the calendar in this app and it will then be available in the Calendar ap
 
 Works on Android >= 2.2 using https://github.com/dschuermann/android-calendar-compatibility
 
-# Installation
+# Installation/Translations
 
-Google Play: https://play.google.com/store/apps/details?id=org.sufficientlysecure.localcalendar  
-F-Droid: http://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.localcalendar
+see http://sufficientlysecure.org/android-apps/
 
 # Build with Gradle
 
@@ -18,10 +17,6 @@ F-Droid: http://f-droid.org/repository/browse/?fdid=org.sufficientlysecure.local
 4. Install gradle
 5. Execute ``gradle wrapper`` (http://www.gradle.org/docs/current/userguide/gradle_wrapper.html)
 6. Execute ``./gradlew build``
-
-# Translations
-
-Help translating on https://www.transifex.com/projects/p/offline-calendar/
 
 # Contribute
 
@@ -68,6 +63,10 @@ You should have received a copy of the GNU General Public License
 along with Offline Calendar.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Libraries
+
+* Offline Calendar is based on "Private Calendar" by Harald Seltner  
+  http://code.google.com/p/private-calendar  
+  GPLv3+
 
 * Holo ColorPicker  
   https://github.com/LarsWerkman/HoloColorPicker  
