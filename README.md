@@ -1,8 +1,9 @@
 # Offline Calendar
 
 Lets you add calendars to the Calendar app, which are not synchronized and are accessible only on the device itself.
+Create the calendar in this app and it will then be available in the Calendar app.
 
-Based on Private Calendar by Harald Seltner, found on Googlecode (http://code.google.com/p/private-calendar/). Improved to work on Android >= 2.2.
+Works on Android >= 2.2 using https://github.com/dschuermann/android-calendar-compatibility
 
 # Installation
 
@@ -50,7 +51,7 @@ See http://www.androidpolice.com/2009/11/04/auto-formatting-android-xml-files-wi
 
 # Licenses
 Offline Calendar is licensed under the GPLv3+.  
-The file COPYING includes the full license text.
+The file LICENSE includes the full license text.
 
 ## Details
 Offline Calendar is free software: you can redistribute it and/or modify
@@ -70,6 +71,10 @@ along with Offline Calendar.  If not, see <http://www.gnu.org/licenses/>.
 
 * Holo ColorPicker  
   https://github.com/LarsWerkman/HoloColorPicker  
+  Apache License v2
+
+* android-calendar-compatibility  
+  https://github.com/dschuermann/android-calendar-compatibility  
   Apache License v2
 
 ## Images
