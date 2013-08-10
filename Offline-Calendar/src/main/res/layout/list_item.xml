@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linearLayout1"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+              android:id="@+id/linearLayout1"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
 
     <View
-        android:id="@+id/list_item_view_color"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_gravity="center_vertical"
-        android:background="#00ffff" />
+            android:id="@+id/list_item_view_color"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#00ffff"/>
 
     <TextView
-        android:id="@+id/list_item_text_cal_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:padding="10dp"
-        android:textSize="16sp" >
+            android:id="@+id/list_item_text_cal_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="10dp"
+            android:textSize="16sp">
     </TextView>
 </LinearLayout>

@@ -1,15 +1,15 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="@string/pref_account_header" />
+    <PreferenceCategory android:title="@string/pref_account_header"/>
 
     <PreferenceScreen
-        android:key="goToPreferences"
-        android:title="@string/pref_account_settings" >
+            android:key="goToPreferences"
+            android:title="@string/pref_account_settings">
 
         <!-- package relative class name -->
         <intent
-            android:action="org.sufficientlysecure.localcalendar.settings.MAIN"
-            android:targetClass=".ui.MainActivity" >
+                android:action="org.sufficientlysecure.localcalendar.settings.MAIN"
+                android:targetClass=".ui.MainActivity">
         </intent>
     </PreferenceScreen>
 
