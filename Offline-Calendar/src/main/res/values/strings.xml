@@ -2,26 +2,23 @@
 <resources>
 
     <string name="app_name">Offline Calendar</string>
-    <string name="edit_activity_cal_name">Name of Calendar</string>
-    <string name="edit_activity_cal_color">Calendar Color</string>
-    <string name="edit_activity_pick_color">Pick Color</string>
+
+    <string name="edit_activity_name_new">New Calendar</string>
+    <string name="edit_activity_name_edit">Edit Calendar</string>
+    <string name="edit_activity_cal_name">Name</string>
+    <string name="edit_activity_cal_color">Color</string>
     <string name="edit_activity_save">Save</string>
-    <string name="edit_activity_add">Add</string>
     <string name="edit_activity_delete">Delete</string>
-    <string name="edit_activity_message_saved">Calendar updated</string>
-    <string name="edit_activity_message_deleted">Calendar deleted</string>
-    <string name="edit_activity_message_added">Calendar added</string>
-    <string name="edit_activity_really_delete">Really delete? All events of this calendar will be lost.</string>
-    <string name="edit_activity_error_delete">Error deleting</string>
-    <string name="edit_activity_error_add">Error adding</string>
+    <string name="edit_activity_really_delete">Are you sure? After deletion, this calendar and all its events will be lost.</string>
+    <string name="edit_activity_error_delete">Error on deletion!</string>
+    <string name="edit_activity_error_add">Error on adding:</string>
     <string name="edit_activity_error_empty_name">Enter a calendar name!</string>
+
+    <string name="main_activity_empty_list">No offline calendars available.\n\nYou can create new calendars using the Menu.</string>
+
+
     <string name="menu_new">New Calendar</string>
     <string name="menu_about">About</string>
-    <string name="menu_save">Save</string>
-    <string name="menu_delete">Delete</string>
-    <string name="edit_activity_processing">processing</string>
-    <string name="edit_activity_argument_error">Error: check calendar names</string>
-    <string name="pick_color">Pick a Color</string>
 
     <!-- Adapter Screen -->
     <string name="pref_account_header">Settings</string>
