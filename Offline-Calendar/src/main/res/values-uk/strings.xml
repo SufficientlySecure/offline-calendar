@@ -1,26 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
   <string name="app_name">Автономний Календар</string>
-  <string name="edit_activity_cal_name">Назва Календаря</string>
-  <string name="edit_activity_cal_color">Колір Календаря</string>
-  <string name="edit_activity_pick_color">Вибрати колір</string>
   <string name="edit_activity_save">Зберегти</string>
-  <string name="edit_activity_add">Додати</string>
   <string name="edit_activity_delete">Вилучити</string>
-  <string name="edit_activity_message_saved">Календар оновлено</string>
-  <string name="edit_activity_message_deleted">Календар вилучено</string>
-  <string name="edit_activity_message_added">Календар додано</string>
-  <string name="edit_activity_really_delete">Справді вилучити? Усі події цього календаря будуть втрачені.</string>
-  <string name="edit_activity_error_delete">Помилка вилучення</string>
-  <string name="edit_activity_error_add">Помилка додавання</string>
   <string name="edit_activity_error_empty_name">Введіть назву календаря!</string>
   <string name="menu_new">Новий Календар</string>
   <string name="menu_about">Про</string>
-  <string name="menu_save">Зберегти</string>
-  <string name="menu_delete">Вилучити</string>
-  <string name="edit_activity_processing">опрацьовується</string>
-  <string name="edit_activity_argument_error">Помилка: перевірте імена календаря</string>
-  <string name="pick_color">Вибір кольору</string>
   <!--Adapter Screen-->
   <string name="pref_account_header">Налаштування</string>
   <string name="pref_account_settings">Налаштувати автономний календар</string>
