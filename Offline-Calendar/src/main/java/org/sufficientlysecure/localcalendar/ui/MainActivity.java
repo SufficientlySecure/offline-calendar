@@ -18,77 +18,26 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import java.util.List;
-
-import org.sufficientlysecure.localcalendar.Calendar;
-import org.sufficientlysecure.localcalendar.CalendarMapper;
+import android.support.v4.app.FragmentActivity;
 import org.sufficientlysecure.localcalendar.R;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-
-    private class CalendarListViewAdapter extends ArrayAdapter<Calendar> {
-
-        public CalendarListViewAdapter(Context context, int textViewResourceId,
-                List<Calendar> objects) {
-            super(context, textViewResourceId, objects);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View v = convertView;
-            if (v == null) {
-                LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = vi.inflate(R.layout.list_item, null);
-            }
-
-            Calendar cal = this.getItem(position);
-            if (cal != null) {
-                View colorView = (View) v.findViewById(R.id.list_item_view_color);
-                TextView calName = (TextView) v.findViewById(R.id.list_item_text_cal_name);
-
-                colorView.setBackgroundColor(cal.getColor());
-                calName.setText(cal.getName());
-            }
-
-            return v;
-        }
-
-    }
-
-    private ListView listView;
-    private CalendarListViewAdapter adapter;
+public class MainActivity extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        listView = (ListView) findViewById(R.id.privatecalendar_listview);
-    }
-
-    @Override
-    protected void onResume() {
-        loadCalendars();
-        super.onResume();
     }
 
     @Override
@@ -111,25 +60,6 @@ public class MainActivity extends Activity {
         default:
             return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void showEditCalendar(int position) {
-        Calendar cal = adapter.getItem(position);
-        Intent intent = new Intent(this, EditActivity.class);
-        intent.putExtra(EditActivity.INTENT_CAL_DATA, cal);
-        startActivity(intent);
-    }
-
-    private void loadCalendars() {
-        List<Calendar> calendars = CalendarMapper.fetchCalendars(getContentResolver());
-        adapter = new CalendarListViewAdapter(this, R.layout.list_item, calendars);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showEditCalendar(position);
-            }
-        });
-
     }
 
     private void showAddCalendarActivity() {

@@ -18,11 +18,13 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
+import android.content.ContentUris;
+import android.database.Cursor;
+import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
 import com.larswerkman.colorpicker.SVBar;
-import org.sufficientlysecure.localcalendar.Calendar;
-import org.sufficientlysecure.localcalendar.CalendarMapper;
+import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
 
 import com.larswerkman.colorpicker.ColorPicker;
@@ -43,13 +45,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class EditActivity extends Activity {
-
-    public static final String INTENT_CAL_DATA = "cal_data";
-
     private final static int DEFAULT_COLOR = Color.RED;
 
-    private boolean edit;
-    private Calendar originalCalendar;
+    boolean edit = false;
 
     private EditText displayNameEditText;
     ColorPicker colorPicker;
@@ -58,6 +56,8 @@ public class EditActivity extends Activity {
     Button cancelButton;
     Button deleteButton;
     Button saveButton;
+
+    long mCalendarId;
 
     @SuppressLint("NewApi")
     @Override
@@ -82,18 +82,33 @@ public class EditActivity extends Activity {
 
         // check if add new or edit existing
         Intent intent = getIntent();
-        edit = intent.hasExtra(INTENT_CAL_DATA);
+        Uri calendarUri = intent.getData();
+        if (calendarUri != null) {
+            edit = true;
+        }
+
         if (edit) {
-            // fetch the existing calendar data and display for editing
-            originalCalendar = (Calendar) intent.getSerializableExtra(INTENT_CAL_DATA);
-            colorPicker.setColor(originalCalendar.getColor());
-            colorPicker.setNewCenterColor(originalCalendar.getColor());
-            colorPicker.setOldCenterColor(originalCalendar.getColor());
-            displayNameEditText.setText(originalCalendar.getName());
+            // edit calendar
+            setTitle(R.string.edit_activity_name_edit);
+
+            Cursor cur = getContentResolver().query(calendarUri, CalendarController.PROJECTION, null, null, null);
+            mCalendarId = ContentUris.parseId(calendarUri);
+            if (cur.moveToFirst()) {
+                do {
+                    String displayName = cur.getString(CalendarController.PROJECTION_DISPLAY_NAME_INDEX);
+                    int color = cur.getInt(CalendarController.PROJECTION_COLOR_INDEX);
+
+                    // display for editing
+                    displayNameEditText.setText(displayName);
+                    setColor(color);
+                } while (cur.moveToNext());
+            }
+
         } else {
-            colorPicker.setColor(DEFAULT_COLOR);
-            colorPicker.setNewCenterColor(DEFAULT_COLOR);
-            colorPicker.setOldCenterColor(DEFAULT_COLOR);
+            // new calendar
+            setTitle(R.string.edit_activity_name_new);
+
+            setColor(DEFAULT_COLOR);
             // on calendar creation, set both center colors to new color
             colorPicker.setOnColorChangedListener(new ColorPicker.OnColorChangedListener() {
                 @Override
@@ -144,13 +159,23 @@ public class EditActivity extends Activity {
         });
 
         // remove error when characters are entered
-        displayNameEditText.addTextChangedListener(new TextWatcher(){
+        displayNameEditText.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 displayNameEditText.setError(null);
             }
-            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-            public void onTextChanged(CharSequence s, int start, int before, int count){}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
         });
+    }
+
+    private void setColor(int color) {
+        colorPicker.setColor(color);
+        colorPicker.setNewCenterColor(color);
+        colorPicker.setOldCenterColor(color);
     }
 
     @Override
@@ -172,7 +197,7 @@ public class EditActivity extends Activity {
         builder.setMessage(message).setCancelable(false)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        EditActivity.this.finish();
+                        finish();
                     }
                 });
         AlertDialog alert = builder.create();
@@ -180,25 +205,23 @@ public class EditActivity extends Activity {
     }
 
     private void addCalendar(Context context) {
-        Calendar calendar = new Calendar(displayNameEditText.getText().toString(), colorPicker.getColor());
-
         try {
-            CalendarMapper.addCalendar(context, calendar, getContentResolver());
-            EditActivity.this.finish();
+            CalendarController.addCalendar(context, displayNameEditText.getText().toString(), colorPicker.getColor(), getContentResolver());
+            finish();
         } catch (IllegalArgumentException e) {
-            showMessageAndFinish(getText(R.string.edit_activity_error_add) + e.getMessage());
+            showMessageAndFinish(getString(R.string.edit_activity_error_add) + " " + e.getMessage());
         }
     }
 
     private void updateCalendar() {
-        CalendarMapper.updateCalendar(originalCalendar, new Calendar(displayNameEditText.getText()
-                .toString(), colorPicker.getColor()), getContentResolver());
-        EditActivity.this.finish();
+        CalendarController.updateCalendar(mCalendarId, displayNameEditText.getText()
+                .toString(), colorPicker.getColor(), getContentResolver());
+        finish();
     }
 
     private void confirmAndDeleteCalendar() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(getText(R.string.edit_activity_really_delete).toString())
+        builder.setMessage(R.string.edit_activity_really_delete)
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -214,10 +237,11 @@ public class EditActivity extends Activity {
     }
 
     private void deleteCalendar() {
-        if (CalendarMapper.deleteCalendar(originalCalendar, getContentResolver()))
-            EditActivity.this.finish();
-        else
-            showMessageAndFinish(getText(R.string.edit_activity_error_delete).toString());
+        if (CalendarController.deleteCalendar(mCalendarId, getContentResolver())) {
+            finish();
+        } else {
+            showMessageAndFinish(getString(R.string.edit_activity_error_delete));
+        }
     }
 
 }
