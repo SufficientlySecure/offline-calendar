@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Calendrier hors-ligne</string>
+  <string name="edit_activity_cal_name">Nom du calendrier</string>
+  <string name="edit_activity_cal_color">Couleur de calendrier</string>
+  <string name="edit_activity_pick_color">Choisissez une couleur</string>
+  <string name="edit_activity_save">Enregistrer</string>
+  <string name="edit_activity_add">Ajouter</string>
+  <string name="edit_activity_delete">Supprimer</string>
+  <string name="edit_activity_message_saved">Calendrier mis à jour</string>
+  <string name="edit_activity_message_deleted">Calendrier supprimé</string>
+  <string name="edit_activity_message_added">Calendrier ajouté</string>
+  <string name="edit_activity_really_delete">Voulez-vous vraiment supprimer ? Tous les évènements de ce calendrier seront perdus.</string>
+  <string name="edit_activity_error_delete">Erreur de suppression</string>
+  <string name="edit_activity_error_add">Erreur d’ajout</string>
+  <string name="menu_new">Nouveau calendrier</string>
+  <string name="menu_about">À propos</string>
+  <string name="menu_save">Enregistrer</string>
+  <string name="menu_delete">Supprimer</string>
+  <string name="edit_activity_processing">traitement</string>
+  <string name="edit_activity_argument_error">Erreur : vérifier le nom des calendrier</string>
+  <string name="pick_color">Choisissez une couleur</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Paramètres</string>
+  <string name="pref_account_settings">Paramétrer Offline Calendar</string>
+  <!--About-->
+  <string name="about">Offline Calendar vous permet d’ajouter des calendriers. Ces calendriers ne sont pas synchronisé sur internet mais seulement disponible localement !\n\n\nBasé sur Private Calendar de Harald Seltner trouvé sur Googlecode et amélioré pour fonctionner sur Android en dessous de 4.1 par Dominik Schürmann\n\n\nRapportez les bugs sur https://github.com/dschuermann/offline-calendar/issues\n\n\nLicence GPLv3</string>
+</resources>
