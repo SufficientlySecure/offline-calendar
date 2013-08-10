@@ -9,6 +9,7 @@
     <string name="edit_activity_cal_color">Color</string>
     <string name="edit_activity_save">Save</string>
     <string name="edit_activity_delete">Delete</string>
+    <string name="edit_activity_import_export">Import/Export</string>
     <string name="edit_activity_really_delete">Are you sure?\nAfter deletion, this calendar and all its events will be
         lost.
     </string>
@@ -19,6 +20,9 @@
     <string name="main_activity_empty_list">No offline calendars available.\n\nYou can create new calendars using the
         Menu.
     </string>
+
+    <string name="no_ical_title">iCal Import/Export</string>
+    <string name="no_ical_message">iCal Import/Export is not installed. Do you want to install it?</string>
 
 
     <string name="menu_new">New Calendar</string>

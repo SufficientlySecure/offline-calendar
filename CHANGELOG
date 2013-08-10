@@ -1,3 +1,8 @@
+1.3
+* Import/Export using new app (Edit calendar -> Import/Export button)
+* Add saturation/value bar to color picker (allows black/white)
+- Internal bug fixes
+
 1.2
 * New name: Offline Calendar
 - Bug fixes

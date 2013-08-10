@@ -18,11 +18,13 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.content.ContentUris;
+import android.content.*;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.LinearLayout;
 import com.larswerkman.colorpicker.SVBar;
 import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
@@ -33,9 +35,6 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -44,7 +43,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class EditActivity extends Activity {
+public class EditActivity extends FragmentActivity {
     private final static int DEFAULT_COLOR = Color.RED;
 
     boolean edit = false;
@@ -53,11 +52,18 @@ public class EditActivity extends Activity {
     ColorPicker colorPicker;
     private SVBar svBar;
 
-    Button cancelButton;
+    LinearLayout editButtons;
+
     Button deleteButton;
+    Button importExportButton;
+
+    Button cancelButton;
     Button saveButton;
 
     long mCalendarId;
+
+    public static final String ICAL_LOAD_CALENDAR = "org.sufficientlysecure.ical.LOAD_CALENDAR";
+    public static final String ICAL_EXTRA_CALENDAR_ID = "calendarId";
 
     @SuppressLint("NewApi")
     @Override
@@ -74,8 +80,12 @@ public class EditActivity extends Activity {
         colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
         svBar = (SVBar) findViewById(R.id.edit_activity_svbar);
 
-        cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
+        editButtons = (LinearLayout) findViewById(R.id.edit_activity_edit_buttons);
+
         deleteButton = (Button) findViewById(R.id.edit_activity_delete);
+        importExportButton = (Button) findViewById(R.id.edit_activity_import_export);
+
+        cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
         saveButton = (Button) findViewById(R.id.edit_activity_save);
 
         colorPicker.addSVBar(svBar);
@@ -85,6 +95,10 @@ public class EditActivity extends Activity {
         Uri calendarUri = intent.getData();
         if (calendarUri != null) {
             edit = true;
+        }
+
+        if (edit) {
+            editButtons.setVisibility(View.VISIBLE);
         }
 
         if (edit) {
@@ -118,26 +132,37 @@ public class EditActivity extends Activity {
             });
         }
 
+        deleteButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                confirmAndDeleteCalendar();
+            }
+        });
+
+        importExportButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent icalIntent = new Intent(ICAL_LOAD_CALENDAR);
+                icalIntent.putExtra(ICAL_EXTRA_CALENDAR_ID, mCalendarId);
+                try {
+                    startActivity(icalIntent);
+                } catch (ActivityNotFoundException e) {
+                    ActivityNotFoundDialogFragment notFoundDialog = ActivityNotFoundDialogFragment
+                            .newInstance(R.string.no_ical_title, R.string.no_ical_message,
+                                    "market://details?id=org.sufficientlysecure.ical", "iCal Import/Export");
+
+                    notFoundDialog.show(getSupportFragmentManager(), "notFoundDialog");
+                }
+            }
+        });
+
         cancelButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-
-        if (edit) {
-            deleteButton.setVisibility(View.VISIBLE);
-        }
-        deleteButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (edit)
-                    confirmAndDeleteCalendar();
-                else
-                    finish();
-
             }
         });
 
