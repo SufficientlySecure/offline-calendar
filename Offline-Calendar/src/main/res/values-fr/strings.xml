@@ -9,5 +9,4 @@
   <string name="pref_account_header">Paramètres</string>
   <string name="pref_account_settings">Paramétrer Offline Calendar</string>
   <!--About-->
-  <string name="about">Offline Calendar vous permet d’ajouter des calendriers. Ces calendriers ne sont pas synchronisé sur internet mais seulement disponible localement !\n\n\nBasé sur Private Calendar de Harald Seltner trouvé sur Googlecode et amélioré pour fonctionner sur Android en dessous de 4.1 par Dominik Schürmann\n\n\nRapportez les bugs sur https://github.com/dschuermann/offline-calendar/issues\n\n\nLicence GPLv3</string>
 </resources>
