@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline Calendar</string>
+  <string name="edit_activity_name_new">Kalender hinzufügen</string>
+  <string name="edit_activity_name_edit">Kalender bearbeiten</string>
+  <string name="edit_activity_cal_name">Name</string>
+  <string name="edit_activity_cal_color">Farbe</string>
+  <string name="edit_activity_save">Speichern</string>
+  <string name="edit_activity_delete">Löschen</string>
+  <string name="edit_activity_import_export">Import/Export</string>
+  <string name="edit_activity_really_delete">Bist du sicher?\nAlle zum Kalender gehörigen Ereignisse werden für immer gelöscht sein.</string>
+  <string name="edit_activity_error_delete">Fehler beim Löschvorgang!</string>
+  <string name="edit_activity_error_add">Fehler beim Hinzufügen:</string>
+  <string name="edit_activity_error_empty_name">Bitte gib einen Kalendernamen ein</string>
+  <string name="main_activity_empty_list">Keine Offline-Kalender vorhanden.\n\nNeue Kalender können über das Menü hinzugefügt werden.</string>
+  <string name="no_ical_title">iCal Import/Export</string>
+  <string name="no_ical_message">iCal Import/Export ist nicht installiert. Möchtest du es installieren?</string>
+  <string name="menu_new">Kalender hinzufügen</string>
+  <string name="menu_about">Über</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Einstellungen</string>
+  <string name="pref_account_settings">Offline Calendar konfigurieren</string>
+  <!--About-->
+  <string name="about">Offline Calendar ermöglicht das Hinzufügen von Kalendern, die nur auf dem Gerät verfügbar sind und nicht mit einer Cloud synchronisiert werden.\n        \n\nHilf mit das Programm zu entwickeln, zu übersetzen, und melde Fehler auf http://sufficientlysecure.org/android-apps\n        \n\nLizenz: GPLv3+\n        \n\nLibraries:\n        \n- Based on \'Private Calendar\' by Harald Seltner (GPLv3+)\n        \n- Holo ColorPicker (Apache License v2)\n    </string>
+</resources>
