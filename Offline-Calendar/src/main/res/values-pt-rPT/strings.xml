@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Calendário local</string>
+  <string name="edit_activity_name_new">Novo calendário</string>
+  <string name="edit_activity_name_edit">Editar calendário</string>
+  <string name="edit_activity_cal_name">Nome</string>
+  <string name="edit_activity_cal_color">Cor</string>
+  <string name="edit_activity_save">Gravar</string>
+  <string name="edit_activity_delete">Eliminar</string>
+  <string name="edit_activity_import_export">Importar/Exportar</string>
+  <string name="edit_activity_really_delete">Tem a certeza?\nSe eliminar o calendário, todos os eventos existentes serão eliminados.</string>
+  <string name="edit_activity_error_delete">Erro ao eliminar!</string>
+  <string name="edit_activity_error_empty_name">Introduza o nome do calendário!</string>
+  <string name="main_activity_empty_list">Não existem calendários locais.\n\nPode criar um calendário através do menu.</string>
+  <string name="no_ical_title">Importação/Exportação iCal</string>
+  <string name="no_ical_message">A importação/exportação iCal não está instalada. Instalar?</string>
+  <string name="menu_new">Novo calendário</string>
+  <string name="menu_about">Sobre</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Definições</string>
+  <string name="pref_account_settings">Configurar aplicação</string>
+  <!--About-->
+  <string name="about">O calendário local permite-lhe adicionar calendários. Estes calendários não serão sincronizados com a web e apenas estarão disponíveis localmente.\n\nSe quiser ajudar na tradução ou programação aceda a: http://sufficientlysecure.org/android-apps\n\n\nLicença: GPLv3+\n\n\nBibliotecas:\n\nBaseado na aplicação Private Calendar de Harald Seltner (GPLv3+)\n\nHolo ColorPicker (Apache License v2)</string>
+</resources>
