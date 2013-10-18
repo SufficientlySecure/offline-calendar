@@ -20,5 +20,5 @@
   <string name="pref_account_header">Einstellungen</string>
   <string name="pref_account_settings">Offline Calendar konfigurieren</string>
   <!--About-->
-  <string name="about">Offline Calendar ermöglicht das Hinzufügen von Kalendern, die nur auf dem Gerät verfügbar sind und nicht mit einer Cloud synchronisiert werden.\n        \n\nHilf mit das Programm zu entwickeln, zu übersetzen, und melde Fehler auf http://sufficientlysecure.org/android-apps\n        \n\nLizenz: GPLv3+\n        \n\nLibraries:\n        \n- Based on \'Private Calendar\' by Harald Seltner (GPLv3+)\n        \n- Holo ColorPicker (Apache License v2)\n    </string>
+  <string name="about">Offline Calendar ermöglicht das Hinzufügen von Kalendern, die nur auf dem Gerät verfügbar sind und nicht mit einer Cloud synchronisiert werden.\n\nHilf mit das Programm zu entwickeln, zu übersetzen, und melde Fehler auf http://sufficientlysecure.org/android-apps\n\nLizenz: GPLv3+\n\nLibraries:\n- Based on \'Private Calendar\' by Harald Seltner (GPLv3+)\n- Holo ColorPicker (Apache License v2)\n    </string>
 </resources>

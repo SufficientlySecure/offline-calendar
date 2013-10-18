@@ -55,10 +55,8 @@ public class EditActivity extends FragmentActivity {
     private SVBar svBar;
 
     LinearLayout editButtons;
-
     Button deleteButton;
     Button importExportButton;
-
     Button cancelButton;
     Button saveButton;
 
@@ -149,10 +147,8 @@ public class EditActivity extends FragmentActivity {
         } else {
             // Android < 3.0
             editButtons = (LinearLayout) findViewById(R.id.edit_activity_edit_buttons);
-
             deleteButton = (Button) findViewById(R.id.edit_activity_delete);
             importExportButton = (Button) findViewById(R.id.edit_activity_import_export);
-
             cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
             saveButton = (Button) findViewById(R.id.edit_activity_save);
 
@@ -167,7 +163,6 @@ public class EditActivity extends FragmentActivity {
                     delete();
                 }
             });
-
             importExportButton.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -175,7 +170,6 @@ public class EditActivity extends FragmentActivity {
                     importExport();
                 }
             });
-
             cancelButton.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -183,7 +177,6 @@ public class EditActivity extends FragmentActivity {
                     finish();
                 }
             });
-
             saveButton.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -261,7 +254,6 @@ public class EditActivity extends FragmentActivity {
             notFoundDialog.show(getSupportFragmentManager(), "notFoundDialog");
         }
     }
-
 
     private void save() {
         if (displayNameEditText.getText().length() == 0) {
