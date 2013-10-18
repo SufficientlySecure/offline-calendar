@@ -208,6 +208,16 @@ public class EditActivity extends FragmentActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Show menu only in edit mode
+        if (edit) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_edit, menu);
