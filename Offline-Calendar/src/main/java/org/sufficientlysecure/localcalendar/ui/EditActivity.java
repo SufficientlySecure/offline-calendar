@@ -24,10 +24,15 @@ import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.LinearLayout;
+
 import com.larswerkman.colorpicker.SVBar;
+
 import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
+import org.sufficientlysecure.localcalendar.util.ActionBarHelper;
 
 import com.larswerkman.colorpicker.ColorPicker;
 
@@ -43,8 +48,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class EditActivity extends FragmentActivity {
-    private final static int DEFAULT_COLOR = Color.RED;
-
     boolean edit = false;
 
     private EditText displayNameEditText;
@@ -70,22 +73,9 @@ public class EditActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit);
 
-        if (android.os.Build.VERSION.SDK_INT >= 11) {
-            ActionBar actionBar = this.getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
         displayNameEditText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
         colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
         svBar = (SVBar) findViewById(R.id.edit_activity_svbar);
-
-        editButtons = (LinearLayout) findViewById(R.id.edit_activity_edit_buttons);
-
-        deleteButton = (Button) findViewById(R.id.edit_activity_delete);
-        importExportButton = (Button) findViewById(R.id.edit_activity_import_export);
-
-        cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
-        saveButton = (Button) findViewById(R.id.edit_activity_save);
 
         colorPicker.addSVBar(svBar);
 
@@ -97,31 +87,30 @@ public class EditActivity extends FragmentActivity {
         }
 
         if (edit) {
-            editButtons.setVisibility(View.VISIBLE);
-        }
-
-        if (edit) {
             // edit calendar
             setTitle(R.string.edit_activity_name_edit);
 
             Cursor cur = getContentResolver().query(calendarUri, CalendarController.PROJECTION, null, null, null);
             mCalendarId = ContentUris.parseId(calendarUri);
-            if (cur.moveToFirst()) {
-                do {
+            try {
+                if (cur.moveToFirst()) {
                     String displayName = cur.getString(CalendarController.PROJECTION_DISPLAY_NAME_INDEX);
                     int color = cur.getInt(CalendarController.PROJECTION_COLOR_INDEX);
 
                     // display for editing
                     displayNameEditText.setText(displayName);
                     setColor(color);
-                } while (cur.moveToNext());
+                }
+            } finally {
+                if (cur != null && !cur.isClosed()) {
+                    cur.close();
+                }
             }
-
         } else {
             // new calendar
             setTitle(R.string.edit_activity_name_new);
 
-            setColor(DEFAULT_COLOR);
+            setColor(getResources().getColor(R.color.emphasis));
             // on calendar creation, set both center colors to new color
             colorPicker.setOnColorChangedListener(new ColorPicker.OnColorChangedListener() {
                 @Override
@@ -131,56 +120,78 @@ public class EditActivity extends FragmentActivity {
             });
         }
 
-        deleteButton.setOnClickListener(new OnClickListener() {
+        // Based on Android version use ButtonBar on bottom or use custom Actionbar layout
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            ActionBar actionBar = this.getActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
 
-            @Override
-            public void onClick(View v) {
-                confirmAndDeleteCalendar();
+            if (edit) {
+                ActionBarHelper.setDoneView(getActionBar(), new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        save();
+                    }
+                });
+            } else {
+                ActionBarHelper.setDoneCancelView(getActionBar(), new OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                save();
+                            }
+                        }, new OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        }
+                );
             }
-        });
+        } else {
+            // Android < 3.0
+            editButtons = (LinearLayout) findViewById(R.id.edit_activity_edit_buttons);
 
-        importExportButton.setOnClickListener(new OnClickListener() {
+            deleteButton = (Button) findViewById(R.id.edit_activity_delete);
+            importExportButton = (Button) findViewById(R.id.edit_activity_import_export);
 
-            @Override
-            public void onClick(View v) {
-                Intent icalIntent = new Intent(ICAL_LOAD_CALENDAR);
-                icalIntent.putExtra(ICAL_EXTRA_CALENDAR_ID, mCalendarId);
-                try {
-                    startActivity(icalIntent);
-                } catch (ActivityNotFoundException e) {
-                    ActivityNotFoundDialogFragment notFoundDialog = ActivityNotFoundDialogFragment
-                            .newInstance(R.string.no_ical_title, R.string.no_ical_message,
-                                    "market://details?id=org.sufficientlysecure.ical", "iCal Import/Export");
+            cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
+            saveButton = (Button) findViewById(R.id.edit_activity_save);
 
-                    notFoundDialog.show(getSupportFragmentManager(), "notFoundDialog");
+            if (edit) {
+                editButtons.setVisibility(View.VISIBLE);
+            }
+
+            deleteButton.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    delete();
                 }
-            }
-        });
+            });
 
-        cancelButton.setOnClickListener(new OnClickListener() {
+            importExportButton.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        saveButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (displayNameEditText.getText().length() == 0) {
-                    displayNameEditText.requestFocus();
-                    displayNameEditText.setError(getString(R.string.edit_activity_error_empty_name));
-                } else {
-                    displayNameEditText.setError(null);
-                    if (edit)
-                        updateCalendar();
-                    else
-                        addCalendar(EditActivity.this);
+                @Override
+                public void onClick(View v) {
+                    importExport();
                 }
-            }
-        });
+            });
+
+            cancelButton.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+            saveButton.setOnClickListener(new OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    save();
+                }
+            });
+        }
 
         // remove error when characters are entered
         displayNameEditText.addTextChangedListener(new TextWatcher() {
@@ -196,14 +207,16 @@ public class EditActivity extends FragmentActivity {
         });
     }
 
-    private void setColor(int color) {
-        colorPicker.setColor(color);
-        colorPicker.setNewCenterColor(color);
-        colorPicker.setOldCenterColor(color);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_edit, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in Action Bar clicked; go home
@@ -211,9 +224,69 @@ public class EditActivity extends FragmentActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
+            case R.id.menu_edit_cancel:
+                finish();
+                return true;
+            case R.id.menu_edit_delete:
+                delete();
+                return true;
+            case R.id.menu_edit_import_export:
+                importExport();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void importExport() {
+        Intent icalIntent = new Intent(ICAL_LOAD_CALENDAR);
+        icalIntent.putExtra(ICAL_EXTRA_CALENDAR_ID, mCalendarId);
+        try {
+            startActivity(icalIntent);
+        } catch (ActivityNotFoundException e) {
+            ActivityNotFoundDialogFragment notFoundDialog = ActivityNotFoundDialogFragment
+                    .newInstance(R.string.no_ical_title, R.string.no_ical_message,
+                            "market://details?id=org.sufficientlysecure.ical", "iCal Import/Export");
+
+            notFoundDialog.show(getSupportFragmentManager(), "notFoundDialog");
+        }
+    }
+
+
+    private void save() {
+        if (displayNameEditText.getText().length() == 0) {
+            displayNameEditText.requestFocus();
+            displayNameEditText.setError(getString(R.string.edit_activity_error_empty_name));
+        } else {
+            displayNameEditText.setError(null);
+            if (edit)
+                updateCalendar();
+            else
+                addCalendar(EditActivity.this);
+        }
+    }
+
+    private void delete() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.edit_activity_really_delete)
+                .setCancelable(false)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        deleteCalendar();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void setColor(int color) {
+        colorPicker.setColor(color);
+        colorPicker.setNewCenterColor(color);
+        colorPicker.setOldCenterColor(color);
     }
 
     private void showMessageAndFinish(String message) {
@@ -241,23 +314,6 @@ public class EditActivity extends FragmentActivity {
         CalendarController.updateCalendar(mCalendarId, displayNameEditText.getText()
                 .toString(), colorPicker.getColor(), getContentResolver());
         finish();
-    }
-
-    private void confirmAndDeleteCalendar() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.edit_activity_really_delete)
-                .setCancelable(false)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        deleteCalendar();
-                    }
-                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 
     private void deleteCalendar() {

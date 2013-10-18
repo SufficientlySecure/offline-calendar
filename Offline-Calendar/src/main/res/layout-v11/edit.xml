@@ -1,138 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-            android:id="@+id/edit_activity_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            style="@style/SectionHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/edit_activity_cal_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/edit_activity_text_cal_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:inputType="text"
+            android:padding="8dp"
+            android:text="" />
 
-        <Button
-                android:id="@+id/edit_activity_cancel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@android:string/cancel"/>
-
-        <View
-                android:layout_width="1dip"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="?android:attr/dividerVertical"/>
-
-        <Button
-                android:id="@+id/edit_activity_save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@string/edit_activity_save"/>
-    </LinearLayout>
-
-    <View
-            android:id="@+id/edit_activity_buttons_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_above="@+id/edit_activity_buttons"
-            android:background="?android:attr/dividerVertical"/>
-
-    <LinearLayout
-            android:id="@+id/edit_activity_edit_buttons"
-            android:layout_width="match_parent"
-            android:visibility="gone"
+        <TextView
+            style="@style/SectionHeader"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/edit_activity_buttons_line"
-            android:orientation="horizontal">
+            android:padding="8dp"
+            android:text="@string/edit_activity_cal_color"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <Button
-                android:id="@+id/edit_activity_delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@string/edit_activity_delete"/>
+        <com.larswerkman.colorpicker.ColorPicker
+            android:id="@+id/edit_activity_color_picker"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:padding="8dp" />
 
-        <View
-                android:layout_width="1dip"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="?android:attr/dividerVertical"/>
+        <com.larswerkman.colorpicker.SVBar
+            android:id="@+id/edit_activity_svbar"
+            android:layout_width="322dp"
+            android:layout_height="112dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dip" />
 
-        <Button
-                android:id="@+id/edit_activity_import_export"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="@string/edit_activity_import_export"/>
     </LinearLayout>
-
-    <View
-            android:id="@+id/edit_activity_edit_buttons_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_above="@+id/edit_activity_edit_buttons"
-            android:background="?android:attr/dividerVertical"/>
-
-    <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/edit_activity_edit_buttons_line">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingBottom="8dp"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingTop="8dp">
-
-            <TextView
-                    style="@style/SectionHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="@string/edit_activity_cal_name"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-            <EditText
-                    android:id="@+id/edit_activity_text_cal_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:text=""/>
-
-            <TextView
-                    style="@style/SectionHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="@string/edit_activity_cal_color"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
-
-            <com.larswerkman.colorpicker.ColorPicker
-                    android:id="@+id/edit_activity_color_picker"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:layout_gravity="center"
-                    android:padding="8dp"/>
-
-            <com.larswerkman.colorpicker.SVBar
-                    android:id="@+id/edit_activity_svbar"
-                    android:layout_width="322dp"
-                    android:layout_height="112dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dip"/>
-
-        </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+</ScrollView>

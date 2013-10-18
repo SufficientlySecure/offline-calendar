@@ -136,7 +136,7 @@ public class CalendarController {
          * calendar query returns an empty query result -> List is empty even after adding a new Calendar.
          * This confuses users!
          *
-         * If AppOps disallows "calendar write" for this app the resultUri is valid (ID=0), but the calendar is not inserted silently.
+         * If AppOps disallows "calendar write" for this app the resultUri is valid (ID=0), but the calendar is not inserted!
          */
         final String[] projection = {Calendars._ID, Calendars.NAME};
         final String selection = Calendars.NAME + " = ?";

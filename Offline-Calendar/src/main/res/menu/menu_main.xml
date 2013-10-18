@@ -2,12 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:id="@+id/menu_main_add_calendar"
-            android:icon="@drawable/ic_new_event"
+            android:icon="@drawable/ic_new"
             android:title="@string/menu_new"
             android:showAsAction="ifRoom|withText"/>
     <item
             android:id="@+id/menu_main_about"
-            android:icon="@drawable/ic_about"
             android:title="@string/menu_about"
-            android:showAsAction="ifRoom|withText"/>
+            android:showAsAction="never"/>
 </menu>

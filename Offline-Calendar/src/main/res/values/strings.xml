@@ -7,7 +7,8 @@
     <string name="edit_activity_name_edit">Edit Calendar</string>
     <string name="edit_activity_cal_name">Name</string>
     <string name="edit_activity_cal_color">Color</string>
-    <string name="edit_activity_save">Save</string>
+    <string name="edit_activity_done">Done</string>
+    <string name="edit_activity_cancel">Cancel</string>
     <string name="edit_activity_delete">Delete</string>
     <string name="edit_activity_import_export">Import/Export</string>
     <string name="edit_activity_really_delete">Are you sure?\nAfter deletion, this calendar and all its events will be
