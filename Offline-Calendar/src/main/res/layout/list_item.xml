@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/linearLayout1"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <View
-            android:id="@+id/list_item_view_color"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:background="#00ffff"/>
+        android:id="@+id/list_item_view_color"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#00ffff" />
 
     <TextView
-            android:id="@+id/list_item_text_cal_name"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:padding="8dp"
-            android:textSize="16sp">
-    </TextView>
+        android:id="@+id/list_item_text_cal_name"
+        android:text="Calendar XYZ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>

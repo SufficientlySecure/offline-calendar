@@ -18,5 +18,5 @@
 package org.sufficientlysecure.localcalendar.util;
 
 public class Constants {
-    public static final String TAG = "Local Calendar";
+    public static final String TAG = "Offline Calendar";
 }

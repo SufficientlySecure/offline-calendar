@@ -14,7 +14,7 @@
         lost.
     </string>
     <string name="edit_activity_error_delete">Error on deletion!</string>
-    <string name="edit_activity_error_add">Error on adding:</string>
+    <string name="edit_activity_error_add">Adding the calendar failed!\nIf you are using Cyanogenmod: Make sure that Privacy Guard is disabled for this application to allow calendar read/write.\nIf you are using Android 4.3 App Ops: Make sure that you allow calendar read/write access for this application.</string>
     <string name="edit_activity_error_empty_name">Enter a calendar name!</string>
 
     <string name="main_activity_empty_list">No offline calendars available.\n\nYou can create new calendars using the

@@ -19,6 +19,7 @@
 package org.sufficientlysecure.localcalendar;
 
 import org.sufficientlysecure.localcalendar.util.Constants;
+import org.sufficientlysecure.localcalendar.util.Log;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -27,10 +28,10 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Calendars;
-import android.util.Log;
 
 @SuppressLint("NewApi")
 public class CalendarController {
@@ -124,8 +125,26 @@ public class CalendarController {
 
         // Add calendar
         final ContentValues cv = buildContentValues(displayName, color);
-        Uri calUri = buildCalUri();
-        cr.insert(calUri, cv);
+        Uri resultUri = cr.insert(buildCalUri(), cv);
+        Log.d(Constants.TAG, "insert uri: " + resultUri.toString());
+
+        if (resultUri == null)
+            throw new IllegalArgumentException();
+
+        /*
+         * If Cyanogenmod's Privacy Guard is enabled or Android 4.3 AppOps disallows "calendar read" for this app,
+         * calendar query returns an empty query result -> List is empty even after adding a new Calendar.
+         * This confuses users!
+         *
+         * If AppOps disallows "calendar write" for this app the resultUri is valid (ID=0), but the calendar is not inserted silently.
+         */
+        final String[] projection = {Calendars._ID, Calendars.NAME};
+        final String selection = Calendars.NAME + " = ?";
+        Cursor cursor = cr.query(buildCalUri(), projection, selection, new String[]{cv.getAsString(Calendars.NAME)}, null);
+        if (!cursor.moveToFirst()) {
+            Log.e(Constants.TAG, "Query is empty after insert! AppOps disallows access to read or write calendar?");
+            throw new IllegalArgumentException();
+        }
     }
 
     /**

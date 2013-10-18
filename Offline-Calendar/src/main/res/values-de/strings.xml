@@ -10,7 +10,6 @@
   <string name="edit_activity_import_export">Import/Export</string>
   <string name="edit_activity_really_delete">Bist du sicher?\nAlle zum Kalender gehörigen Ereignisse werden für immer gelöscht sein.</string>
   <string name="edit_activity_error_delete">Fehler beim Löschvorgang!</string>
-  <string name="edit_activity_error_add">Fehler beim Hinzufügen:</string>
   <string name="edit_activity_error_empty_name">Bitte gib einen Kalendernamen ein</string>
   <string name="main_activity_empty_list">Keine Offline-Kalender vorhanden.\n\nNeue Kalender können über das Menü hinzugefügt werden.</string>
   <string name="no_ical_title">iCal Import/Export</string>

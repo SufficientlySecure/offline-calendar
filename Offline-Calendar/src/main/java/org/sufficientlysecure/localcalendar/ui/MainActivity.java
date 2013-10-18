@@ -18,8 +18,12 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
+
 import org.sufficientlysecure.localcalendar.R;
+import org.sufficientlysecure.localcalendar.util.Constants;
+import org.sufficientlysecure.localcalendar.util.Log;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -51,14 +55,14 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-        case R.id.menu_main_add_calendar:
-            showAddCalendarActivity();
-            return true;
-        case R.id.menu_main_about:
-            showAbout();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.menu_main_add_calendar:
+                showAddCalendarActivity();
+                return true;
+            case R.id.menu_main_about:
+                showAbout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

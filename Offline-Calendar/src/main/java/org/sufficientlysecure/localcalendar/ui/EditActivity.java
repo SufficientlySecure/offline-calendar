@@ -33,7 +33,6 @@ import com.larswerkman.colorpicker.ColorPicker;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -234,7 +233,7 @@ public class EditActivity extends FragmentActivity {
             CalendarController.addCalendar(context, displayNameEditText.getText().toString(), colorPicker.getColor(), getContentResolver());
             finish();
         } catch (IllegalArgumentException e) {
-            showMessageAndFinish(getString(R.string.edit_activity_error_add) + " " + e.getMessage());
+            showMessageAndFinish(getString(R.string.edit_activity_error_add));
         }
     }
 
