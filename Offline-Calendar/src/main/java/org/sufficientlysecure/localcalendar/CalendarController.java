@@ -141,9 +141,15 @@ public class CalendarController {
         final String[] projection = {Calendars._ID, Calendars.NAME};
         final String selection = Calendars.NAME + " = ?";
         Cursor cursor = cr.query(buildCalUri(), projection, selection, new String[]{cv.getAsString(Calendars.NAME)}, null);
-        if (!cursor.moveToFirst()) {
-            Log.e(Constants.TAG, "Query is empty after insert! AppOps disallows access to read or write calendar?");
-            throw new IllegalArgumentException();
+        try {
+            if (cursor == null || !cursor.moveToFirst()) {
+                Log.e(Constants.TAG, "Query is empty after insert! AppOps disallows access to read or write calendar?");
+                throw new IllegalArgumentException();
+            }
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
         }
     }
 
