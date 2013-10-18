@@ -18,12 +18,9 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 
 import org.sufficientlysecure.localcalendar.R;
-import org.sufficientlysecure.localcalendar.util.Constants;
-import org.sufficientlysecure.localcalendar.util.Log;
 
 import android.app.AlertDialog;
 import android.content.Intent;
