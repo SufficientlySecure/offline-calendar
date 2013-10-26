@@ -36,14 +36,14 @@
             android:text="@string/edit_activity_cal_color"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <com.larswerkman.colorpicker.ColorPicker
+        <com.larswerkman.holocolorpicker.ColorPicker
             android:id="@+id/edit_activity_color_picker"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:layout_gravity="center"
             android:padding="8dp" />
 
-        <com.larswerkman.colorpicker.SVBar
+        <com.larswerkman.holocolorpicker.SVBar
             android:id="@+id/edit_activity_svbar"
             android:layout_width="322dp"
             android:layout_height="112dp"

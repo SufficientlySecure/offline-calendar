@@ -28,18 +28,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.LinearLayout;
 
-import com.larswerkman.colorpicker.SVBar;
+import com.larswerkman.holocolorpicker.SVBar;
 
 import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
 import org.sufficientlysecure.localcalendar.util.ActionBarHelper;
 
-import com.larswerkman.colorpicker.ColorPicker;
+import com.larswerkman.holocolorpicker.ColorPicker;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
