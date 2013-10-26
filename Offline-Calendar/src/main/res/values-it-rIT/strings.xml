@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline Calendar</string>
+  <string name="edit_activity_name_new">Nuovo Calendario</string>
+  <string name="edit_activity_name_edit">Modifica Calendario</string>
+  <string name="edit_activity_cal_name">Nome</string>
+  <string name="edit_activity_cal_color">Colore</string>
+  <string name="edit_activity_done">Fatto</string>
+  <string name="edit_activity_cancel">Annulla</string>
+  <string name="edit_activity_delete">Elimina</string>
+  <string name="edit_activity_import_export">Importa/Esporta</string>
+  <string name="edit_activity_really_delete">Sei sicuro?\nDopo l\'eliminazione, questo calendario e tutti i suoi eventi\nsaranno persi.\n    </string>
+  <string name="edit_activity_error_delete">Errore nell\'eliminazione!</string>
+  <string name="edit_activity_error_add">Aggiunta del calendario fallita!\nSe stai usando Cyanogenmod: assicurati che Privacy Guard sia disabilitato per questa applicazione per consentire la lettura/scrittura.\nSe stai usando Android 4.3 App Ops: assicurati di permettere l\'accesso in lettura/scrittura per questa applicazione.</string>
+  <string name="edit_activity_error_empty_name">Inserisci un nome per il calendario!</string>
+  <string name="main_activity_empty_list">Nessun calendario offline disponibile.\n\nPuoi creare nuovi calendari usando il\nMenu.</string>
+  <string name="no_ical_title">Importa/Esporta iCal</string>
+  <string name="no_ical_message">Importa/Esporta iCal non è installato. Vuoi installarlo?</string>
+  <string name="menu_new">Nuovo Calendario</string>
+  <string name="menu_about">Info</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Impostazioni</string>
+  <string name="pref_account_settings">Configura Offline Calendar</string>
+  <!--About-->
+  <string name="about">Offline Calendar ti consente di aggiungere calendari. Questi calendari non sono sincronizzati\nonline e sono disponibili solo localmente!\n        \n\nAiutaci con le traduzioni, lo sviluppo, o segnalando errori su http://sufficientlysecure.org/android-apps\n        \n\nLicenza: GPLv3+\n        \n\nLibrerie:\n        \n- Basato su \'Private Calendar\' di Harald Seltner (GPLv3+)\n        \n- Holo ColorPicker (Licenza Apache v2)\n    </string>
+</resources>

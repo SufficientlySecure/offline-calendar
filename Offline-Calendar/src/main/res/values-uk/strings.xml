@@ -5,11 +5,13 @@
   <string name="edit_activity_name_edit">Редагувати Календар</string>
   <string name="edit_activity_cal_name">Назва</string>
   <string name="edit_activity_cal_color">Колір</string>
-  <string name="edit_activity_save">Зберегти</string>
+  <string name="edit_activity_done">Готово</string>
+  <string name="edit_activity_cancel">Скасувати</string>
   <string name="edit_activity_delete">Вилучити</string>
   <string name="edit_activity_import_export">Імпорт/Експорт</string>
   <string name="edit_activity_really_delete">Ви впевнені?\nПісля вилучення цей календар та усі його події будуть назавжди\n        втрачені.\n    </string>
   <string name="edit_activity_error_delete">Помилка вилучення!</string>
+  <string name="edit_activity_error_add">Провалилося додавання календаря!\nЯкщо ви використовуєте Cyanogenmod: переконайтеся, що Privacy Guard вимкнений для цієї програми, щоб дозволити календарю читати/писати.\nЯкщо ви використовуєте Android 4.3 App Ops: переконайтеся, що ви дозволили доступ читати/записувати у календар для цієї програми.</string>
   <string name="edit_activity_error_empty_name">Введіть назву календаря!</string>
   <string name="main_activity_empty_list">Нема доступних автономних календарів.\n\nВи можете створити нові календарі, використовуючи\n        Меню.\n    </string>
   <string name="no_ical_title">Імпорт/Експорт iCal</string>

@@ -5,11 +5,13 @@
   <string name="edit_activity_name_edit">Kalender bearbeiten</string>
   <string name="edit_activity_cal_name">Name</string>
   <string name="edit_activity_cal_color">Farbe</string>
-  <string name="edit_activity_save">Speichern</string>
+  <string name="edit_activity_done">Fertig</string>
+  <string name="edit_activity_cancel">Abbrechen</string>
   <string name="edit_activity_delete">Löschen</string>
   <string name="edit_activity_import_export">Import/Export</string>
-  <string name="edit_activity_really_delete">Bist du sicher?\nAlle zum Kalender gehörigen Ereignisse werden für immer gelöscht sein.</string>
+  <string name="edit_activity_really_delete">Bist du sicher?\nAlle Ereignisse dieses Kalenders werden für immer gelöscht sein.</string>
   <string name="edit_activity_error_delete">Fehler beim Löschvorgang!</string>
+  <string name="edit_activity_error_add">Der Kalender konnte nicht hinzugefügt werden!\nWenn du Cyanogenmod benutzt: Stelle sicher, dass Privacy Guard für diese Anwendung deaktiviert ist um Zugriff auf den Kalendar zu gewähren.\nWenn du Android 4.3 App Ops benutzt: Stelle sicher, dass diese Anwendung Schreibe- und Lesezugriff auf den Kalendar hat.</string>
   <string name="edit_activity_error_empty_name">Bitte gib einen Kalendernamen ein</string>
   <string name="main_activity_empty_list">Keine Offline-Kalender vorhanden.\n\nNeue Kalender können über das Menü hinzugefügt werden.</string>
   <string name="no_ical_title">iCal Import/Export</string>

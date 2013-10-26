@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="edit_activity_save">Spara</string>
   <string name="edit_activity_delete">Radera</string>
   <string name="menu_new">Ny Kalender</string>
   <string name="menu_about">Om</string>

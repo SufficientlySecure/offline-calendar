@@ -5,7 +5,6 @@
   <string name="edit_activity_name_edit">Editar calendário</string>
   <string name="edit_activity_cal_name">Nome</string>
   <string name="edit_activity_cal_color">Cor</string>
-  <string name="edit_activity_save">Gravar</string>
   <string name="edit_activity_delete">Eliminar</string>
   <string name="edit_activity_import_export">Importar/Exportar</string>
   <string name="edit_activity_really_delete">Tem a certeza?\nSe eliminar o calendário, todos os eventos existentes serão eliminados.</string>

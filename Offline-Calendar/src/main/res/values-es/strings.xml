@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="edit_activity_save">Guardar</string>
   <string name="edit_activity_delete">Borrar</string>
   <string name="menu_new">Nuevo calendario</string>
   <string name="menu_about">Acerca de</string>
