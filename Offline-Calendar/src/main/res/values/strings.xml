@@ -22,6 +22,8 @@
         Menu.
     </string>
 
+    <string name="main_activity_sd_card_error">Offline Calendar will not work properly if it has been installed on the SD card. Please move it to internal storage!</string>
+
     <string name="no_ical_title">iCal Import/Export</string>
     <string name="no_ical_message">iCal Import/Export is not installed. Do you want to install it?</string>
 

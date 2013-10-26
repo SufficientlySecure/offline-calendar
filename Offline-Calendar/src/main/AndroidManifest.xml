@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.sufficientlysecure.localcalendar"
     android:versionCode="4"
-    android:versionName="1.3">
+    android:versionName="1.3"
+    android:installLocation="internalOnly" >
 
     <uses-sdk
         android:minSdkVersion="8"
