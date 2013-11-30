@@ -126,10 +126,9 @@ public class CalendarController {
         // Add calendar
         final ContentValues cv = buildContentValues(displayName, color);
         Uri resultUri = cr.insert(buildCalUri(), cv);
-        Log.d(Constants.TAG, "insert uri: " + resultUri.toString());
-
         if (resultUri == null)
             throw new IllegalArgumentException();
+        Log.d(Constants.TAG, "insert uri: " + resultUri.toString());
 
         /*
          * If Cyanogenmod's Privacy Guard is enabled or Android 4.3 AppOps disallows "calendar read" for this app,
