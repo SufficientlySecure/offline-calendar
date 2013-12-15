@@ -5,12 +5,16 @@
   <string name="edit_activity_name_edit">Editar calendário</string>
   <string name="edit_activity_cal_name">Nome</string>
   <string name="edit_activity_cal_color">Cor</string>
+  <string name="edit_activity_done">Feito</string>
+  <string name="edit_activity_cancel">Cancelar</string>
   <string name="edit_activity_delete">Eliminar</string>
   <string name="edit_activity_import_export">Importar/Exportar</string>
   <string name="edit_activity_really_delete">Tem a certeza?\nSe eliminar o calendário, todos os eventos existentes serão eliminados.</string>
   <string name="edit_activity_error_delete">Erro ao eliminar!</string>
+  <string name="edit_activity_error_add">O calendário não foi adicionado!\nSe estiver a utilizar a rom Cyanogenmod, certifique-se que Privacy Guard está inativa para esta aplicação. \nSe estiver a utilizar o Android 4.3 App Ops, certifique-se que permite a esta aplicação a possibilidade de guardar e ler os calendários.</string>
   <string name="edit_activity_error_empty_name">Introduza o nome do calendário!</string>
   <string name="main_activity_empty_list">Não existem calendários locais.\n\nPode criar um calendário através do menu.</string>
+  <string name="main_activity_sd_card_error">Esta aplicação não funcionará corretamente se for instalado no cartão SD. Por favor instale-a no telefone.</string>
   <string name="no_ical_title">Importação/Exportação iCal</string>
   <string name="no_ical_message">A importação/exportação iCal não está instalada. Instalar?</string>
   <string name="menu_new">Novo calendário</string>
