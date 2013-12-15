@@ -1,3 +1,6 @@
+1.5
+* Fix crash with CMs privacy guard (thanks to Clemens Buchacher)
+
 1.4
 * An alert is displayed when Offline Calendar is installed on sd card and will not work properly
 
