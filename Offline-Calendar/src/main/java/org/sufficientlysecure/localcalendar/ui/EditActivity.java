@@ -37,7 +37,6 @@ import org.sufficientlysecure.localcalendar.util.ActionBarHelper;
 import com.larswerkman.holocolorpicker.ColorPicker;
 
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -119,9 +118,6 @@ public class EditActivity extends FragmentActivity {
 
         // Based on Android version use ButtonBar on bottom or use custom Actionbar layout
         if (android.os.Build.VERSION.SDK_INT >= 11) {
-            ActionBar actionBar = this.getActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-
             if (edit) {
                 ActionBarHelper.setDoneView(getActionBar(), new OnClickListener() {
                     @Override
@@ -220,12 +216,6 @@ public class EditActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case android.R.id.home:
-                // app icon in Action Bar clicked; go home
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
             case R.id.menu_edit_cancel:
                 finish();
                 return true;
