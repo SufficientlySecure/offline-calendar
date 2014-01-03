@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline Calendar</string>
+  <string name="edit_activity_name_new">Új naptár</string>
+  <string name="edit_activity_name_edit">Naptár szerkesztése</string>
+  <string name="edit_activity_cal_name">Név</string>
+  <string name="edit_activity_cal_color">Szín</string>
+  <string name="edit_activity_done">Kész</string>
+  <string name="edit_activity_cancel">Mégsem</string>
+  <string name="edit_activity_delete">Töröl</string>
+  <string name="edit_activity_import_export">Importál/Exportál</string>
+  <string name="edit_activity_really_delete">Egészen biztos benne?\nTörlés után a naptár a tartalmával együtt véglegesen elveszik.\n    </string>
+  <string name="edit_activity_error_delete">Hiba a törlés közben!</string>
+  <string name="edit_activity_error_add">A naptár hozzáadása nem sikerült!\nHa a Cyanogenmod-ot használja: Gondoskodjon róla hogy a Privacy Guard le van tiltva erre a programra.\nAndroid 4.3 App Ops esetén gondoskodjon róla hogy a naptár írása/olvasása engedéjezett!</string>
+  <string name="edit_activity_error_empty_name">Addja meg a naptár nevét!</string>
+  <string name="main_activity_empty_list">Nincs rendelkezére álló off-line naptár.\n\nÚj naptárak létrehozása a menü segítségével lehetséges.</string>
+  <string name="main_activity_sd_card_error">Az Offline Calendar nem fog rendeltetés szerűen működni SD kártyáról. Kérem helyezze át a belső tárolóra!</string>
+  <string name="no_ical_title">iCal Import/Export</string>
+  <string name="no_ical_message">iCal Import/Export nincs feltelepítve. Szertné feltelepíteni?</string>
+  <string name="menu_new">Új Naptár</string>
+  <string name="menu_about">Rólunk</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Beállítások</string>
+  <string name="pref_account_settings">Offline Calendar beállításai</string>
+  <!--About-->
+  <string name="about">Az Offline Calendar segítségével olyan naptárakat készíthet amelyek csak ezen a készüléken elérhetőek és nem lesznek szinkronizálva semmilyen felhő alapú szolgáltatással.\n        \n\nKerjük segítsen a fejlesztéssel, fordítással vagy hiba bejelentéssel a http://sufficientlysecure.org/android-apps címen.\n        \n\nLicence: GPLv3+\n        \n\nKönyvtárak:\n        \n- Harald Seltner \'Private Calendar\' (GPLv3+) termékére alapozva\n        \n- Holo ColorPicker (Apache License v2)\n    </string>
+</resources>
