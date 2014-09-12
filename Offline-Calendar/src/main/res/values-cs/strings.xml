@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline kalendář</string>
+  <string name="edit_activity_name_new">Nový kalendář</string>
+  <string name="edit_activity_name_edit">Upravit kalendář</string>
+  <string name="edit_activity_cal_name">Jméno</string>
+  <string name="edit_activity_cal_color">Barva</string>
+  <string name="edit_activity_done">Hotovo</string>
+  <string name="edit_activity_cancel">Zrušit</string>
+  <string name="edit_activity_delete">Odstranit</string>
+  <string name="edit_activity_import_export">Import/Export</string>
+  <string name="edit_activity_error_delete">Při odstraňování došlo k chybě!</string>
+  <string name="edit_activity_error_empty_name">Napište jméno kalendáře!</string>
+  <string name="main_activity_sd_card_error">Po přesunutí na kartu nefunguje Offline kalendář korektně. Přesuňte ho prosím do vnitřního úložiště.</string>
+  <string name="no_ical_title">iCal - import/export</string>
+  <string name="no_ical_message">Import/Export do formátu iCal není nainstalován. Chcete jej nainstalovat?</string>
+  <string name="menu_new">Nový kalendář</string>
+  <string name="menu_about">O aplikaci</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Nastavení</string>
+  <string name="pref_account_settings">Nastavení Offline kalendáře</string>
+  <!--About-->
+</resources>

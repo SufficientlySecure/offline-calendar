@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Lineaz-kanpoko Egutegia</string>
+  <string name="edit_activity_name_new">Egutegi Berria</string>
+  <string name="edit_activity_name_edit">Editatu Egutegia</string>
+  <string name="edit_activity_cal_name">Izena</string>
+  <string name="edit_activity_cal_color">Margoa</string>
+  <string name="edit_activity_done">Eginda</string>
+  <string name="edit_activity_cancel">Ezeztatu</string>
+  <string name="edit_activity_delete">Ezabatu</string>
+  <string name="edit_activity_import_export">Inportatu/Esportatu</string>
+  <string name="edit_activity_really_delete">Zihur zaude?\nEzabatu ondoren, egutegi hau eta bere gertaera guztiak
+galduko dira.
+</string>
+  <string name="edit_activity_error_delete">Akatsa ezabatzerakoan!</string>
+  <string name="edit_activity_error_empty_name">Sartu izen bat egutegiarentzat!</string>
+  <string name="no_ical_title">iCal Inportazioa/Esportazioa</string>
+  <string name="menu_new">Egutegi Berria</string>
+  <string name="menu_about">Honi buruz</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Ezarpenak</string>
+  <string name="pref_account_settings">Itxuratu Lineaz-kanpoko Egutegia</string>
+  <!--About-->
+</resources>

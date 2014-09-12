@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline Calendar</string>
+  <string name="edit_activity_name_new">Нов Календар</string>
+  <string name="edit_activity_name_edit">Промени Календара</string>
+  <string name="edit_activity_cal_name">Име</string>
+  <string name="edit_activity_cal_color">Цвят</string>
+  <string name="edit_activity_done">Готово</string>
+  <string name="edit_activity_cancel">Откажи</string>
+  <string name="edit_activity_delete">Изтрий</string>
+  <string name="edit_activity_import_export">Внеси/Изнеси</string>
+  <string name="edit_activity_error_delete">Грешка при изтриването!</string>
+  <string name="edit_activity_error_empty_name">Въведи име на календара!</string>
+  <string name="main_activity_sd_card_error">Offline Calendar няма да работи правилно ако е инсталиран на SD карта. Моля, премести на вътрешното дисково пространство!</string>
+  <string name="no_ical_title">iCal Внасяне/Изнасяне</string>
+  <string name="no_ical_message">iCal Внасяне/Изнасяне не е инсталирано. Искаш ли да го инсталираш?</string>
+  <string name="menu_new">Нов Календар</string>
+  <string name="menu_about">Относно</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Настройки</string>
+  <string name="pref_account_settings">Настрой Offline Calendar</string>
+  <!--About-->
+</resources>

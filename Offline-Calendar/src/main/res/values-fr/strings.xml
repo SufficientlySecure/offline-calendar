@@ -2,26 +2,36 @@
 <resources>
   <string name="app_name">Calendrier hors-ligne</string>
   <string name="edit_activity_name_new">Nouveau calendrier</string>
-  <string name="edit_activity_name_edit">Éditer calendrier</string>
+  <string name="edit_activity_name_edit">Modifier le calendrier</string>
   <string name="edit_activity_cal_name">Nom</string>
   <string name="edit_activity_cal_color">Couleur</string>
   <string name="edit_activity_done">Terminé</string>
   <string name="edit_activity_cancel">Annuler</string>
   <string name="edit_activity_delete">Supprimer</string>
   <string name="edit_activity_import_export">Importer/Exporter</string>
-  <string name="edit_activity_really_delete">Êtes-vous sûr ?\nAprès suppression, ce calendrier et tous ses évènements\nseront perdus.\n</string>
+  <string name="edit_activity_really_delete">Êtes-vous sûr ?\nAprès suppression, ce calendrier et tous ses évènements
+seront perdus.
+</string>
   <string name="edit_activity_error_delete">Erreur de suppression !</string>
-  <string name="edit_activity_error_add">L\'ajout de calendrier a échoué !\nSi vous utilisez Cyanogenmod assurez vous que Privacy Guard est désactivé sur cette application pour autoriser les lectures/écritures de calendriers.\nSi vous utilisez Android 4.3 App Ops assurez vous que vous autoriser les lectures/écritures de calendriers cette application.</string>
-  <string name="edit_activity_error_empty_name">Entrez un nom de calendrier !</string>
-  <string name="main_activity_empty_list">Aucun calendrier hors-ligne disponible.\n\nVous pouvez créer de nouveau calendrier\ndans le Menu.\n</string>
-  <string name="main_activity_sd_card_error">Offline Calendar ne fonctionne pas correctement si elle est installée sur la carte SD. Merci de la déplacer dans la mémoire interne !</string>
-  <string name="no_ical_title">Importer/Exporter fichier iCal</string>
-  <string name="no_ical_message">L\'importation/exportation de fichiers iCal n\'est pas installée. Voulez-vous l\'installer ?</string>
+  <string name="edit_activity_error_add">L\'ajout de calendrier a échoué !\nSi vous utilisez Cyanogenmod assurez-vous que « Privacy Guard » est désactivé pour cette application afin d\'autoriser les lectures/écritures de calendriers.\nSi vous utilisez « App Ops » pour Android 4.3, assurez-vous que vous autoriser les lectures/écritures de calendriers pour cette application.</string>
+  <string name="edit_activity_error_empty_name">Saisir un nom de calendrier !</string>
+  <string name="main_activity_empty_list">Aucun calendrier hors-ligne n\'est disponible.\n\nVous pouvez créer de nouveaux
+calendriers à partir du menu.
+</string>
+  <string name="main_activity_sd_card_error">Calendrier hors-ligne ne fonctionnera pas correctement s\'il a été est installé sur la carte SD. Veuillez le déplacer vers la mémoire interne !</string>
+  <string name="no_ical_title">Importer/Exporter iCal</string>
+  <string name="no_ical_message">L\'importation/exportation d\'iCal n\'est pas installée. Voulez-vous l\'installer ?</string>
   <string name="menu_new">Nouveau calendrier</string>
-  <string name="menu_about">À propos</string>
+  <string name="menu_about">À propos de</string>
   <!--Adapter Screen-->
   <string name="pref_account_header">Paramètres</string>
-  <string name="pref_account_settings">Paramétrer Offline Calendar</string>
+  <string name="pref_account_settings">Paramétrer Calendrier hors-ligne</string>
   <!--About-->
-  <string name="about">Offline Calendar vous permet d’ajouter des calendriers. Ces calendriers ne sont pas synchronisé sur internet mais seulement disponible localement !\n\n\nAidez à traduire, améliorer, ou rapporter des bugs sur http://sufficientlysecure.org/android-apps\n\n\nLicence GPLv3+\n\n\nBibliothèques :\n\n- Basé sur \'Private Calendar\' de Harald Seltner (GPLv3+)\n\n- Holo ColorPicker (Apache License v2)\n</string>
+  <string name="about">Calendrier hors-ligne vous permet d’ajouter des calendriers. Ces calendriers ne sont pas
+synchronisés dans le nuage et seulement disponibles localement !
+\n\nAidez à traduire, à développer ou rapporter des bogues sur http://sufficientlysecure.org/android-apps
+\n\nLicence GPLv3+
+\n\nBibliothèques :
+\n- Basé sur « Private Calendar » de Harald Seltner (GPLv3+)
+\n- Holo ColorPicker (Licence Apache v2)</string>
 </resources>

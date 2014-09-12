@@ -9,11 +9,8 @@
   <string name="edit_activity_cancel">Abbrechen</string>
   <string name="edit_activity_delete">Löschen</string>
   <string name="edit_activity_import_export">Import/Export</string>
-  <string name="edit_activity_really_delete">Bist du sicher?\nAlle Ereignisse dieses Kalenders werden für immer gelöscht sein.</string>
   <string name="edit_activity_error_delete">Fehler beim Löschvorgang!</string>
-  <string name="edit_activity_error_add">Der Kalender konnte nicht hinzugefügt werden!\nWenn du Cyanogenmod benutzt: Stelle sicher, dass Privacy Guard für diese Anwendung deaktiviert ist um Zugriff auf den Kalendar zu gewähren.\nWenn du Android 4.3 App Ops benutzt: Stelle sicher, dass diese Anwendung Schreibe- und Lesezugriff auf den Kalendar hat.</string>
   <string name="edit_activity_error_empty_name">Bitte gib einen Kalendernamen ein</string>
-  <string name="main_activity_empty_list">Keine Offline-Kalender vorhanden.\n\nNeue Kalender können über das Menü hinzugefügt werden.</string>
   <string name="no_ical_title">iCal Import/Export</string>
   <string name="no_ical_message">iCal Import/Export ist nicht installiert. Möchtest du es installieren?</string>
   <string name="menu_new">Kalender hinzufügen</string>
@@ -22,5 +19,4 @@
   <string name="pref_account_header">Einstellungen</string>
   <string name="pref_account_settings">Offline Calendar konfigurieren</string>
   <!--About-->
-  <string name="about">Offline Calendar ermöglicht das Hinzufügen von Kalendern, die nur auf dem Gerät verfügbar sind und nicht mit einer Cloud synchronisiert werden.\n\nHilf mit das Programm zu entwickeln, zu übersetzen, und melde Fehler auf http://sufficientlysecure.org/android-apps\n\nLizenz: GPLv3+\n\nLibraries:\n- Based on \'Private Calendar\' by Harald Seltner (GPLv3+)\n- Holo ColorPicker (Apache License v2)\n    </string>
 </resources>
