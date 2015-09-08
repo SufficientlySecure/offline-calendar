@@ -41,8 +41,8 @@
         \n\nHelp translating, developing, or report bugs on http://www.sufficientlysecure.org/android
         \n\nLicense: GPLv3+
         \n\nLibraries:
-        \n- Based on \'Private Calendar\' by Harald Seltner (GPLv3+)
         \n- Holo ColorPicker (Apache License v2)
+        \n- Android Support Libs (Apache License v2)
     </string>
 
 </resources>

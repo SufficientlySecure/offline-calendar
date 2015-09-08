@@ -63,10 +63,6 @@ along with Offline Calendar.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Libraries
 
-* Offline Calendar is based on "Private Calendar" by Harald Seltner  
-  http://code.google.com/p/private-calendar  
-  GPLv3+
-
 * Holo ColorPicker  
   https://github.com/LarsWerkman/HoloColorPicker  
   Apache License v2
