@@ -1,49 +1,51 @@
-/**
- *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
- *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
+/*
+ * Copyright (C) 2013 Dominik Schürmann <dominik@dominikschuermann.de>
+ * Copyright (C) 2014 Harald Seltner <h.seltner@gmx.at>
  *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.content.*;
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ContentUris;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.widget.LinearLayout;
-
-import com.larswerkman.holocolorpicker.SVBar;
-
-import org.sufficientlysecure.localcalendar.CalendarController;
-import org.sufficientlysecure.localcalendar.R;
-import org.sufficientlysecure.localcalendar.util.ActionBarHelper;
-
-import com.larswerkman.holocolorpicker.ColorPicker;
-
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import com.larswerkman.holocolorpicker.ColorPicker;
+import com.larswerkman.holocolorpicker.SVBar;
+
+import org.sufficientlysecure.localcalendar.CalendarController;
+import org.sufficientlysecure.localcalendar.R;
+import org.sufficientlysecure.localcalendar.util.ActionBarHelper;
 
 public class EditActivity extends FragmentActivity {
     boolean edit = false;
@@ -198,11 +200,7 @@ public class EditActivity extends FragmentActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // Show menu only in edit mode
-        if (edit) {
-            return true;
-        } else {
-            return false;
-        }
+        return edit;
     }
 
     @Override

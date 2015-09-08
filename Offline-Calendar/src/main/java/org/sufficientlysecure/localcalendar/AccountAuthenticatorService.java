@@ -1,18 +1,18 @@
-/**
- *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
+/*
+ * Copyright (C) 2013 Dominik Schürmann <dominik@dominikschuermann.de>
  *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package org.sufficientlysecure.localcalendar;
@@ -70,7 +70,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public Bundle addAccount(AccountAuthenticatorResponse response, String accountType,
-                String authTokenType, String[] requiredFeatures, Bundle options)
+                                 String authTokenType, String[] requiredFeatures, Bundle options)
                 throws NetworkErrorException {
             Bundle result = new Bundle();
             Intent i = new Intent(mContext, MainActivity.class);
@@ -87,7 +87,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public Bundle confirmCredentials(AccountAuthenticatorResponse response, Account account,
-                Bundle options) {
+                                         Bundle options) {
             Log.e(Constants.TAG, "confirmCredentials not implemented!");
             return null;
         }
@@ -113,7 +113,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account,
-                String authTokenType, Bundle options) throws NetworkErrorException {
+                                   String authTokenType, Bundle options) throws NetworkErrorException {
             Log.e(Constants.TAG, "getAuthToken not implemented!");
             return null;
         }
@@ -137,7 +137,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public Bundle hasFeatures(AccountAuthenticatorResponse response, Account account,
-                String[] features) throws NetworkErrorException {
+                                  String[] features) throws NetworkErrorException {
             Log.e(Constants.TAG, "hasFeatures: " + features);
             return null;
         }
@@ -151,7 +151,7 @@ public class AccountAuthenticatorService extends Service {
          */
         @Override
         public Bundle updateCredentials(AccountAuthenticatorResponse response, Account account,
-                String authTokenType, Bundle options) {
+                                        String authTokenType, Bundle options) {
             Log.e(Constants.TAG, "updateCredentials not implemented!");
             return null;
         }

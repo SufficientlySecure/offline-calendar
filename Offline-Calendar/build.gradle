@@ -6,7 +6,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
 
-    //compile project(':libraries:HoloColorPicker')
     compile 'com.larswerkman:HoloColorPicker:1.5'
 }
 

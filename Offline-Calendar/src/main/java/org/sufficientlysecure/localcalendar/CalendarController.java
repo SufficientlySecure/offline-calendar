@@ -1,19 +1,19 @@
-/**
- *  Copyright (C) 2013  Dominik Schürmann <dominik@dominikschuermann.de>
- *  Copyright (C) 2012  Harald Seltner <h.seltner@gmx.at>
+/*
+ * Copyright (C) 2013 Dominik Schürmann <dominik@dominikschuermann.de>
+ * Copyright (C) 2014 Harald Seltner <h.seltner@gmx.at>
  *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package org.sufficientlysecure.localcalendar;
@@ -30,8 +30,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.CalendarContract;
-import android.provider.CalendarContract.Calendars;
+import android.provider.CalendarContractWrapper;
+import android.provider.CalendarContractWrapper.Calendars;
 
 @SuppressLint("NewApi")
 public class CalendarController {
@@ -44,7 +44,7 @@ public class CalendarController {
      * see http://code.google.com/p/android/issues/detail?id=27474
      */
     public static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? "org.sufficientlysecure.localcalendar.account"
-            : CalendarContract.ACCOUNT_TYPE_LOCAL;
+            : CalendarContractWrapper.ACCOUNT_TYPE_LOCAL;
     public static final String CONTENT_AUTHORITY = "com.android.calendar";
     public static final Account ACCOUNT = new Account(ACCOUNT_NAME, ACCOUNT_TYPE);
 
@@ -63,8 +63,8 @@ public class CalendarController {
     public static final int PROJECTION_COLOR_INDEX = 2;
 
     private static Uri buildCalUri() {
-        return CalendarContract.Calendars.CONTENT_URI.buildUpon()
-                .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
+        return CalendarContractWrapper.Calendars.CONTENT_URI.buildUpon()
+                .appendQueryParameter(CalendarContractWrapper.CALLER_IS_SYNCADAPTER, "true")
                 .appendQueryParameter(Calendars.ACCOUNT_NAME, ACCOUNT_NAME)
                 .appendQueryParameter(Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE).build();
     }
@@ -86,11 +86,6 @@ public class CalendarController {
 
     /**
      * Add calendar with given name and color
-     *
-     * @param context
-     * @param displayName
-     * @param color
-     * @param cr
      */
     public static void addCalendar(Context context, String displayName, int color,
                                    final ContentResolver cr) {
@@ -153,9 +148,6 @@ public class CalendarController {
 
     /**
      * Add account to Android system
-     *
-     * @param context
-     * @return
      */
     private static boolean addAccount(Context context) {
         Log.d(Constants.TAG, "Adding account...");
@@ -185,11 +177,6 @@ public class CalendarController {
 
     /**
      * Update values of existing calendar with id
-     *
-     * @param id
-     * @param displayName
-     * @param color
-     * @param cr
      */
     public static void updateCalendar(long id, String displayName, int color, ContentResolver cr) {
         Uri calUri = ContentUris.withAppendedId(buildCalUri(), id);
