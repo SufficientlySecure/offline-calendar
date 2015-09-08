@@ -8,17 +8,17 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginBottom="16dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:background="#00ffff" />
 
     <TextView
         android:id="@+id/list_item_text_cal_name"
-        android:text="Calendar XYZ"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:paddingLeft="8dp"
+        android:text="Calendar XYZ"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 </LinearLayout>

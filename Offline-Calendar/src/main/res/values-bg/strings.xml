@@ -5,7 +5,7 @@
   <string name="edit_activity_name_edit">Промени Календара</string>
   <string name="edit_activity_cal_name">Име</string>
   <string name="edit_activity_cal_color">Цвят</string>
-  <string name="edit_activity_done">Готово</string>
+  <string name="edit_activity_save">Готово</string>
   <string name="edit_activity_cancel">Откажи</string>
   <string name="edit_activity_delete">Изтрий</string>
   <string name="edit_activity_import_export">Внеси/Изнеси</string>

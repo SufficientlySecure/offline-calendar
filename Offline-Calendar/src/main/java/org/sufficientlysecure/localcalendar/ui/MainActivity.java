@@ -18,29 +18,38 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.content.DialogInterface;
-import android.support.v4.app.FragmentActivity;
-
-import org.sufficientlysecure.localcalendar.R;
-import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
-
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity {
+import org.sufficientlysecure.localcalendar.R;
+import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.main_activity);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_activity_fab_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddCalendarActivity();
+            }
+        });
 
         /**
          * Offline Calendar must be install on internal location!
@@ -76,9 +85,6 @@ public class MainActivity extends FragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_main_add_calendar:
-                showAddCalendarActivity();
-                return true;
             case R.id.menu_main_about:
                 showAbout();
                 return true;

@@ -5,7 +5,7 @@
   <string name="edit_activity_name_edit">Naptár szerkesztése</string>
   <string name="edit_activity_cal_name">Név</string>
   <string name="edit_activity_cal_color">Szín</string>
-  <string name="edit_activity_done">Kész</string>
+  <string name="edit_activity_save">Kész</string>
   <string name="edit_activity_cancel">Mégsem</string>
   <string name="edit_activity_delete">Töröl</string>
   <string name="edit_activity_import_export">Importál/Exportál</string>

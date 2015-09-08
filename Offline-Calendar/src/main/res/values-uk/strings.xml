@@ -5,7 +5,7 @@
   <string name="edit_activity_name_edit">Редагувати Календар</string>
   <string name="edit_activity_cal_name">Назва</string>
   <string name="edit_activity_cal_color">Колір</string>
-  <string name="edit_activity_done">Готово</string>
+  <string name="edit_activity_save">Готово</string>
   <string name="edit_activity_cancel">Скасувати</string>
   <string name="edit_activity_delete">Вилучити</string>
   <string name="edit_activity_import_export">Імпорт/Експорт</string>

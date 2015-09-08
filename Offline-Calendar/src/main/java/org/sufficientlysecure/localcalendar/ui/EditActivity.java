@@ -20,6 +20,7 @@ package org.sufficientlysecure.localcalendar.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;

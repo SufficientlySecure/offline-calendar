@@ -5,7 +5,7 @@
   <string name="edit_activity_name_edit">Modifier le calendrier</string>
   <string name="edit_activity_cal_name">Nom</string>
   <string name="edit_activity_cal_color">Couleur</string>
-  <string name="edit_activity_done">Terminé</string>
+  <string name="edit_activity_save">Terminé</string>
   <string name="edit_activity_cancel">Annuler</string>
   <string name="edit_activity_delete">Supprimer</string>
   <string name="edit_activity_import_export">Importer/Exporter</string>

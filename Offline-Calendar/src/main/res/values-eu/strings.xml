@@ -5,7 +5,7 @@
   <string name="edit_activity_name_edit">Editatu Egutegia</string>
   <string name="edit_activity_cal_name">Izena</string>
   <string name="edit_activity_cal_color">Margoa</string>
-  <string name="edit_activity_done">Eginda</string>
+  <string name="edit_activity_save">Eginda</string>
   <string name="edit_activity_cancel">Ezeztatu</string>
   <string name="edit_activity_delete">Ezabatu</string>
   <string name="edit_activity_import_export">Inportatu/Esportatu</string>
