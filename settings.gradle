@@ -1,1 +1,1 @@
-include ':Offline-Calendar', ':libraries:HoloColorPicker'
+include ':Offline-Calendar'
