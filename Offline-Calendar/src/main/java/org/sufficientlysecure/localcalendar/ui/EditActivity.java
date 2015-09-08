@@ -20,7 +20,6 @@ package org.sufficientlysecure.localcalendar.ui;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
@@ -28,7 +27,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContractWrapper;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -40,6 +41,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
 import com.larswerkman.holocolorpicker.SVBar;
@@ -70,7 +72,7 @@ public class EditActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit);
+        setContentView(R.layout.edit_activity);
 
         displayNameEditText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
         colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
@@ -240,6 +242,28 @@ public class EditActivity extends FragmentActivity {
                             "market://details?id=org.sufficientlysecure.ical", "iCal Import/Export");
 
             notFoundDialog.show(getSupportFragmentManager(), "notFoundDialog");
+        }
+    }
+
+    private void addEvent() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            Toast.makeText(this, "Not supported. Please open calendar!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            /*
+             * NOTE:
+             * Setting CalendarContractWrapper.Events.CALENDAR_ID only works with
+             * AOSP calendar app > 4.3, not Google's calendar app!
+             */
+            Intent intent = new Intent(Intent.ACTION_INSERT);
+            intent.setPackage("com.android.calendar");
+            intent.setData(CalendarContractWrapper.Events.CONTENT_URI);
+            intent.putExtra(CalendarContractWrapper.Events.CALENDAR_ID, mCalendarId);
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "Not supported. Please open calendar!", Toast.LENGTH_LONG).show();
         }
     }
 

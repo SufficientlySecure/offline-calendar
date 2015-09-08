@@ -18,13 +18,18 @@
 package org.sufficientlysecure.localcalendar.ui;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.provider.CalendarContractWrapper;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -35,7 +40,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
 
@@ -66,12 +74,14 @@ public class CalendarListFragment extends ListFragment implements
             int color = cursor.getInt(CalendarController.PROJECTION_COLOR_INDEX);
 
             TextView displayNameView = (TextView) view.findViewById(R.id.list_item_text_cal_name);
-            View colorView = (View) view.findViewById(R.id.list_item_view_color);
+            View colorView = view.findViewById(R.id.list_item_view_color);
 
             if (displayName != null) {
                 displayNameView.setText(displayName);
             }
-            colorView.setBackgroundColor(color);
+
+            GradientDrawable drawable = (GradientDrawable) colorView.getBackground();
+            drawable.setColor(color);
         }
     }
 
