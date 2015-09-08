@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Çevrimdışı Takvim</string>
+  <string name="edit_activity_name_new">Yeni Takvim</string>
+  <string name="edit_activity_name_edit">Takvim Düzenle</string>
+  <string name="edit_activity_cal_name">İsim</string>
+  <string name="edit_activity_cal_color">Renk</string>
+  <string name="edit_activity_delete">Sil</string>
+  <string name="edit_activity_import_export">İçe Aktar/Dışa Aktar</string>
+  <string name="edit_activity_error_delete">Silmede hata!</string>
+  <string name="edit_activity_error_add">Takvim ekleme başarısız oldu!\nEğer Cynogenmod kullanıyorsanız: Takvim okuma/yazmaya izin vermek amacıyla bu uygulama için Privacy Guard\'ı devre dışı bıraktığınızdan emin olun.\n Eğer Andorid 4.3 App Ops kullanıyorsanız: Bu uygulama için takvim okuma/yazma erişimi iznini verdiğinizden emin olun.</string>
+  <string name="edit_activity_error_empty_name">Bir takvim ismi girin!</string>
+  <string name="main_activity_empty_list">Hiç çevrimdışı takvim yok.\n\nMenü\'yü kullanarak yeni takvimler
+oluşturabilirsiniz.</string>
+  <string name="main_activity_sd_card_error">Çevrimdışı Takvim SD karta yüklendiği için düzgün çalışmayacaktır. Lütfen dahili hafızaya taşıyın!</string>
+  <string name="no_ical_title">iCal Import/Export</string>
+  <string name="no_ical_message">iCal Import/Export yüklü değil. Yüklemek ister misiniz?</string>
+  <string name="menu_new">Yeni Takvim</string>
+  <string name="menu_about">Hakkında</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Ayarlar</string>
+  <string name="pref_account_settings">Çevrimdışı Takvim\'i Yapılandır</string>
+  <!--About-->
+</resources>

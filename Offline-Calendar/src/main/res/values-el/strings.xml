@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline Calendar</string>
+  <string name="edit_activity_name_new">Νέο ημερολόγιο</string>
+  <string name="edit_activity_name_edit">Επεξεργασία ημερολογίου</string>
+  <string name="edit_activity_cal_name">Ονομα</string>
+  <string name="edit_activity_cal_color">Χρώμα</string>
+  <string name="edit_activity_delete">Διαγραφή</string>
+  <string name="edit_activity_import_export">Εισαγωγή/Εξαγωγή</string>
+  <string name="edit_activity_error_delete">Σφάλμα στην διαγραφή!</string>
+  <string name="edit_activity_error_add">Προσθέτοντας το ημερολόγιο απέτυχε \ Αν χρησιμοποιείτε CyanogenMod: Βεβαιωθείτε ότι Φρουρά Προστασίας Προσωπικών Δεδομένων είναι απενεργοποιημένη για αυτή την εφαρμογή για να επιτρέψει ημερολόγιο ανάγνωσης / εγγραφής \ Αν χρησιμοποιείτε το Android 4.3 App Ops:. Βεβαιωθείτε ότι έχετε επιτρέψει ημερολόγιο πρόσβαση ανάγνωσης / εγγραφής για την εφαρμογή αυτή.</string>
+  <string name="edit_activity_error_empty_name">Εισάγετε ένα όνομα ημερολογίου!</string>
+  <string name="main_activity_empty_list">Δεν υπάρχουν διαθέσιμα εκτός σύνδεσης ημερολόγια. \ N \ nΜπορείτε να δημιουργήσετε νέα ημερολόγια χρησιμοποιώντας το
+Μενού.</string>
+  <string name="main_activity_sd_card_error">Το Offline Calendar δεν θα λειτουργεί σωστά αν έχει εγκατασταθεί στην κάρτα SD. Παρακαλώ μετακινήστε το στον εσωτερικό χώρο αποθήκευσης!</string>
+  <string name="no_ical_title">iCal Εισαγωγή/Εξαγωγή</string>
+  <string name="no_ical_message">iCal Εισαγωγή/Εξαγωγή δεν έχει εγκατασταθεί. Θέλετε να την εγκαταστήσετε;</string>
+  <string name="menu_new">Νέο Ημερολόγιο</string>
+  <string name="menu_about">Σχετικά με</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Ρυθμίσεις</string>
+  <string name="pref_account_settings">Διαμόρφωση του Offline Calendar</string>
+  <!--About-->
+</resources>

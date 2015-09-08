@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline-kalender</string>
+  <string name="edit_activity_name_new">Nieuwe kalender</string>
+  <string name="edit_activity_name_edit">Kalender bewerken</string>
+  <string name="edit_activity_cal_name">Naam</string>
+  <string name="edit_activity_cal_color">Kleur</string>
+  <string name="edit_activity_delete">Verwijderen</string>
+  <string name="edit_activity_import_export">Importeren/Exporteren</string>
+  <string name="edit_activity_error_delete">Fout bij verwijderen!</string>
+  <string name="edit_activity_error_add">Het is niet gelukt om de kalender toe te voegen!\nAls u Cynanogenmod gebruikt, zorg er dan voor dat de Privacy Guard uitgeschakeld is voor deze applicatie zodat de kalender kan lezen/schrijven.\nAls u Android 4.3 App Ops gebruikt: Zorg ervoor dat u toestemming verleent dat de kalender mag lezen/schrijven.</string>
+  <string name="edit_activity_error_empty_name">Voer een kalendernaam in!</string>
+  <string name="main_activity_empty_list">Er zijn geen offline-kalenders beschikbaar.\n\nU kunt nieuwe kalenders creëren
+via het Menu.</string>
+  <string name="main_activity_sd_card_error">Offline-kalender kan niet naar behoren werken als het geïnstalleerd is op een SD-kaart. Verplaats het naar de interne opslag!</string>
+  <string name="no_ical_title">iCal importeren/exporteren</string>
+  <string name="no_ical_message">iCal importeren/exporteren is niet geïnstalleerd. Wilt u het installeren?</string>
+  <string name="menu_new">Nieuwe kalender</string>
+  <string name="menu_about">Over</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">Instellingen</string>
+  <string name="pref_account_settings">Offline-kalender configureren</string>
+  <!--About-->
+</resources>

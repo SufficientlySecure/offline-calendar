@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="app_name">Offline Calendar</string>
+  <string name="edit_activity_name_new">新しいカレンダー</string>
+  <string name="edit_activity_name_edit">カレンダーを編集</string>
+  <string name="edit_activity_cal_name">名前</string>
+  <string name="edit_activity_cal_color">色</string>
+  <string name="edit_activity_delete">削除</string>
+  <string name="edit_activity_import_export">インポート/エクスポート</string>
+  <string name="edit_activity_error_delete">削除時にエラー!</string>
+  <string name="edit_activity_error_add">カレンダーが追加できませんでした!\nCyanogenmod を使用している場合は、このアプリケーションでカレンダーの読み取り/書き込みを許可するために、プライバシーガードが無効になっていることを確認してください。\nAndroid 4.3 App Ops/アプリの操作状況を使用している場合は、このアプリケーションに、カレンダーの読み取り/書き込みアクセスを許可していることを確認してください。</string>
+  <string name="edit_activity_error_empty_name">カレンダー名を入力してください!</string>
+  <string name="main_activity_empty_list">利用可能なオフライン カレンダーがありません。\n\nメニューから新しいカレンダーを作成することができます。</string>
+  <string name="main_activity_sd_card_error">オフラインカレンダーは、SDカードにインストールされていると正しく動作しません。内部ストレージに移動してください!</string>
+  <string name="no_ical_title">iCal インポート/エクスポート</string>
+  <string name="no_ical_message">iCal インポート/エクスポートはインストールされていません。インストールしますか?</string>
+  <string name="menu_new">新しいカレンダー</string>
+  <string name="menu_about">アプリについて</string>
+  <!--Adapter Screen-->
+  <string name="pref_account_header">設定</string>
+  <string name="pref_account_settings">オフライン カレンダーを設定します</string>
+  <!--About-->
+</resources>
