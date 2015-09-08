@@ -45,4 +45,8 @@ android {
     } else {
         buildTypes.release.signingConfig = null
     }
+
+    lintOptions {
+        warning 'MissingTranslation'
+    }
 }
