@@ -5,13 +5,8 @@
   <string name="edit_activity_name_edit">Modifier le calendrier</string>
   <string name="edit_activity_cal_name">Nom</string>
   <string name="edit_activity_cal_color">Couleur</string>
-  <string name="edit_activity_save">Terminé</string>
-  <string name="edit_activity_cancel">Annuler</string>
   <string name="edit_activity_delete">Supprimer</string>
   <string name="edit_activity_import_export">Importer/Exporter</string>
-  <string name="edit_activity_really_delete">Êtes-vous sûr ?\nAprès suppression, ce calendrier et tous ses évènements
-seront perdus.
-</string>
   <string name="edit_activity_error_delete">Erreur de suppression !</string>
   <string name="edit_activity_error_add">L\'ajout de calendrier a échoué !\nSi vous utilisez Cyanogenmod assurez-vous que « Privacy Guard » est désactivé pour cette application afin d\'autoriser les lectures/écritures de calendriers.\nSi vous utilisez « App Ops » pour Android 4.3, assurez-vous que vous autoriser les lectures/écritures de calendriers pour cette application.</string>
   <string name="edit_activity_error_empty_name">Saisir un nom de calendrier !</string>
@@ -27,11 +22,4 @@ calendriers à partir du menu.
   <string name="pref_account_header">Paramètres</string>
   <string name="pref_account_settings">Paramétrer Calendrier hors-ligne</string>
   <!--About-->
-  <string name="about">Calendrier hors-ligne vous permet d’ajouter des calendriers. Ces calendriers ne sont pas
-synchronisés dans le nuage et seulement disponibles localement !
-\n\nAidez à traduire, à développer ou rapporter des bogues sur http://sufficientlysecure.org/android-apps
-\n\nLicence GPLv3+
-\n\nBibliothèques :
-\n- Basé sur « Private Calendar » de Harald Seltner (GPLv3+)
-\n- Holo ColorPicker (Licence Apache v2)</string>
 </resources>

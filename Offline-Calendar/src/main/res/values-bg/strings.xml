@@ -5,12 +5,13 @@
   <string name="edit_activity_name_edit">Промени Календара</string>
   <string name="edit_activity_cal_name">Име</string>
   <string name="edit_activity_cal_color">Цвят</string>
-  <string name="edit_activity_save">Готово</string>
-  <string name="edit_activity_cancel">Откажи</string>
   <string name="edit_activity_delete">Изтрий</string>
   <string name="edit_activity_import_export">Внеси/Изнеси</string>
   <string name="edit_activity_error_delete">Грешка при изтриването!</string>
+  <string name="edit_activity_error_add">Неуспешно добавяне на календара! Ако използваш Cyanogenmod: Увери се че, Privacy Guard е изключен за тава приложение, за да може приложението да чете/записва календара. Ако използваш Android 4.3 App Ops: Увери се, че си разрешил приложението да чете/записва календари.</string>
   <string name="edit_activity_error_empty_name">Въведи име на календара!</string>
+  <string name="main_activity_empty_list">Липсват offline календари. Можеш да създадеш нови календари, използвайки 
+Менюто.</string>
   <string name="main_activity_sd_card_error">Offline Calendar няма да работи правилно ако е инсталиран на SD карта. Моля, премести на вътрешното дисково пространство!</string>
   <string name="no_ical_title">iCal Внасяне/Изнасяне</string>
   <string name="no_ical_message">iCal Внасяне/Изнасяне не е инсталирано. Искаш ли да го инсталираш?</string>

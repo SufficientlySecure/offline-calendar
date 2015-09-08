@@ -5,16 +5,18 @@
   <string name="edit_activity_name_edit">Editatu Egutegia</string>
   <string name="edit_activity_cal_name">Izena</string>
   <string name="edit_activity_cal_color">Margoa</string>
-  <string name="edit_activity_save">Eginda</string>
-  <string name="edit_activity_cancel">Ezeztatu</string>
   <string name="edit_activity_delete">Ezabatu</string>
   <string name="edit_activity_import_export">Inportatu/Esportatu</string>
-  <string name="edit_activity_really_delete">Zihur zaude?\nEzabatu ondoren, egutegi hau eta bere gertaera guztiak
-galduko dira.
-</string>
   <string name="edit_activity_error_delete">Akatsa ezabatzerakoan!</string>
+  <string name="edit_activity_error_add">Hutsegitea egutegia gehitzerakoan!\nCyanogenmod erabiltzen ari bazara: Zihurtatu Pribatutasun Zaindaria ezgaituta dagoela aplikazio honentzat egutegiari irakur/idazketa ahalbidetzeko\nAndroid 4.3 App Ops erabiltzen ari bazara: Zihurtatu egutegiari irakur/idazketa sarbidea ahalbidetzen diozula aplikazio honentzat.</string>
   <string name="edit_activity_error_empty_name">Sartu izen bat egutegiarentzat!</string>
+  <string name="main_activity_empty_list">Ez dago lineaz-kanpoko egutegirik eskuragarri.\n\nEgutegi berriak sortu ditzakezu
+Menua erabiliz.
+
+    </string>
+  <string name="main_activity_sd_card_error">Offline Calendar-ek ez du ongi lan egingo SD txartelean ezarri bada. Mesedez mugitu barneko biltegira!</string>
   <string name="no_ical_title">iCal Inportazioa/Esportazioa</string>
+  <string name="no_ical_message">iCal Inportazio/Esportazioa ez dago ezarrita. Nahi duzu ezartzea?</string>
   <string name="menu_new">Egutegi Berria</string>
   <string name="menu_about">Honi buruz</string>
   <!--Adapter Screen-->

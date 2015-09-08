@@ -5,15 +5,17 @@
   <string name="edit_activity_name_edit">Modifica Calendario</string>
   <string name="edit_activity_cal_name">Nome</string>
   <string name="edit_activity_cal_color">Colore</string>
-  <string name="edit_activity_save">Fatto</string>
-  <string name="edit_activity_cancel">Annulla</string>
   <string name="edit_activity_delete">Elimina</string>
   <string name="edit_activity_import_export">Importa/Esporta</string>
   <string name="edit_activity_error_delete">Errore nell\'eliminazione!</string>
+  <string name="edit_activity_error_add">Impossibile aggiungere il calendario!\nSe stai usando Cyanogenmod: assicurati che Privacy Guard sia disabilitato per questa applicazione per permettere la lettura/scrittura.\nSe stai usando App Ops di Android 4.3: assicurati di permettere la lettura/scrittura del calendario per questa applicazione.</string>
   <string name="edit_activity_error_empty_name">Inserisci un nome per il calendario!</string>
+  <string name="main_activity_empty_list">Nessun calendario offline disponibile.\n\nPuoi crearne di nuovi usando il
+        Menu.
+    </string>
   <string name="main_activity_sd_card_error">Offline Calendar non funzionerà correttamente se è stato installato sulla scheda SD. Devi spostarlo nella memoria interna!</string>
-  <string name="no_ical_title">Importa/Esporta iCal</string>
-  <string name="no_ical_message">Importa/Esporta iCal non è installato. Vuoi installarlo?</string>
+  <string name="no_ical_title">iCal Import/Export</string>
+  <string name="no_ical_message">iCal Import/Export non è installato. Vuoi installarlo?</string>
   <string name="menu_new">Nuovo Calendario</string>
   <string name="menu_about">Informazioni</string>
   <!--Adapter Screen-->

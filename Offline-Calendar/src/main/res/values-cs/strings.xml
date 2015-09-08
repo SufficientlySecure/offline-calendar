@@ -5,8 +5,6 @@
   <string name="edit_activity_name_edit">Upravit kalendář</string>
   <string name="edit_activity_cal_name">Jméno</string>
   <string name="edit_activity_cal_color">Barva</string>
-  <string name="edit_activity_save">Hotovo</string>
-  <string name="edit_activity_cancel">Zrušit</string>
   <string name="edit_activity_delete">Odstranit</string>
   <string name="edit_activity_import_export">Import/Export</string>
   <string name="edit_activity_error_delete">Při odstraňování došlo k chybě!</string>
