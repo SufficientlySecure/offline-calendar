@@ -19,6 +19,7 @@
 package org.sufficientlysecure.localcalendar.ui;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentUris;
@@ -27,20 +28,23 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContractWrapper;
-import android.support.v4.app.FragmentActivity;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
@@ -48,20 +52,23 @@ import com.larswerkman.holocolorpicker.SVBar;
 
 import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
-import org.sufficientlysecure.localcalendar.util.ActionBarHelper;
 
-public class EditActivity extends FragmentActivity {
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+public class EditActivity extends AppCompatActivity {
     boolean edit = false;
 
+    private TextInputLayout displayNameEditTextLyout;
     private EditText displayNameEditText;
     ColorPicker colorPicker;
-    private SVBar svBar;
 
-    LinearLayout editButtons;
-    Button deleteButton;
-    Button importExportButton;
-    Button cancelButton;
-    Button saveButton;
+    Toolbar mToolbar;
+
+    LinearLayout toolbar2;
+    ImageButton deleteButton;
+    ImageButton importExportButton;
+    ImageButton newEventButton;
 
     long mCalendarId;
 
@@ -74,9 +81,27 @@ public class EditActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_activity);
 
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
+        setFullScreenDialogDoneClose(R.string.edit_activity_save, new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        }, new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(Activity.RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        toolbar2 = (LinearLayout) findViewById(R.id.toolbar2);
         displayNameEditText = (EditText) findViewById(R.id.edit_activity_text_cal_name);
+        displayNameEditTextLyout = (TextInputLayout) findViewById(R.id.edit_activity_text_cal_name_layout);
         colorPicker = (ColorPicker) findViewById(R.id.edit_activity_color_picker);
-        svBar = (SVBar) findViewById(R.id.edit_activity_svbar);
+        SVBar svBar = (SVBar) findViewById(R.id.edit_activity_svbar);
 
         colorPicker.addSVBar(svBar);
 
@@ -121,70 +146,34 @@ public class EditActivity extends FragmentActivity {
             });
         }
 
-        // Based on Android version use ButtonBar on bottom or use custom Actionbar layout
-        if (android.os.Build.VERSION.SDK_INT >= 11) {
-            if (edit) {
-                ActionBarHelper.setDoneView(getActionBar(), new OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        save();
-                    }
-                });
-            } else {
-                ActionBarHelper.setDoneCancelView(getActionBar(), new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                save();
-                            }
-                        }, new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                finish();
-                            }
-                        }
-                );
-            }
-        } else {
-            // Android < 3.0
-            editButtons = (LinearLayout) findViewById(R.id.edit_activity_edit_buttons);
-            deleteButton = (Button) findViewById(R.id.edit_activity_delete);
-            importExportButton = (Button) findViewById(R.id.edit_activity_import_export);
-            cancelButton = (Button) findViewById(R.id.edit_activity_cancel);
-            saveButton = (Button) findViewById(R.id.edit_activity_save);
+        newEventButton = (ImageButton) findViewById(R.id.edit_activity_new_event);
+        importExportButton = (ImageButton) findViewById(R.id.edit_activity_import_export);
+        deleteButton = (ImageButton) findViewById(R.id.edit_activity_delete);
 
-            if (edit) {
-                editButtons.setVisibility(View.VISIBLE);
-            }
-
-            deleteButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    delete();
-                }
-            });
-            importExportButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    importExport();
-                }
-            });
-            cancelButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-            saveButton.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    save();
-                }
-            });
+        if (!edit) {
+            toolbar2.setVisibility(View.GONE);
         }
+
+        newEventButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addEvent();
+            }
+        });
+        importExportButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                importExport();
+            }
+        });
+        deleteButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                delete();
+            }
+        });
 
         // remove error when characters are entered
         displayNameEditText.addTextChangedListener(new TextWatcher() {
@@ -200,35 +189,30 @@ public class EditActivity extends FragmentActivity {
         });
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        // Show menu only in edit mode
-        return edit;
-    }
+    /**
+     * Inflate custom design to look like a full screen dialog, as specified in Material Design Guidelines
+     * see http://www.google.com/design/spec/components/dialogs.html#dialogs-full-screen-dialogs
+     */
+    public void setFullScreenDialogDoneClose(int doneText, View.OnClickListener doneOnClickListener,
+                                             View.OnClickListener cancelOnClickListener) {
+        mToolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_edit, menu);
-        return true;
-    }
+        // Inflate the custom action bar view
+        final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
+                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        final View customActionBarView = inflater.inflate(R.layout.full_screen_dialog, null);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_edit_cancel:
-                finish();
-                return true;
-            case R.id.menu_edit_delete:
-                delete();
-                return true;
-            case R.id.menu_edit_import_export:
-                importExport();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        TextView firstTextView = ((TextView) customActionBarView.findViewById(R.id.full_screen_dialog_done_text));
+        firstTextView.setText(doneText);
+        customActionBarView.findViewById(R.id.full_screen_dialog_done).setOnClickListener(
+                doneOnClickListener);
+
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setCustomView(customActionBarView, new ActionBar.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT,
+                Gravity.END));
+        mToolbar.setNavigationOnClickListener(cancelOnClickListener);
     }
 
     private void importExport() {
@@ -246,11 +230,6 @@ public class EditActivity extends FragmentActivity {
     }
 
     private void addEvent() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            Toast.makeText(this, "Not supported. Please open calendar!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
         try {
             /*
              * NOTE:
@@ -263,16 +242,27 @@ public class EditActivity extends FragmentActivity {
             intent.putExtra(CalendarContractWrapper.Events.CALENDAR_ID, mCalendarId);
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "Not supported. Please open calendar!", Toast.LENGTH_LONG).show();
+            try {
+                // open calendar at today
+                Calendar cal = GregorianCalendar.getInstance();
+
+                Uri.Builder builder = CalendarContractWrapper.CONTENT_URI.buildUpon();
+                builder.appendPath("time");
+                ContentUris.appendId(builder, cal.getTimeInMillis());
+                Intent intent = new Intent(Intent.ACTION_VIEW)
+                        .setData(builder.build());
+                startActivity(intent);
+            } catch (ActivityNotFoundException ex) {
+                Toast.makeText(this, "Not supported. Please open calendar manually!", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
     private void save() {
         if (displayNameEditText.getText().length() == 0) {
-            displayNameEditText.requestFocus();
-            displayNameEditText.setError(getString(R.string.edit_activity_error_empty_name));
+            displayNameEditTextLyout.setError(getString(R.string.edit_activity_error_empty_name));
         } else {
-            displayNameEditText.setError(null);
+            displayNameEditTextLyout.setError(null);
             if (edit)
                 updateCalendar();
             else
@@ -282,9 +272,10 @@ public class EditActivity extends FragmentActivity {
 
     private void delete() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.edit_activity_really_delete)
+        builder.setTitle(R.string.edit_activity_really_delete_title)
+                .setMessage(R.string.edit_activity_really_delete)
                 .setCancelable(false)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.edit_activity_delete_dialog_button, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         deleteCalendar();
                     }
