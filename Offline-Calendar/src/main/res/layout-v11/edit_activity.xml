@@ -36,6 +36,7 @@
 
                 <ImageButton
                     android:id="@+id/edit_activity_new_event"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:contentDescription="@string/edit_activity_new_event"
@@ -43,6 +44,7 @@
 
                 <ImageButton
                     android:id="@+id/edit_activity_import_export"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:contentDescription="@string/edit_activity_import_export"
@@ -51,6 +53,7 @@
 
                 <ImageButton
                     android:id="@+id/edit_activity_delete"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:contentDescription="@string/edit_activity_delete"
