@@ -28,38 +28,46 @@ import android.view.View.OnClickListener;
 import org.sufficientlysecure.localcalendar.R;
 
 /**
- * Methods copied from https://android.googlesource.com/platform/developers/samples/android/+/master/ui/actionbar/DoneBar/
+ * Methods modified from https://android.googlesource.com/platform/developers/samples/android/+/master/ui/actionbar/DoneBar/
+ *
  */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ActionBarHelper {
 
-    /**
-     * Sets custom view on ActionBar for Done/Cancel activities
-     *
-     * @param actionBar
-     * @param doneOnClickListener
-     * @param cancelOnClickListener
-     */
-    public static void setDoneCancelView(ActionBar actionBar,
-                                         OnClickListener doneOnClickListener,
-                                         OnClickListener cancelOnClickListener) {
+    private static View initView(ActionBar actionBar,
+                                 int viewId,
+                                 OnClickListener onDone) {
 
-        // Inflate a "Done"/"Cancel" custom action bar view
-        final LayoutInflater inflater = (LayoutInflater) actionBar.getThemedContext()
-                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        final View customActionBarView = inflater.inflate(
-                R.layout.actionbar_custom_view_done_cancel, null);
-
-        customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
-                doneOnClickListener);
-        customActionBarView.findViewById(R.id.actionbar_cancel).setOnClickListener(
-                cancelOnClickListener);
+        // Inflate a custom view and set a Done handler
+        actionBar.setCustomView(viewId);
+        View view = actionBar.getCustomView();
+        view.findViewById(R.id.actionbar_done).setOnClickListener(onDone);
 
         // Show the custom action bar view and hide the normal Home icon and title.
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(customActionBarView, new ActionBar.LayoutParams(
+        return view;
+    }
+
+    /**
+     * Sets custom view on ActionBar for Done/Cancel activities
+     *
+     * @param actionBar
+     * @param onDone
+     * @param onCancel
+     */
+    public static void setDoneCancelView(ActionBar actionBar,
+                                         OnClickListener onDone,
+                                         OnClickListener onCancel) {
+
+        View view = initView(actionBar, R.layout.actionbar_custom_view_done_cancel, onDone);
+
+        // Set a Cancel handler
+        view.findViewById(R.id.actionbar_cancel).setOnClickListener(onCancel);
+
+        // Set the view again, this time with custom layout parameters
+        actionBar.setCustomView(view, new ActionBar.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
@@ -67,24 +75,12 @@ public class ActionBarHelper {
      * Sets custom view on ActionBar for Done activities
      *
      * @param actionBar
-     * @param doneOnClickListener
+     * @param onDone
      */
     public static void setDoneView(ActionBar actionBar,
-                                   OnClickListener doneOnClickListener) {
-        // Inflate a "Done" custom action bar view to serve as the "Up" affordance.
-        final LayoutInflater inflater = (LayoutInflater) actionBar.getThemedContext()
-                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        final View customActionBarView = inflater
-                .inflate(R.layout.actionbar_custom_view_done, null);
+                                   OnClickListener onDone) {
 
-        customActionBarView.findViewById(R.id.actionbar_done).setOnClickListener(
-                doneOnClickListener);
-
-        // Show the custom action bar view and hide the normal Home icon and title.
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(customActionBarView);
+        initView(actionBar, R.layout.actionbar_custom_view_done, onDone);
     }
 
 }
