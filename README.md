@@ -7,7 +7,7 @@ Works on Android >= 2.2 using https://github.com/dschuermann/android-calendar-co
 
 # Installation/Translations
 
-see http://sufficientlysecure.org/android-apps/
+see http://sufficientlysecure.org/android/
 
 # Build with Gradle
 
