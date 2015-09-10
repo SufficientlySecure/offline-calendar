@@ -17,7 +17,6 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -28,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 
 import org.sufficientlysecure.localcalendar.util.Log;
 
@@ -70,7 +70,6 @@ public class ActivityNotFoundDialogFragment extends DialogFragment {
         final int message = getArguments().getInt(ARG_MESSAGE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setIcon(android.R.drawable.ic_dialog_alert);
         builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intentGooglePlay = new Intent(Intent.ACTION_VIEW);
