@@ -7,8 +7,10 @@
   <string name="edit_activity_cal_color">Цвет</string>
   <string name="edit_activity_delete">Удалить</string>
   <string name="edit_activity_import_export">Импорт/Экспорт</string>
+  <string name="edit_activity_error_add">Невозможно добавить календарь!\nЕсли вы используете Cyanogenmod, убедитесь, что для данного приложения отключен Защищенный режим и разрешены чтение/запись в календарь.\nЕсли вы используете App Ops для Android 4.3, убедитесь, что данному приложению разрешены чтение/запись в календарь.</string>  
   <string name="edit_activity_error_delete">Ошибка удаления!</string>
   <string name="edit_activity_error_empty_name">Введите названия календаря!</string>
+  <string name="main_activity_empty_list">Нет доступных локальных календарей.\n\nВы можете создать новые календари в меню.</string>
   <string name="main_activity_sd_card_error">Локальный календарь не может работать, если установлен на карту памяти. Пожалуйста, перенесите его во внутреннюю память устройства.</string>
   <string name="no_ical_title">Импорт/Экспорт iCal</string>
   <string name="no_ical_message">Импорт/Экспорт iCal не установлен. Хотите установить?</string>
