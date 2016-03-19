@@ -43,7 +43,9 @@ import android.widget.TextView;
 import org.sufficientlysecure.localcalendar.R;
 import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
 
-public class PreferencesActivity extends PreferenceActivity {
+public class PreferencesActivity extends AppCompatActivity {
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -55,7 +57,26 @@ public class PreferencesActivity extends PreferenceActivity {
         }
 
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
+        setContentView(R.layout.pref_activity);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        getFragmentManager().beginTransaction().add(R.id.preffragment, new MyPreferenceFragment()).commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+      switch (menuItem.getItemId()) {
+          case android.R.id.home:
+            Intent homeIntent = new Intent(this, MainActivity.class);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
+      }
+      return (super.onOptionsItemSelected(menuItem));
     }
 
     public static class MyPreferenceFragment extends PreferenceFragment {
