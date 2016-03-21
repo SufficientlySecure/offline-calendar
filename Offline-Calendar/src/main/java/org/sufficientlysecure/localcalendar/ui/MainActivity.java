@@ -20,14 +20,18 @@ package org.sufficientlysecure.localcalendar.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("useDarkTheme", true)) {
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
@@ -91,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_main_about:
                 showAbout();
+                return true;
+            case R.id.menu_main_preferences:
+                Intent preferencesActivity = new Intent(this, PreferencesActivity.class);
+                startActivity(preferencesActivity);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
