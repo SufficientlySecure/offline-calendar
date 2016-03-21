@@ -3,4 +3,39 @@
 
     <color name="emphasis">#31b6e7</color>
 
+    <color name="primary">#7bad45</color>
+
+    <color name="icons">#ffffff</color>
+    <color name="transparent">#00ffffff</color>
+
+    <color name="key_flag_gray">#808080</color>
+    <color name="key_flag_red">#f44336</color>
+    <color name="key_flag_orange">#ff9800</color>
+    <color name="key_flag_green">#7bad45</color>
+
+    <color name="password_strength_low">#f44336</color>
+    <color name="password_strength_medium">#ff9800</color>
+    <color name="password_strength_high">#7bad45</color>
+
+    <!--
+        Standard Android colors:
+        http://www.google.com/design/spec/style/color.html#color-color-palette
+        light = normal color
+        dark = 900
+
+        exception: green
+    -->
+    <color name="android_red_light">#f44336</color>
+    <color name="android_red_dark">#b71c1c</color>
+    <color name="android_orange_light">#ff9800</color>
+    <color name="android_green_light">#7bad45</color>
+    <color name="android_green_dark">#6c983d</color>
+
+    <!-- text protection scrim colors -->
+    <color name="translucent_scrim_bottom">#2A000000</color>
+    <color name="translucent_scrim_bottom_center">#2A000000</color>
+
+    <!-- linked ID view -->
+    <color name="card_view_button">#7bad45</color>
+
 </resources>

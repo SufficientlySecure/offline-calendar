@@ -38,14 +38,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import org.sufficientlysecure.localcalendar.R;
 import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
+import org.sufficientlysecure.localcalendar.compatibility.AppCompatPreferenceActivity;
 
-public class PreferencesActivity extends AppCompatActivity {
-    Toolbar mToolbar;
-
+public class PreferencesActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -59,13 +60,36 @@ public class PreferencesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pref_activity);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+	setupToolbar();
 
         getFragmentManager().beginTransaction().add(R.id.preffragment, new MyPreferenceFragment()).commit();
+    }
+
+
+    /**
+     * Hack to get Toolbar in PreferenceActivity. See http://stackoverflow.com/a/26614696
+     */
+    private void setupToolbar() {
+        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+        LinearLayout content = (LinearLayout) root.getChildAt(0);
+        LinearLayout toolbarContainer = (LinearLayout) View.inflate(this, R.layout.preference_toolbar, null);
+
+        root.removeAllViews();
+        toolbarContainer.addView(content);
+        root.addView(toolbarContainer);
+
+        Toolbar toolbar = (Toolbar) toolbarContainer.findViewById(R.id.toolbar);
+
+        toolbar.setTitle(R.string.menu_preferences);
+        // noinspection deprecation, TODO use alternative in API level 21
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //What to do on back clicked
+                finish();
+            }
+        });
     }
 
     @Override
