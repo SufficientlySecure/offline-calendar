@@ -160,6 +160,17 @@ public class EditActivity extends AppCompatActivity {
         importExportButton = (ImageButton) findViewById(R.id.edit_activity_import_export);
         deleteButton = (ImageButton) findViewById(R.id.edit_activity_delete);
 
+        if(prefs.getBoolean("useDarkTheme", false)) {
+            newEventButton.setImageResource(R.drawable.ic_event_white_24dp);
+            importExportButton.setImageResource(R.drawable.ic_swap_vert_white_24dp);
+            deleteButton.setImageResource(R.drawable.ic_delete_white_24dp);
+        }
+        else {
+            newEventButton.setImageResource(R.drawable.ic_event_black_24dp);
+            importExportButton.setImageResource(R.drawable.ic_swap_vert_black_24dp);
+            deleteButton.setImageResource(R.drawable.ic_delete_black_24dp);
+        }
+
         if (!edit) {
             toolbar2.setVisibility(View.GONE);
         }
@@ -205,7 +216,14 @@ public class EditActivity extends AppCompatActivity {
      */
     public void setFullScreenDialogDoneClose(int doneText, View.OnClickListener doneOnClickListener,
                                              View.OnClickListener cancelOnClickListener) {
-        mToolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("useDarkTheme", false)) {
+            mToolbar.setNavigationIcon(R.drawable.ic_clear_white_24dp);
+        }
+        else {
+            mToolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp);
+        }
 
         // Inflate the custom action bar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
