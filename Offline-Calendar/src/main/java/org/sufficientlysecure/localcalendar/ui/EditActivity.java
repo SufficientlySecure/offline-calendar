@@ -25,6 +25,8 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -78,6 +80,14 @@ public class EditActivity extends AppCompatActivity {
     @SuppressLint("NewApi")
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("useDarkTheme", false)) {
+            setTheme(R.style.DarkTheme);
+        }
+        else {
+            setTheme(R.style.LightTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_activity);
 
@@ -150,6 +160,17 @@ public class EditActivity extends AppCompatActivity {
         importExportButton = (ImageButton) findViewById(R.id.edit_activity_import_export);
         deleteButton = (ImageButton) findViewById(R.id.edit_activity_delete);
 
+        if(prefs.getBoolean("useDarkTheme", false)) {
+            newEventButton.setImageResource(R.drawable.ic_event_white_24dp);
+            importExportButton.setImageResource(R.drawable.ic_swap_vert_white_24dp);
+            deleteButton.setImageResource(R.drawable.ic_delete_white_24dp);
+        }
+        else {
+            newEventButton.setImageResource(R.drawable.ic_event_black_24dp);
+            importExportButton.setImageResource(R.drawable.ic_swap_vert_black_24dp);
+            deleteButton.setImageResource(R.drawable.ic_delete_black_24dp);
+        }
+
         if (!edit) {
             toolbar2.setVisibility(View.GONE);
         }
@@ -195,7 +216,14 @@ public class EditActivity extends AppCompatActivity {
      */
     public void setFullScreenDialogDoneClose(int doneText, View.OnClickListener doneOnClickListener,
                                              View.OnClickListener cancelOnClickListener) {
-        mToolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("useDarkTheme", false)) {
+            mToolbar.setNavigationIcon(R.drawable.ic_clear_white_24dp);
+        }
+        else {
+            mToolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp);
+        }
 
         // Inflate the custom action bar view
         final LayoutInflater inflater = (LayoutInflater) getSupportActionBar().getThemedContext()
