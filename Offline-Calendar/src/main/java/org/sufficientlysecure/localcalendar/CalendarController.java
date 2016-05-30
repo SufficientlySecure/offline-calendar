@@ -89,8 +89,9 @@ public class CalendarController {
      */
     public static void addCalendar(Context context, String displayName, int color,
                                    final ContentResolver cr) {
-        if (displayName == null)
+        if (displayName == null) {
             throw new IllegalArgumentException();
+        }
 
         /*
          * On Android < 4.1 create an account for our calendars. Using ACCOUNT_TYPE_LOCAL would
