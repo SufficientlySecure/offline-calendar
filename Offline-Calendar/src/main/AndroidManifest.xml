@@ -68,8 +68,7 @@
             android:label="@string/edit_activity_name_edit"
             android:windowSoftInputMode="stateHidden" />
 
-        <activity
-            android:name=".ui.PreferencesActivity" />
+        <activity android:name=".ui.PreferencesActivity" />
 
         <!-- service for accounts on Android < 4.1 -->
         <service

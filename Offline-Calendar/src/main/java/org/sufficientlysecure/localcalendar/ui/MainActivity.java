@@ -18,38 +18,44 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.sufficientlysecure.localcalendar.R;
 import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_PERMISSIONS_WRITE_CALENDAR = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean("useDarkTheme", false)) {
+        if (prefs.getBoolean("useDarkTheme", false)) {
             setTheme(R.style.DarkTheme);
-        }
-        else {
+        } else {
             setTheme(R.style.LightTheme);
         }
 
@@ -59,6 +65,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // check Android 6 permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR)
+                == PackageManager.PERMISSION_GRANTED) {
+            init();
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_CALENDAR},
+                    REQUEST_PERMISSIONS_WRITE_CALENDAR);
+        }
+
+    }
+
+    private void init() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_activity_fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +106,25 @@ public class MainActivity extends AppCompatActivity {
                     });
             AlertDialog alert = builder.create();
             alert.show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_PERMISSIONS_WRITE_CALENDAR: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted
+                    init();
+                } else {
+                    Toast.makeText(this, R.string.main_activity_permission_error,
+                            Toast.LENGTH_LONG).show();
+                    setResult(Activity.RESULT_CANCELED);
+                    finish();
+                }
+            }
         }
     }
 
