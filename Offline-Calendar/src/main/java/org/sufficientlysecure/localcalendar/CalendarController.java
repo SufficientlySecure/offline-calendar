@@ -18,9 +18,6 @@
 
 package org.sufficientlysecure.localcalendar;
 
-import org.sufficientlysecure.localcalendar.util.Constants;
-import org.sufficientlysecure.localcalendar.util.Log;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
@@ -30,10 +27,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.CalendarContractWrapper;
-import android.provider.CalendarContractWrapper.Calendars;
+import android.provider.CalendarContract;
 
-@SuppressLint("NewApi")
+import org.sufficientlysecure.localcalendar.util.Constants;
+import org.sufficientlysecure.localcalendar.util.Log;
+
+//@SuppressLint("NewApi")
 public class CalendarController {
     private static final boolean BEFORE_JELLYBEAN = android.os.Build.VERSION.SDK_INT < 16;
 
@@ -44,7 +43,7 @@ public class CalendarController {
      * see http://code.google.com/p/android/issues/detail?id=27474
      */
     public static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? "org.sufficientlysecure.localcalendar.account"
-            : CalendarContractWrapper.ACCOUNT_TYPE_LOCAL;
+            : CalendarContract.ACCOUNT_TYPE_LOCAL;
     public static final String CONTENT_AUTHORITY = "com.android.calendar";
     public static final Account ACCOUNT = new Account(ACCOUNT_NAME, ACCOUNT_TYPE);
 
@@ -52,9 +51,10 @@ public class CalendarController {
 
     // Projection array. Creating indices for this array instead of doing
     // dynamic lookups improves performance.
-    public static final String[] PROJECTION = new String[]{Calendars._ID, // 0
-            Calendars.CALENDAR_DISPLAY_NAME, // 1
-            Calendars.CALENDAR_COLOR // 2
+    public static final String[] PROJECTION = new String[]{
+            CalendarContract.Calendars._ID, // 0
+            CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, // 1
+            CalendarContract.Calendars.CALENDAR_COLOR // 2
     };
 
     // The indices for the projection array above.
@@ -63,24 +63,24 @@ public class CalendarController {
     public static final int PROJECTION_COLOR_INDEX = 2;
 
     private static Uri buildCalUri() {
-        return CalendarContractWrapper.Calendars.CONTENT_URI.buildUpon()
-                .appendQueryParameter(CalendarContractWrapper.CALLER_IS_SYNCADAPTER, "true")
-                .appendQueryParameter(Calendars.ACCOUNT_NAME, ACCOUNT_NAME)
-                .appendQueryParameter(Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE).build();
+        return CalendarContract.Calendars.CONTENT_URI.buildUpon()
+                .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
+                .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, ACCOUNT_NAME)
+                .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE).build();
     }
 
     private static ContentValues buildContentValues(String displayName, int color) {
         String intName = INT_NAME_PREFIX + displayName;
         final ContentValues cv = new ContentValues();
-        cv.put(Calendars.ACCOUNT_NAME, ACCOUNT_NAME);
-        cv.put(Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE);
-        cv.put(Calendars.NAME, intName);
-        cv.put(Calendars.CALENDAR_DISPLAY_NAME, displayName);
-        cv.put(Calendars.CALENDAR_COLOR, color);
-        cv.put(Calendars.CALENDAR_ACCESS_LEVEL, Calendars.CAL_ACCESS_OWNER);
-        cv.put(Calendars.OWNER_ACCOUNT, ACCOUNT_NAME);
-        cv.put(Calendars.VISIBLE, 1);
-        cv.put(Calendars.SYNC_EVENTS, 1);
+        cv.put(CalendarContract.Calendars.ACCOUNT_NAME, ACCOUNT_NAME);
+        cv.put(CalendarContract.Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE);
+        cv.put(CalendarContract.Calendars.NAME, intName);
+        cv.put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, displayName);
+        cv.put(CalendarContract.Calendars.CALENDAR_COLOR, color);
+        cv.put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER);
+        cv.put(CalendarContract.Calendars.OWNER_ACCOUNT, ACCOUNT_NAME);
+        cv.put(CalendarContract.Calendars.VISIBLE, 1);
+        cv.put(CalendarContract.Calendars.SYNC_EVENTS, 1);
         return cv;
     }
 
@@ -131,9 +131,13 @@ public class CalendarController {
          *
          * If AppOps disallows "calendar write" for this app the resultUri is valid (ID=0), but the calendar is not inserted!
          */
-        final String[] projection = {Calendars._ID, Calendars.NAME};
-        final String selection = Calendars.NAME + " = ?";
-        Cursor cursor = cr.query(buildCalUri(), projection, selection, new String[]{cv.getAsString(Calendars.NAME)}, null);
+        final String[] projection = {
+                CalendarContract.Calendars._ID,
+                CalendarContract.Calendars.NAME
+        };
+        final String selection = CalendarContract.Calendars.NAME + " = ?";
+        Cursor cursor = cr.query(buildCalUri(), projection, selection,
+                new String[]{cv.getAsString(CalendarContract.Calendars.NAME)}, null);
         try {
             if (cursor == null || !cursor.moveToFirst()) {
                 Log.e(Constants.TAG, "Query is empty after insert! AppOps disallows access to read or write calendar?");
@@ -168,8 +172,9 @@ public class CalendarController {
      * @return true iff exactly one row is deleted
      */
     public static boolean deleteCalendar(long id, ContentResolver cr) {
-        if (id < 0)
+        if (id < 0) {
             throw new IllegalArgumentException();
+        }
 
         Uri calUri = ContentUris.withAppendedId(buildCalUri(), id);
         return cr.delete(calUri, null, null) == 1;

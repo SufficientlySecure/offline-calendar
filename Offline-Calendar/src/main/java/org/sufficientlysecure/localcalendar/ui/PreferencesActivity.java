@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 Boris Kraut <krt@nurfuerspam.de>
- * Copyright (C) 2013 Dominik Schürmann <dominik@dominikschuermann.de>
+ * Copyright (C) 2013-2016 Dominik Schürmann <dominik@dominikschuermann.de>
  * Copyright (C) 2012 Harald Seltner <h.seltner@gmx.at>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,29 +19,16 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import org.sufficientlysecure.localcalendar.R;
-import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
 
 public class PreferencesActivity extends AppCompatActivity {
     Toolbar mToolbar;
@@ -49,10 +36,9 @@ public class PreferencesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean("useDarkTheme", false)) {
+        if (prefs.getBoolean("useDarkTheme", false)) {
             setTheme(R.style.DarkTheme);
-        }
-        else {
+        } else {
             setTheme(R.style.LightTheme);
         }
 
@@ -70,13 +56,13 @@ public class PreferencesActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
-      switch (menuItem.getItemId()) {
-          case android.R.id.home:
-            Intent homeIntent = new Intent(this, MainActivity.class);
-            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(homeIntent);
-      }
-      return (super.onOptionsItemSelected(menuItem));
+        switch (menuItem.getItemId()) {
+            case android.R.id.home:
+                Intent homeIntent = new Intent(this, MainActivity.class);
+                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+        }
+        return (super.onOptionsItemSelected(menuItem));
     }
 
     public static class MyPreferenceFragment extends PreferenceFragment {

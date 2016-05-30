@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Dominik Schürmann <dominik@dominikschuermann.de>
+ * Copyright (C) 2013-2016 Dominik Schürmann <dominik@dominikschuermann.de>
  * Copyright (C) 2012 Harald Seltner <h.seltner@gmx.at>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,11 +26,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContractWrapper;
+import android.preference.PreferenceManager;
+import android.provider.CalendarContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -81,10 +81,9 @@ public class EditActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean("useDarkTheme", false)) {
+        if (prefs.getBoolean("useDarkTheme", false)) {
             setTheme(R.style.DarkTheme);
-        }
-        else {
+        } else {
             setTheme(R.style.LightTheme);
         }
 
@@ -160,12 +159,11 @@ public class EditActivity extends AppCompatActivity {
         importExportButton = (ImageButton) findViewById(R.id.edit_activity_import_export);
         deleteButton = (ImageButton) findViewById(R.id.edit_activity_delete);
 
-        if(prefs.getBoolean("useDarkTheme", false)) {
+        if (prefs.getBoolean("useDarkTheme", false)) {
             newEventButton.setImageResource(R.drawable.ic_event_white_24dp);
             importExportButton.setImageResource(R.drawable.ic_swap_vert_white_24dp);
             deleteButton.setImageResource(R.drawable.ic_delete_white_24dp);
-        }
-        else {
+        } else {
             newEventButton.setImageResource(R.drawable.ic_event_black_24dp);
             importExportButton.setImageResource(R.drawable.ic_swap_vert_black_24dp);
             deleteButton.setImageResource(R.drawable.ic_delete_black_24dp);
@@ -218,10 +216,9 @@ public class EditActivity extends AppCompatActivity {
                                              View.OnClickListener cancelOnClickListener) {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean("useDarkTheme", false)) {
+        if (prefs.getBoolean("useDarkTheme", false)) {
             mToolbar.setNavigationIcon(R.drawable.ic_clear_white_24dp);
-        }
-        else {
+        } else {
             mToolbar.setNavigationIcon(R.drawable.ic_clear_black_24dp);
         }
 
@@ -266,15 +263,15 @@ public class EditActivity extends AppCompatActivity {
              */
             Intent intent = new Intent(Intent.ACTION_INSERT);
             intent.setPackage("com.android.calendar");
-            intent.setData(CalendarContractWrapper.Events.CONTENT_URI);
-            intent.putExtra(CalendarContractWrapper.Events.CALENDAR_ID, mCalendarId);
+            intent.setData(CalendarContract.Events.CONTENT_URI);
+            intent.putExtra(CalendarContract.Events.CALENDAR_ID, mCalendarId);
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
             try {
                 // open calendar at today
                 Calendar cal = GregorianCalendar.getInstance();
 
-                Uri.Builder builder = CalendarContractWrapper.CONTENT_URI.buildUpon();
+                Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
                 builder.appendPath("time");
                 ContentUris.appendId(builder, cal.getTimeInMillis());
                 Intent intent = new Intent(Intent.ACTION_VIEW)
