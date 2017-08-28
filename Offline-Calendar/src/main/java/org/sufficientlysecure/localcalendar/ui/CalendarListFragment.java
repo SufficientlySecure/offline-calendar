@@ -17,7 +17,6 @@
 
 package org.sufficientlysecure.localcalendar.ui;
 
-import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -41,7 +40,6 @@ import android.widget.TextView;
 import org.sufficientlysecure.localcalendar.CalendarController;
 import org.sufficientlysecure.localcalendar.R;
 
-@SuppressLint("NewApi")
 public class CalendarListFragment extends ListFragment implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -91,7 +89,8 @@ public class CalendarListFragment extends ListFragment implements
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 // edit calendar
                 Intent intent = new Intent(getActivity(), EditActivity.class);
-                intent.setData(ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, id));
+                intent.setData(
+                        ContentUris.withAppendedId(CalendarContract.Calendars.CONTENT_URI, id));
                 startActivity(intent);
             }
         });
@@ -117,14 +116,20 @@ public class CalendarListFragment extends ListFragment implements
         // sample only has one Loader, so we don't care about the ID.
         Uri baseUri = CalendarContract.Calendars.CONTENT_URI;
 
-        String selection = "((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) AND ("
-                + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?))";
-        String[] selectionArgs = new String[]{CalendarController.ACCOUNT_NAME, CalendarController.ACCOUNT_TYPE};
-        String sortOrder = CalendarContract.Calendars.CALENDAR_DISPLAY_NAME + " asc";
+        String selection = "((" + CalendarContract.Calendars.ACCOUNT_NAME + " = ?) "
+                + "AND ((" + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?) "
+                + "OR (" + CalendarContract.Calendars.ACCOUNT_TYPE + " = ?)))";
+        String[] selectionArgs = new String[]{
+                CalendarController.ACCOUNT_NAME,
+                CalendarController.ACCOUNT_TYPE,
+                CalendarController.ACCOUNT_TYPE_LEGACY
+        };
+        String sortOrder = CalendarContract.Calendars.CALENDAR_DISPLAY_NAME + " ASC";
 
         // Now create and return a CursorLoader that will take care of
         // creating a Cursor for the data being displayed.
-        return new CursorLoader(getActivity(), baseUri, CalendarController.PROJECTION, selection, selectionArgs, sortOrder);
+        return new CursorLoader(getActivity(), baseUri, CalendarController.PROJECTION,
+                selection, selectionArgs, sortOrder);
     }
 
     @Override
