@@ -20,6 +20,20 @@ android {
         versionName "1.8"
     }
 
+    buildTypes {
+        debug {
+            minifyEnabled true
+            zipAlignEnabled true
+            useProguard false
+        }
+        release {
+            shrinkResources false
+            minifyEnabled true
+            zipAlignEnabled true
+            useProguard false
+        }
+    }
+
     /*
      * To sign release build, create file gradle.properties in ~/.gradle/ with this content:
      *
