@@ -80,8 +80,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void init() {
+    public void showCalendars() {
         Fragment newFragment = new CalendarListFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentLayout, newFragment);
+        transaction.commit();
+    }
+
+    private void init() {
+        Fragment newFragment = new EtarFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentLayout, newFragment);
         transaction.commit();

@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/alert" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Development of Offline Calendar stopped! All its functions have been integrated into Etar Calendar. Please use Etar's settings to manage your offline calendars."
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonInstallEtar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Install Etar Calendar" />
+
+    <Button
+        android:id="@+id/buttonSkip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Skip warning" />
+</LinearLayout>
