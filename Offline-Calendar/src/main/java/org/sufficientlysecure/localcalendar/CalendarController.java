@@ -34,16 +34,13 @@ import org.sufficientlysecure.localcalendar.util.Log;
 
 //@SuppressLint("NewApi")
 public class CalendarController {
-    private static final boolean BEFORE_JELLYBEAN = android.os.Build.VERSION.SDK_INT < 16;
-
     public static final String ACCOUNT_NAME = "Local Calendar";
     /*
      * Use ACCOUNT_TYPE_LOCAL only on Android >= 4.1
      * 
      * see http://code.google.com/p/android/issues/detail?id=27474
      */
-    public static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? "org.sufficientlysecure.localcalendar.account"
-            : CalendarContract.ACCOUNT_TYPE_LOCAL;
+    public static final String ACCOUNT_TYPE = CalendarContract.ACCOUNT_TYPE_LOCAL;
     public static final String CONTENT_AUTHORITY = "com.android.calendar";
     public static final Account ACCOUNT = new Account(ACCOUNT_NAME, ACCOUNT_TYPE);
 
@@ -91,32 +88,6 @@ public class CalendarController {
                                    final ContentResolver cr) {
         if (displayName == null) {
             throw new IllegalArgumentException();
-        }
-
-        /*
-         * On Android < 4.1 create an account for our calendars. Using ACCOUNT_TYPE_LOCAL would
-         * cause these bugs:
-         * 
-         * - On Android < 4.1: Selecting "Calendars to sync" in the calendar app it crashes with
-         * NullPointerException. see http://code.google.com/p/android/issues/detail?id=27474
-         * 
-         * - On Android <= 2.3: Opening the calendar app will ask to create an account first even
-         * when local calendars are present
-         */
-        if (BEFORE_JELLYBEAN) {
-            if (addAccount(context)) {
-                Log.d(Constants.TAG, "Account was added!");
-
-                // wait until account is added asynchronously
-                try {
-                    Thread.sleep(2000);
-                    Log.d(Constants.TAG, "after wait...");
-                } catch (InterruptedException e) {
-                    Log.e(Constants.TAG, "InterruptedException", e);
-                }
-            } else {
-                Log.e(Constants.TAG, "There was a problem when trying to add the account!");
-            }
         }
 
         // Add calendar

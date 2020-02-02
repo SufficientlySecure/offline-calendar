@@ -22,9 +22,8 @@
                 android:minHeight="?attr/actionBarSize" />
         </android.support.design.widget.AppBarLayout>
 
-        <fragment
-            android:id="@+id/main_activity_fragment"
-            android:name="org.sufficientlysecure.localcalendar.ui.CalendarListFragment"
+        <FrameLayout
+            android:id="@+id/fragmentLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -35,9 +34,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_add_white_24dp"
         app:elevation="4sp"
         app:fabSize="normal" />

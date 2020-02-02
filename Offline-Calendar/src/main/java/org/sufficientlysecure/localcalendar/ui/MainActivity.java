@@ -29,6 +29,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +48,8 @@ import android.widget.Toast;
 import org.sufficientlysecure.localcalendar.R;
 import org.sufficientlysecure.localcalendar.util.InstallLocationHelper;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_PERMISSIONS_WRITE_CALENDAR = 1;
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // check Android 6 permission
@@ -71,14 +75,18 @@ public class MainActivity extends AppCompatActivity {
             init();
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_CALENDAR},
+                    new String[]{Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR},
                     REQUEST_PERMISSIONS_WRITE_CALENDAR);
         }
-
     }
 
     private void init() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_activity_fab_add);
+        Fragment newFragment = new CalendarListFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentLayout, newFragment);
+        transaction.commit();
+
+        FloatingActionButton fab = findViewById(R.id.main_activity_fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,10 +140,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            menu.getItem(menu.size() - 1).setEnabled(false);
-        }
 
         return true;
     }
