@@ -45,7 +45,7 @@
     <!-- About -->
     <string name="about">Offline Calendar lets you add calendars. These calendars are not synchronized into the cloud
         and only locally available!
-        \n\nHelp translating, developing, or report bugs on http://www.schuermann.eu/android
+        \n\nHelp translating, developing, or report bugs on http://www.sufficientlysecure.org/android
         \n\nLicense: GPLv3+
         \n\nLibraries:
         \n- Holo ColorPicker (Apache License v2)

@@ -20,6 +20,7 @@ package org.sufficientlysecure.localcalendar;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -31,12 +32,19 @@ import android.provider.CalendarContract;
 import org.sufficientlysecure.localcalendar.util.Constants;
 import org.sufficientlysecure.localcalendar.util.Log;
 
+//@SuppressLint("NewApi")
 public class CalendarController {
+    private static final boolean BEFORE_JELLYBEAN = android.os.Build.VERSION.SDK_INT < 16;
+
     public static final String ACCOUNT_NAME = "Local Calendar";
-
-    public static final String ACCOUNT_TYPE = "org.sufficientlysecure.localcalendar.account";
-    public static final String ACCOUNT_TYPE_LEGACY = CalendarContract.ACCOUNT_TYPE_LOCAL;
-
+    /*
+     * Use ACCOUNT_TYPE_LOCAL only on Android >= 4.1
+     * 
+     * see http://code.google.com/p/android/issues/detail?id=27474
+     */
+    public static final String ACCOUNT_TYPE = BEFORE_JELLYBEAN ? "org.sufficientlysecure.localcalendar.account"
+            : CalendarContract.ACCOUNT_TYPE_LOCAL;
+    public static final String CONTENT_AUTHORITY = "com.android.calendar";
     public static final Account ACCOUNT = new Account(ACCOUNT_NAME, ACCOUNT_TYPE);
 
     private static final String INT_NAME_PREFIX = "local_";
@@ -95,27 +103,27 @@ public class CalendarController {
          * - On Android <= 2.3: Opening the calendar app will ask to create an account first even
          * when local calendars are present
          */
-        if (addAccount(context)) {
-            Log.d(Constants.TAG, "Account was added!");
+        if (BEFORE_JELLYBEAN) {
+            if (addAccount(context)) {
+                Log.d(Constants.TAG, "Account was added!");
 
-            // wait until account is added asynchronously
-            try {
-                Thread.sleep(2000);
-                Log.d(Constants.TAG, "after wait...");
-            } catch (InterruptedException e) {
-                Log.e(Constants.TAG, "InterruptedException", e);
+                // wait until account is added asynchronously
+                try {
+                    Thread.sleep(2000);
+                    Log.d(Constants.TAG, "after wait...");
+                } catch (InterruptedException e) {
+                    Log.e(Constants.TAG, "InterruptedException", e);
+                }
+            } else {
+                Log.e(Constants.TAG, "There was a problem when trying to add the account!");
             }
-        } else {
-            Log.e(Constants.TAG, "There was a problem when trying to add the account!");
-            return;
         }
 
         // Add calendar
         final ContentValues cv = buildContentValues(displayName, color);
         Uri resultUri = cr.insert(buildCalUri(), cv);
-        if (resultUri == null) {
+        if (resultUri == null)
             throw new IllegalArgumentException();
-        }
 
         /*
          * If Cyanogenmod's Privacy Guard is enabled or Android 4.3 AppOps disallows "calendar read" for this app,
@@ -152,8 +160,8 @@ public class CalendarController {
         AccountManager am = AccountManager.get(context);
         if (am.addAccountExplicitly(CalendarController.ACCOUNT, null, null)) {
             // explicitly disable sync
-            ContentResolver.setSyncAutomatically(ACCOUNT, CalendarContract.AUTHORITY, false);
-            ContentResolver.setIsSyncable(ACCOUNT, CalendarContract.AUTHORITY, 0);
+            ContentResolver.setSyncAutomatically(ACCOUNT, CONTENT_AUTHORITY, false);
+            ContentResolver.setIsSyncable(ACCOUNT, CONTENT_AUTHORITY, 0);
 
             return true;
         } else {
